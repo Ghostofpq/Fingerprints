@@ -33,7 +33,7 @@ class User < ActiveRecord::Base
   validates_confirmation_of :password
 
   def feed
-    Micropost.where("user_id = ?", id)
+    Micropost.from_users_followed_by(self)
   end
   
   def following?(other_user)
