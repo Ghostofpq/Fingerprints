@@ -7,6 +7,7 @@
 #  content    :string(255)
 #  created_at :datetime         not null
 #  updated_at :datetime         not null
+#  public     :boolean          default(FALSE)
 #
 
 require 'test_helper'
