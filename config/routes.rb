@@ -4,6 +4,11 @@ Fingerprints::Application.routes.draw do
       get :following, :followers
     end
   end
+  resources :microposts do
+    member do
+      get :set_private, :set_public
+    end
+  end
   # resources :users
   resources :sessions,      only: [:new, :create, :destroy]
   resources :microposts,    only: [:create, :destroy]

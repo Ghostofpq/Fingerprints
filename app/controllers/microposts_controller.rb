@@ -1,6 +1,6 @@
 class MicropostsController < ApplicationController
   before_filter :signed_in_user, only: [:create, :destroy]
-  before_filter :correct_user,   only: :destroy
+  before_filter :correct_user,   only: [:destroy,:set_public,:set_private]
   def index
   end
 
@@ -18,6 +18,25 @@ class MicropostsController < ApplicationController
   def destroy
     @micropost.destroy
     redirect_to root_url
+  end
+
+  def set_private
+    @micropost = current_user.microposts.find_by_id(params[:id])
+    if @micropost.update_attribute(:public,false)
+      flash[:success] = "Set in private mode"
+      redirect_back_or root_url
+    else
+    end
+
+  end
+
+  def set_public
+    @micropost = current_user.microposts.find_by_id(params[:id])
+    if @micropost.update_attribute(:public,true)
+      flash[:success] = "Set in public mode"
+      redirect_back_or root_url
+    else
+    end
   end
 
   private

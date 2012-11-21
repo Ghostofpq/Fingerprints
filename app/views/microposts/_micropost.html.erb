@@ -4,8 +4,15 @@
     Posted <%= time_ago_in_words(micropost.created_at) %> ago.
   </span>
   <% if current_user?(micropost.user) %>
-    <%= link_to "delete", micropost, method: :delete,
+   	<% if micropost.public %>
+	    <%= link_to "private",:controller => "microposts", :action => "set_private",:id => micropost.id%>               
+  	<% else %>
+	    <%= link_to "public",:controller => "microposts", :action => "set_public",:id => micropost.id%>               
+  	<% end %>     
+  	
+  	<%= link_to "delete", micropost, method: :delete,
                                      data: { confirm: "You sure?" },
                                      title: micropost.content %>
+    
   <% end %>
 </li>

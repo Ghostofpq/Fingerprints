@@ -9,7 +9,6 @@
 #  updated_at :datetime         not null
 #  public     :boolean          default(FALSE)
 #
-
 class Micropost < ActiveRecord::Base
   attr_accessible :content
 
