@@ -8,6 +8,8 @@
 #  created_at      :datetime         not null
 #  updated_at      :datetime         not null
 #  password_digest :string(255)
+#  remember_token  :string(255)
+#  admin           :boolean          default(FALSE)
 #
 
 require 'spec_helper'
@@ -168,20 +170,40 @@ describe User do
         FactoryGirl.create(:micropost, user: FactoryGirl.create(:user))
       end
       let(:followed_user) { FactoryGirl.create(:user) }
+      let(:public_post1) do
+        FactoryGirl.create(:micropost, :user=> followed_user)
+      end
+      let(:public_post2) do
+        FactoryGirl.create(:micropost, :user=>followed_user)
+      end
+      let(:private_post) do
+        FactoryGirl.create(:micropost,:user=>followed_user)
+      end
 
       before do
         @user.follow!(followed_user)
-        3.times { followed_user.microposts.create!(content: "Lorem ipsum") }
+        public_post1.toggle!(:public)
+        public_post2.toggle!(:public)
+       # 3.times { followed_user.microposts.create!(content: "Lorem ipsum") }
       end
 
       its(:feed) { should include(newer_micropost) }
       its(:feed) { should include(older_micropost) }
       its(:feed) { should_not include(unfollowed_post) }
-      its(:feed) do
-        followed_user.microposts.each do |micropost|
-          should include(micropost)
-        end
+      
+      describe "should include public microposts" do
+        its(:feed) { should include(public_post1) }
+        its(:feed) { should include(public_post2) }
       end
+      
+      describe "should not include private microposts" do
+        its(:feed) { should_not include(private_post) }
+      end
+      #its(:feed) do
+      #  followed_user.microposts.each do |micropost|
+      #    should include(micropost)
+      #  end
+     # end
     end
   end
   
