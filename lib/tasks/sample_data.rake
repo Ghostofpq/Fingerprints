@@ -4,6 +4,7 @@ namespace :db do
     make_users
     make_microposts
     make_relationships
+    make_actions
   end
 end
 
@@ -39,4 +40,14 @@ def make_relationships
   followers      = users[3..40]
   followed_users.each { |followed| user.follow!(followed) }
   followers.each      { |follower| follower.follow!(user) }
+end
+
+def make_actions
+  action1= Action.create(name: "Coffee",
+                        category: "Social",
+                        pic_path: "social/coffee.jpg")
+  action2= Action.create(name: "Run",
+                        category: "Sport",
+                        pic_path: "sport/courir.jpg")
+  
 end
