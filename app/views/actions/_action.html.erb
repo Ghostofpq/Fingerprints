@@ -1,6 +1,3 @@
-<li id="<%= action.id %>">
-	<%= image_tag action.pic_path%> 
-	<span class="name"><%= action.name%></span>
-	<span class="category"><%= action.category%></span>
-  
-</li>
+<figure id="<%= action.id %>">
+	<%= image_tag(action.pic_path,:size => "100x100",:alt=>action.name)%>
+</figure>

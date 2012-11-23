@@ -1,6 +1,4 @@
 <% provide(:title, 'Actions') %>
 <% if @actions.any? %>
-	<ol class="actions">
-		<%= render partial: 'action', collection: @actions %>
-	</ol>
+	<%= render partial: 'action', collection: @actions %>
 <% end %>

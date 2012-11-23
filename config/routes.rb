@@ -1,4 +1,7 @@
 Fingerprints::Application.routes.draw do
+  resources :action_posts
+
+
   get "actions/index"
 
   resources :users do
