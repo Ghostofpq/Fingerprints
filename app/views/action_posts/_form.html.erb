@@ -1,17 +1,26 @@
-<%= form_for(@action_post) do |f| %>
-  <% if @action_post.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@action_post.errors.count, "error") %> prohibited this action_post from being saved:</h2>
-
-      <ul>
-      <% @action_post.errors.full_messages.each do |msg| %>
-        <li><%= msg %></li>
-      <% end %>
-      </ul>
-    </div>
-  <% end %>
-
-  <div class="actions">
-    <%= f.submit %>
-  </div>
+<%= form_for(@action_post,:url => { :action => :create, :action_id => params[:action_id] })  do |f| %>
+<%= render 'shared/error_messages', object: f.object %>
+<div class="actions">
+	<table>
+		<tr>
+			<td> <%= f.label :start_date, "Start Date" %>
+			<%= f.datetime_select :start_date%> </td>
+			<td> <%= f.label :end_date, "End Date" %>
+			<%= f.datetime_select :end_date%> </td>
+		</tr>
+		<tr>
+			<td> <%= f.label :comment, "Comment" %>
+			<%= f.text_area :comment, placeholder: "Comment..." , :rows=>1%> </td>
+			<td> <%= f.label :place, "Place" %>
+			<%= f.text_area :place, placeholder: "Place..." , :rows=>1%> </td>
+		</tr>
+		<tr>
+			<td> <%= f.label :score, "Note" %>
+			<%= f.range_field :score, :in => 0...10%> </td>
+			<td> <%= f.label :price, "Price" %>
+			<%= f.number_field :price, :min =>0%> </td>
+		</tr>
+	</table>
+	<%= f.submit "Post", class: "btn btn-large btn-primary"%>
+</div>
 <% end %>

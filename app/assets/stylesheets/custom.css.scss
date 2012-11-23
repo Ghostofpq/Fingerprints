@@ -250,3 +250,65 @@ aside {
     margin-bottom: 5px;
   }
 }
+/* ====================== */
+/* actions */
+/* ====================== */
+.actions{
+  list-style: none;
+  margin: 10px 0 0 0;
+  li {
+    padding: 10px 0;
+    border-top: 1px solid #e8e8e8;
+  }
+  input{
+    border: 1px solid #bbb;
+    width: 20%;
+    margin-bottom: 20px;
+  }  
+  select{
+    border: 1px solid #bbb;
+    width: 15%;
+    padding:0;
+    margin-bottom: 10px;
+  }  
+  table{
+     width: 100%;
+  }
+  #action_post_price{
+    width: 30%;
+  }
+  #action_post_score{
+    width: 50%;
+  }
+  #action_post_start_date_1i{
+    width: 14%;
+  }
+  #action_post_start_date_2i{
+    width: 25%;
+  }
+  #action_post_start_date_3i{
+    width: 10%;
+  }
+  #action_post_start_date_4i{
+    width: 10%;
+  }
+  #action_post_start_date_5i{
+    width: 10%;
+  } 
+  
+  #action_post_end_date_1i{
+    width: 14%;
+  }
+  #action_post_end_date_2i{
+    width: 25%;
+  }
+  #action_post_end_date_3i{
+    width: 10%;
+  }
+  #action_post_end_date_4i{
+    width: 10%;
+  }
+  #action_post_end_date_5i{
+    width: 10%;
+  } 
+}

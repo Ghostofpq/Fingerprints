@@ -8,7 +8,8 @@ class ActionPostsController < ApplicationController
   end
 
   def new
-    @action_post = ActionPost.new
+    @action_post = current_user.action_posts.build
+    @action_post.action_id = params[:action_id]
   end
 
   def edit
@@ -16,7 +17,16 @@ class ActionPostsController < ApplicationController
   end
 
   def create
-    @action_post = ActionPost.new(params[:action_post])
+    
+    @action_post = current_user.action_posts.build(params[:action_post])
+    @action_post.action_id = params[:action_id]
+    if @action_post.save
+      flash[:success] = "ActionPost created!"
+      redirect_to root_url
+    else
+      flash[:error] = "ActionPost not created!"
+      redirect_to root_url
+    end
   end
 
   def update
