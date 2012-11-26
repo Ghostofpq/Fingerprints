@@ -58,8 +58,8 @@ class User < ActiveRecord::Base
     ActionPost.from_users_followed_by(self)
   end
   
-  def public_microposts
-    Micropost.public_ones(self)
+  def slef_action_feed
+    ActionPost.from_users_only(self)
   end
   
   def following?(other_user)

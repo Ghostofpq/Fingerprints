@@ -1,4 +1,22 @@
 <% provide(:title, 'Actions') %>
-<% if @actions.any? %>
-	<%= render partial: 'action', collection: @actions %>
+<div>
+	<table>
+		<td> <%= link_to "All",:controller => "actions", :action => "index", :filter => "All"  %> </td>
+		<td> <%= link_to "Loisir",:controller => "actions", :action => "index", :filter => "Loisir"  %> </td>
+		<td> <%= link_to "Social",:controller => "actions", :action => "index", :filter => "Social"  %> </td>
+		<td> <%= link_to "Sport",:controller => "actions", :action => "index", :filter => "Sport"  %> </td>
+		<td> <%= link_to "Vie",:controller => "actions", :action => "index", :filter => "Vie"  %> </td>
+	</table>
+</div>
+<% if @actions!=nil %>
+	<% if @actions.kind_of?(Array) %>
+		<% if @actions.any? %>
+			<%= render partial: 'action', collection: @actions %>
+		<% end %>
+	<%else%>
+		<figure id="<%= @actions.id %>">
+			<%= link_to image_tag(@actions.pic_path,:size => "100x100",:alt=>@actions.name),
+			:action => 'new', :controller=>'action_posts', :action_id=>@actions.id %>
+		</figure>
+	<% end %>
 <% end %>

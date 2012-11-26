@@ -1,7 +1,5 @@
 Fingerprints::Application.routes.draw do
 
-  get "actions/index"
-
   resources :users do
     member do
       get :following, :followers
