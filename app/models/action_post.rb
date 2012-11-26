@@ -1,5 +1,5 @@
 class ActionPost < ActiveRecord::Base
-  attr_accessible :start_date, :end_date, :comment, :place, :score, :price,:action_id
+  attr_accessible :start_date, :end_date, :comment, :place, :score, :price,:action_id,:public
 
   belongs_to :user
 

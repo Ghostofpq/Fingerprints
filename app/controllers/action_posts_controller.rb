@@ -16,10 +16,10 @@ class ActionPostsController < ApplicationController
     @action_post = ActionPost.find(params[:id])
   end
 
-  def create
-    
+  def create    
     @action_post = current_user.action_posts.build(params[:action_post])
-    @action_post.action_id = params[:action_id]
+    @action_post.action_id = params[:action_id]  
+    
     if @action_post.save
       flash[:success] = "ActionPost created!"
       redirect_to root_url
@@ -36,5 +36,31 @@ class ActionPostsController < ApplicationController
   def destroy
     @action_post = ActionPost.find(params[:id])
     @action_post.destroy
+  end
+  
+  def set_private
+    @action_post = current_user.action_posts.find_by_id(params[:id])
+    if @action_post.update_attribute(:public,false)
+      flash[:success] = "Set in private mode"
+      redirect_back_or root_url
+    else
+    end
+
+  end
+
+  def set_public
+   @action_post = current_user.action_posts.find_by_id(params[:id])
+    if @action_post.update_attribute(:public,true)
+      flash[:success] = "Set in public mode"
+      redirect_back_or root_url
+    else
+    end
+  end
+
+  private
+
+  def correct_user
+    @action_post = current_user.microposts.find_by_id(params[:id])
+    redirect_to root_url if @action_post.nil?
   end
 end

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20121126092543) do
+ActiveRecord::Schema.define(:version => 20121126095831) do
 
   create_table "action_posts", :force => true do |t|
     t.integer  "user_id"
@@ -22,8 +22,9 @@ ActiveRecord::Schema.define(:version => 20121126092543) do
     t.string   "place"
     t.integer  "score"
     t.decimal  "price",      :precision => 8, :scale => 2
-    t.datetime "created_at",                               :null => false
-    t.datetime "updated_at",                               :null => false
+    t.datetime "created_at",                                                  :null => false
+    t.datetime "updated_at",                                                  :null => false
+    t.boolean  "public",                                   :default => false
   end
 
   create_table "actions", :force => true do |t|

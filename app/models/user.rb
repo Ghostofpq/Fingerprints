@@ -55,7 +55,7 @@ class User < ActiveRecord::Base
   end
   
   def action_feed
-    Action_posts.from_users_followed_by(self)
+    ActionPost.from_users_followed_by(self)
   end
   
   def public_microposts
