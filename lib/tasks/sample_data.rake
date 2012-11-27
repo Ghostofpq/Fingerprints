@@ -42,12 +42,44 @@ def make_relationships
   followers.each      { |follower| follower.follow!(user) }
 end
 
-def make_actions
+def make_actions  
+  actionV1= Action.create(name: "Manger",
+                        category: "Vie",
+                        pic_path: "vie/manger.jpg")
+  actionV2= Action.create(name: "Dormir",
+                        category: "Vie",
+                        pic_path: "vie/dormir.jpg")
+  actionV3= Action.create(name: "Se laver",
+                        category: "Vie",
+                        pic_path: "vie/hygiene.jpg")
+  actionV4= Action.create(name: "Travailler",
+                        category: "Vie",
+                        pic_path: "vie/travailler.jpg")
+  actionV5= Action.create(name: "Etudier",
+                        category: "Vie",
+                        pic_path: "vie/etudier.jpg") 
+                        
   action1= Action.create(name: "Coffee",
                         category: "Social",
-                        pic_path: "social/coffee.jpg")
-  action2= Action.create(name: "Run",
+                        pic_path: "social/coffee.jpg") 
+  
+  
+  actionS1= Action.create(name: "Run",
                         category: "Sport",
                         pic_path: "sport/courir.jpg")
-  
+  actionS2= Action.create(name: "Velo",
+                        category: "Sport",
+                        pic_path: "sport/velo.jpg")
+  actionS3= Action.create(name: "Piscine",
+                        category: "Sport",
+                        pic_path: "sport/piscine.jpg")
+  actionS4= Action.create(name: "Sport de duel",
+                        category: "Sport",
+                        pic_path: "sport/tennis.jpg")
+  actionS5= Action.create(name: "Sport de d'equipe",
+                        category: "Sport",
+                        pic_path: "sport/basket.jpg")   
+  actionS6= Action.create(name: "Muscu",
+                        category: "Sport",
+                        pic_path: "sport/muscu.jpg")                                                                        
 end
