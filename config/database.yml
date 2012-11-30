@@ -24,7 +24,7 @@ production:
   database: production
   pool: 5
   username: gop
-  password: gopgop89
+  password: 
 
 cucumber:
   <<: *test
