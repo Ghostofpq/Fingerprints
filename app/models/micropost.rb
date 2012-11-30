@@ -25,7 +25,12 @@ class Micropost < ActiveRecord::Base
     where("(user_id IN (#{followed_user_ids}) AND public = :public) OR user_id = :user_id",
           user_id: user.id, public: true)
   end
+  
   def self.public_ones(user)
      where("public = :public AND user_id = :user_id",user_id: user.id, public: true)
+  end
+  
+  def self.from_user_only(user)
+    where("user_id = :user_id", user_id: user.id)
   end
 end
