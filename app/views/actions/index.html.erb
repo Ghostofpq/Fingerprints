@@ -1,12 +1,24 @@
 <% provide(:title, 'Actions') %>
-<div>
-	<table>
-		<td> <%= link_to "All",:controller => "actions", :action => "index", :filter => "All"  %> </td>
-		<td> <%= link_to "Loisir",:controller => "actions", :action => "index", :filter => "Loisir"  %> </td>
-		<td> <%= link_to "Social",:controller => "actions", :action => "index", :filter => "Social"  %> </td>
-		<td> <%= link_to "Sport",:controller => "actions", :action => "index", :filter => "Sport"  %> </td>
-		<td> <%= link_to "Vie",:controller => "actions", :action => "index", :filter => "Vie"  %> </td>
-	</table>
+<div class="container">
+	<nav>
+		<ul class="nav pull-left">
+			<li>
+				<%= link_to "All",:controller => "actions", :action => "index", :filter => "All"  %>
+			</li>
+			<li>
+				<%= link_to "Loisir",:controller => "actions", :action => "index", :filter => "Loisir"  %>
+			</li>
+			<li>
+				<%= link_to "Social",:controller => "actions", :action => "index", :filter => "Social"  %>
+			</li>
+			<li>
+				<%= link_to "Sport",:controller => "actions", :action => "index", :filter => "Sport"  %>
+			</li>
+			<li>
+				<%= link_to "Vie",:controller => "actions", :action => "index", :filter => "Vie"  %>
+			</li>
+		</ul>
+	</nav>
 </div>
 <% if @actions!=nil %>
 <% if @actions.any? %>
