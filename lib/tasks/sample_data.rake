@@ -45,19 +45,19 @@ end
 def make_actions  
   actionV1= Action.create(name: "Eat",
                         category: "Routine",
-                        pic_path: "routine/manger.jpg")
+                        pic_path: "routine/eat.jpg")
   actionV2= Action.create(name: "Sleep",
                         category: "ViRoutinee",
-                        pic_path: "routine/dormir.jpg")
+                        pic_path: "routine/sleep.jpg")
   actionV3= Action.create(name: "Wash",
                         category: "Routine",
-                        pic_path: "routine/hygiene.jpg")
+                        pic_path: "routine/wash.jpg")
   actionV4= Action.create(name: "Work",
                         category: "Routine",
-                        pic_path: "routine/travailler.jpg")
+                        pic_path: "routine/work.jpg")
   actionV5= Action.create(name: "Study",
                         category: "Routine",
-                        pic_path: "routine/etudier.jpg") 
+                        pic_path: "routine/study.jpg") 
                         
   action1= Action.create(name: "Coffee",
                         category: "Social",
@@ -66,13 +66,13 @@ def make_actions
   
   actionS1= Action.create(name: "Run",
                         category: "Sports",
-                        pic_path: "sports/courir.jpg")
+                        pic_path: "sports/run.jpg")
   actionS2= Action.create(name: "Bike",
                         category: "Sports",
-                        pic_path: "sports/velo.jpg")
+                        pic_path: "sports/bike.jpg")
   actionS3= Action.create(name: "Swim",
                         category: "Sports",
-                        pic_path: "sports/piscine.jpg")
+                        pic_path: "sports/swim.jpg")
   actionS4= Action.create(name: "Duel Sports",
                         category: "Sports",
                         pic_path: "sports/tennis.jpg")
@@ -81,5 +81,5 @@ def make_actions
                         pic_path: "sports/basket.jpg")   
   actionS6= Action.create(name: "Fitness",
                         category: "Sports",
-                        pic_path: "sports/muscu.jpg")                                                                        
+                        pic_path: "sports/fitness.jpg")                                                                        
 end
