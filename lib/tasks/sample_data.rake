@@ -43,21 +43,21 @@ def make_relationships
 end
 
 def make_actions  
-  actionV1= Action.create(name: "Manger",
-                        category: "Vie",
-                        pic_path: "vie/manger.jpg")
-  actionV2= Action.create(name: "Dormir",
-                        category: "Vie",
-                        pic_path: "vie/dormir.jpg")
-  actionV3= Action.create(name: "Se laver",
-                        category: "Vie",
-                        pic_path: "vie/hygiene.jpg")
-  actionV4= Action.create(name: "Travailler",
-                        category: "Vie",
-                        pic_path: "vie/travailler.jpg")
-  actionV5= Action.create(name: "Etudier",
-                        category: "Vie",
-                        pic_path: "vie/etudier.jpg") 
+  actionV1= Action.create(name: "Eat",
+                        category: "Routine",
+                        pic_path: "routine/manger.jpg")
+  actionV2= Action.create(name: "Sleep",
+                        category: "ViRoutinee",
+                        pic_path: "routine/dormir.jpg")
+  actionV3= Action.create(name: "Wash",
+                        category: "Routine",
+                        pic_path: "routine/hygiene.jpg")
+  actionV4= Action.create(name: "Work",
+                        category: "Routine",
+                        pic_path: "routine/travailler.jpg")
+  actionV5= Action.create(name: "Study",
+                        category: "Routine",
+                        pic_path: "routine/etudier.jpg") 
                         
   action1= Action.create(name: "Coffee",
                         category: "Social",
@@ -65,21 +65,21 @@ def make_actions
   
   
   actionS1= Action.create(name: "Run",
-                        category: "Sport",
-                        pic_path: "sport/courir.jpg")
-  actionS2= Action.create(name: "Velo",
-                        category: "Sport",
-                        pic_path: "sport/velo.jpg")
-  actionS3= Action.create(name: "Piscine",
-                        category: "Sport",
-                        pic_path: "sport/piscine.jpg")
-  actionS4= Action.create(name: "Sport de duel",
-                        category: "Sport",
-                        pic_path: "sport/tennis.jpg")
-  actionS5= Action.create(name: "Sport de d'equipe",
-                        category: "Sport",
-                        pic_path: "sport/basket.jpg")   
-  actionS6= Action.create(name: "Muscu",
-                        category: "Sport",
-                        pic_path: "sport/muscu.jpg")                                                                        
+                        category: "Sports",
+                        pic_path: "sports/courir.jpg")
+  actionS2= Action.create(name: "Bike",
+                        category: "Sports",
+                        pic_path: "sports/velo.jpg")
+  actionS3= Action.create(name: "Swim",
+                        category: "Sports",
+                        pic_path: "sports/piscine.jpg")
+  actionS4= Action.create(name: "Duel Sports",
+                        category: "Sports",
+                        pic_path: "sports/tennis.jpg")
+  actionS5= Action.create(name: "Team Sports",
+                        category: "Sports",
+                        pic_path: "sports/basket.jpg")   
+  actionS6= Action.create(name: "Fitness",
+                        category: "Sports",
+                        pic_path: "sports/muscu.jpg")                                                                        
 end
