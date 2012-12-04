@@ -6,10 +6,14 @@
 	</div>
 	<div>
 		<% @action=Action.find(feed_action_item.action_id)%>
-		<%= image_tag(@action.pic_path, :size => "50x50") %>
+		<% if current_user?(feed_action_item.user) %>
+		<%= link_to image_tag(@action.pic_path, :size => "50x50"),:controller => "action_posts", :action => "edit",:id => feed_action_item.id %>
+		<% else %>
+		<% image_tag(@action.pic_path, :size => "50x50")%>
+		<% end %>
 	</div>
 	<span class="timestamp"> Posted <%= time_ago_in_words(feed_action_item.created_at) %> ago. </span>
-	
+
 	<% if current_user?(feed_action_item.user) %>
 
 	<% if feed_action_item.public %>
@@ -21,5 +25,5 @@
 	<%= link_to "delete", feed_action_item, method: :delete,
 	data: { confirm: "You sure?" } %>
 	<% end %>
-	
+
 </li>

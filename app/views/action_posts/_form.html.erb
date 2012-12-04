@@ -4,9 +4,9 @@
 	<table>
 		<tr>
 			<td> <%= f.label :start_date, "Start Date" %>
-			<%= f.datetime_select :start_date%> </td>
+			<%= f.datetime_select :start_date, :default => 5.minutes.from_now%> </td>
 			<td> <%= f.label :end_date, "End Date" %>
-			<%= f.datetime_select :end_date%> </td>
+			<%= f.datetime_select :end_date, :default => 5.minutes.from_now%> </td>		
 		</tr>
 		<tr>
 			<td> <%= f.label :comment, "Comment" %>
