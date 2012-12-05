@@ -8,8 +8,8 @@
 	</aside>
 	<div class="span8">
 		<%= render 'follow_form' if signed_in? %>
-		<% if @user.microposts.any? %>
-		<h3>Microposts (<%= @user.microposts.count %>)</h3>
+		<% if @user.self_feed_public.any? %>
+		<h3>Microposts (<%= @user.self_feed_public.count %>)</h3>
 		<ol class="microposts">
 			<%= render partial: 'shared/feed_item', collection: @microposts %>
 		</ol>
@@ -17,8 +17,8 @@
 		<% end %>
 	</div>
 	<div class="span8">
-		<% if @user.action_posts.any? %>
-		<h3>Actions (<%= @user.action_posts.count %>)</h3>
+		<% if @user.self_action_feed_public.any? %>
+		<h3>Actions (<%= @user.self_action_feed_public.count %>)</h3>
 		<ol class="actions">
 			<%= render partial: 'shared/feed_action_item', collection: @action_posts %>
 		</ol>

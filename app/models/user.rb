@@ -66,6 +66,14 @@ class User < ActiveRecord::Base
     Micropost.from_user_only(self)
   end
   
+  def self_action_feed_public
+    ActionPost.public_ones(self)
+  end
+  
+  def self_feed_public
+    Micropost.public_ones(self)
+  end
+  
   def following?(other_user)
     relationships.find_by_followed_id(other_user.id)
   end

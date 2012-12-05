@@ -19,6 +19,10 @@ class ActionPost < ActiveRecord::Base
     where("user_id = :user_id", user_id: user.id)
   end
   
+  def self.public_ones(user)
+     where("public = :public AND user_id = :user_id",user_id: user.id, public: true)
+  end
+  
   def action
     Action.find(action_id)
   end
