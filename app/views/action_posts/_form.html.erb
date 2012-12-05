@@ -1,5 +1,6 @@
 <%= form_for(@action_post,:url => { :action => :create, :action_id => params[:action_id] })  do |f| %>
 <%= render 'shared/error_messages', object: f.object %>
+<%=image_tag(@action_post.action.pic_path,:alt=>@action_post.action.name)%>
 <div class="actions">
 	<table>
 		<tr>

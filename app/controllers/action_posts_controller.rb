@@ -1,14 +1,6 @@
 class ActionPostsController < ApplicationController
   before_filter :signed_in_user, only: [:create, :destroy]
   before_filter :correct_user,   only: [:destroy,:set_public,:set_private,:edit]
-  def index
-    @action_posts = ActionPost.all
-  end
-
-  def show
-    @action_post = ActionPost.find(params[:id])
-  end
-
   def new
     @action_post = current_user.action_posts.build
     @action_post.action_id = params[:action_id]
@@ -39,12 +31,20 @@ class ActionPostsController < ApplicationController
   end
 
   def update
-    @action_post = ActionPost.find(params[:id])
+    @action_post_u = ActionPost.find(params[:id])
+    @action_post_u.update_attribute(:comment,params[:action_post][:comment])
+    @action_post_u.update_attribute(:place,params[:action_post][:place])
+    @action_post_u.update_attribute(:score,params[:action_post][:score])
+    @action_post_u.update_attribute(:price,params[:action_post][:price])
+
+    redirect_to root_url
+
   end
 
   def destroy
     @action_post = ActionPost.find(params[:id])
     @action_post.destroy
+    redirect_to root_url
   end
 
   def set_private
@@ -69,7 +69,7 @@ class ActionPostsController < ApplicationController
   private
 
   def correct_user
-    @action_post = current_user.microposts.find_by_id(params[:id])
+    @action_post = current_user.action_posts.find_by_id(params[:id])
     redirect_to root_url if @action_post.nil?
   end
 end
