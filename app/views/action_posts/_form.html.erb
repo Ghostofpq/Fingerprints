@@ -5,9 +5,9 @@
 	<table>
 		<tr>
 			<td> <%= f.label :start_date, "Start Date" %>
-			<%= f.datetime_select :start_date, :default => 5.minutes.from_now%> </td>
+			<%= f.datetime_select :start_date, :default => 5.minutes.ago%> </td>
 			<td> <%= f.label :end_date, "End Date" %>
-			<%= f.datetime_select :end_date, :default => 5.minutes.from_now%> </td>		
+			<%= f.datetime_select :end_date, :default => 5.minutes.ago%> </td>		
 		</tr>
 		<tr>
 			<td> <%= f.label :comment, "Comment" %>
@@ -17,7 +17,7 @@
 		</tr>
 		<tr>
 			<td> <%= f.label :score, "Note" %>
-			<%= f.range_field :score, :in => 0...10%> </td>
+			<%= f.number_field :score, :in=> 0...10%> </td>
 			<td> <%= f.label :price, "Price" %>
 			<%= f.number_field :price, :min =>0%> </td>
 		</tr>

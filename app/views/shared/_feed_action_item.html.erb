@@ -1,16 +1,38 @@
 <li id="<%= feed_action_item.id %>">
 	<%= link_to gravatar_for(feed_action_item.user), feed_action_item.user %>
 	<span class="user"> <%= link_to feed_action_item.user.name, feed_action_item.user %> </span>
-	<div>
-		Le <%= feed_action_item.start_date.to_date()%>
-	</div>
-	<div>
-		<% @action=Action.find(feed_action_item.action_id)%>
-		<% if current_user?(feed_action_item.user) %>
-		<%= link_to image_tag(@action.pic_path, :size => "50x50"),:controller => "action_posts", :action => "edit",:id => feed_action_item.id %>
-		<% else %>
-		<% image_tag(@action.pic_path, :size => "50x50")%>
-		<% end %>
+	<div id="action_post_desc">
+		<div id="date">
+			Le <%= feed_action_item.start_date.to_date()%>
+		</div>
+		<div id="pic">
+			<% @action=Action.find(feed_action_item.action_id)%>
+			<% if current_user?(feed_action_item.user) %>
+			<%= link_to image_tag(@action.pic_path, :size => "50x50"),:controller => "action_posts", :action => "edit",:id => feed_action_item.id %>
+			<% else %>
+			<% image_tag(@action.pic_path, :size => "50x50")%>
+			<% end %>
+		</div>
+		<div id="comment">
+			<% if feed_action_item.comment!=""%>
+			<%= feed_action_item.comment %>
+			<% end %>
+		</div>
+		<div id="place">
+			<% if feed_action_item.place!=""%>
+			<%= feed_action_item.place %>
+			<% end %>
+		</div>
+		<div id="score">
+			<% if feed_action_item.score!=""%>
+			<%= feed_action_item.score %>
+			<% end %>
+		</div>
+		<div id="price">
+			<% if feed_action_item.price!=""%>
+			<%= feed_action_item.price %>
+			<% end %>
+		</div>
 	</div>
 	<span class="timestamp"> Posted <%= time_ago_in_words(feed_action_item.created_at) %> ago. </span>
 
