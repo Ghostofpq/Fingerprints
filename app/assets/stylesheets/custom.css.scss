@@ -270,9 +270,6 @@ aside {
     width: 15%;
     padding:0;
     margin-bottom: 10px;
-  }  
-  table{
-     width: 100%;
   }
   #action_post_price{
     width: 30%;
@@ -320,4 +317,20 @@ aside {
   border:0; 
   }
 }
-
+.action_post_desc{
+  table, th, td
+  {
+    border: 2px solid black;
+    height:25px;
+  } 
+  #pic{    
+    height:50px;
+    width:50px;
+  }
+  #date,#place{
+    width:300px;
+  }
+  #price,#score{
+    width:60px;
+  }
+}

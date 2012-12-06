@@ -2,7 +2,7 @@
 <%= render 'shared/error_messages', object: f.object %>
 <%=image_tag(@action_post.action.pic_path,:alt=>@action_post.action.name)%>
 <div class="actions">
-	<table>
+	<table width="100%">
 		<tr>
 			<td> <%= f.label :start_date, "Start Date" %>
 			<%= f.datetime_select :start_date, :default => 5.minutes.ago%> </td>
