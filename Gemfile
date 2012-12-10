@@ -11,6 +11,7 @@ gem 'googlecharts','1.6.8'
 gem 'heroku'
 gem 'omniauth-github'
 gem 'omniauth-openid'
+gem 'omniauth-facebook'
 
 group :development, :test do
   gem 'sqlite3', '1.3.5'

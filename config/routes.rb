@@ -19,12 +19,15 @@ Fingerprints::Application.routes.draw do
   resources :microposts,    only: [:create, :destroy]
   resources :relationships, only: [:create, :destroy]
   resources :action_posts,  only: [:create, :destroy, :edit, :update]
-  
+
   root to: 'static_pages#home'
 
   match '/help',    to: 'static_pages#help'
   match '/about',   to: 'static_pages#about'
   match '/contact', to: 'static_pages#contact'
+
+  match '/auth/:provider/callback', :to => 'sessions#create_with_fb'
+  match '/auth/failure', :to => 'sessions#failure'
 
   match '/actions', to: 'actions#index'
 
