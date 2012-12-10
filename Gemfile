@@ -9,6 +9,8 @@ gem 'bootstrap-will_paginate', '0.0.6'
 gem 'jquery-rails', '2.0.2'
 gem 'googlecharts','1.6.8'
 gem 'heroku'
+gem 'omniauth-github'
+gem 'omniauth-openid'
 
 group :development, :test do
   gem 'sqlite3', '1.3.5'
