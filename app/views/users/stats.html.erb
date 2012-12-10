@@ -1,22 +1,43 @@
 <% provide(:title, @user.name)%> <h1>Your Stats</h1>
 
-<% @action=@user.user_doing(2)%>
-<% @dodototal= 0%>
-<% @action.each do |x| @dodototal += x.duration() end%>
-<% @action=@user.user_doing(6)%>
-<% @kafertotal= 0%>
-<% @action.each do |x| @kafertotal += x.duration() end%>
-<table>
-	<%if @dodototal>=0%>
-	<tr>
-		<td>Time spent sleeping</td>
-		<td><%= distance_of_time_in_words(@dodototal,0,true) %></td>
-	</tr>
-	<%end%>
-	<%if @kafertotal>=0%>
-	<tr>
-		<td>Time spent drinking coffee</td>
-		<td><%= distance_of_time_in_words(@kafertotal,0,true) %></td>
-	</tr>
-	<%end%>
-</table>
+<% @work_time= @user.total_time_doing("Work")%>
+<% @study_time= @user.total_time_doing("Study")%>
+<% @wash_time= @user.total_time_doing("Wash")%>
+<% @eat_time= @user.total_time_doing("Eat")%>
+<% @sleep_time= @user.total_time_doing("Sleep")%>
+
+<% @coffee_time= @user.total_time_doing("Coffee")%>
+
+<h3>Routine</h3>
+<%if @sleep_time>0%>
+<div>
+	Time spent sleeping <%= distance_of_time_in_words(@sleep_time,0,true) %>
+</div>
+<%end%>
+<%if @work_time>0%>
+<div>
+	Time spent working <%= distance_of_time_in_words(@work_time,0,true) %>
+</div>
+<%end%>
+<%if @study_time>0%>
+<div>
+	Time spent studying <%= distance_of_time_in_words(@study_time,0,true) %>
+</div>
+<%end%>
+<%if @eat_time>0%>
+<div>
+	Time spent eating <%= distance_of_time_in_words(@eat_time,0,true) %>
+</div>
+<%end%>
+<%if @wash_time>0%>
+<div>
+	Time spent washing <%= distance_of_time_in_words(@wash_time,0,true) %>
+</div>
+<%end%>
+
+<h3>Social</h3>
+<%if @coffee_time>0%>
+<div>
+	Time spent drinking coffee <%= distance_of_time_in_words(@coffee_time,0,true) %>
+</div>
+<%end%>

@@ -11,7 +11,6 @@
 #  remember_token  :string(255)
 #  admin           :boolean          default(FALSE)
 #
-
 # == Schema Information
 #
 # Table name: users
@@ -28,7 +27,7 @@
 class User < ActiveRecord::Base
   attr_accessible :name, :email, :password, :password_confirmation
   has_secure_password
-  
+
   has_many :microposts, dependent: :destroy
   has_many :action_posts, dependent: :destroy
   has_many :relationships, foreign_key: "follower_id", dependent: :destroy
@@ -37,7 +36,7 @@ class User < ActiveRecord::Base
                                    class_name:  "Relationship",
                                    dependent:   :destroy
   has_many :followers, through: :reverse_relationships, source: :follower
-  
+
   before_save { |user| user.email = email.downcase }
   before_save :create_remember_token
 
@@ -53,31 +52,38 @@ class User < ActiveRecord::Base
   def feed
     Micropost.from_users_followed_by(self)
   end
-  
+
   def action_feed
     ActionPost.from_users_followed_by(self)
   end
-  
+
   def self_action_feed
     ActionPost.from_user_only(self)
   end
-  
+
   def self_feed
     Micropost.from_user_only(self)
   end
-  
+
   def self_action_feed_public
     ActionPost.public_ones(self)
   end
-  
+
   def self_feed_public
     Micropost.public_ones(self)
   end
-  
-  def user_doing(action_id)    
+
+  def user_doing(action_id)
     ActionPost.from_user_only_doing(self,action_id)
   end
-  
+
+  def total_time_doing(action_name)
+    @action=self.user_doing(Action.find_by_name(action_name).id)
+    @total_time=0
+    @action.each do |x| @total_time += x.duration() end
+    return @total_time
+  end
+
   def following?(other_user)
     relationships.find_by_followed_id(other_user.id)
   end
