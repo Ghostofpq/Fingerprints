@@ -27,7 +27,7 @@ class ActionPost < ActiveRecord::Base
   end
 
   def duration
-    diff = (:end_date.to_time()-:start_date.to_time())
+    diff = (self.end_date.to_time()-self.start_date.to_time())
     return diff
   end
 

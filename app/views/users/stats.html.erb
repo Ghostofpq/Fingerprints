@@ -1,0 +1,22 @@
+<% provide(:title, @user.name)%> <h1>Your Stats</h1>
+
+<% @action=@user.user_doing(2)%>
+<% @dodototal= 0%>
+<% @action.each do |x| @dodototal += x.duration() end%>
+<% @action=@user.user_doing(6)%>
+<% @kafertotal= 0%>
+<% @action.each do |x| @kafertotal += x.duration() end%>
+<table>
+	<%if @dodototal>=0%>
+	<tr>
+		<td>Time spent sleeping</td>
+		<td><%= distance_of_time_in_words(@dodototal,0,true) %></td>
+	</tr>
+	<%end%>
+	<%if @kafertotal>=0%>
+	<tr>
+		<td>Time spent drinking coffee</td>
+		<td><%= distance_of_time_in_words(@kafertotal,0,true) %></td>
+	</tr>
+	<%end%>
+</table>
