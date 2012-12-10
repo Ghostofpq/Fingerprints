@@ -7,7 +7,6 @@ class ActionPost < ActiveRecord::Base
   validates :action_id, presence: true
 
   default_scope order: 'action_posts.start_date DESC'
-  
   def self.from_users_followed_by(user)
     followed_user_ids = "SELECT followed_id FROM relationships
                          WHERE follower_id = :user_id"
@@ -18,11 +17,20 @@ class ActionPost < ActiveRecord::Base
   def self.from_user_only(user)
     where("user_id = :user_id", user_id: user.id)
   end
-  
-  def self.public_ones(user)
-     where("public = :public AND user_id = :user_id",user_id: user.id, public: true)
+
+  def self.from_user_only_doing(user,action_id)
+    where("user_id = :user_id and action_id=:action_id", user_id: user.id,action_id: action_id)
   end
-  
+
+  def self.public_ones(user)
+    where("public = :public AND user_id = :user_id",user_id: user.id, public: true)
+  end
+
+  def duration
+    diff = (:end_date.to_time()-:start_date.to_time())
+    return diff
+  end
+
   def action
     Action.find(action_id)
   end

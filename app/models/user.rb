@@ -74,6 +74,10 @@ class User < ActiveRecord::Base
     Micropost.public_ones(self)
   end
   
+  def user_doing(action_id)    
+    ActionPost.from_user_only_doing(self,action_id)
+  end
+  
   def following?(other_user)
     relationships.find_by_followed_id(other_user.id)
   end

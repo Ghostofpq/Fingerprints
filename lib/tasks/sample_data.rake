@@ -47,7 +47,7 @@ def make_actions
                         category: "Routine",
                         pic_path: "routine/eat.jpg")
   actionV2= Action.create(name: "Sleep",
-                        category: "ViRoutinee",
+                        category: "Routine",
                         pic_path: "routine/sleep.jpg")
   actionV3= Action.create(name: "Wash",
                         category: "Routine",

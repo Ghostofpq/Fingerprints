@@ -4,12 +4,12 @@ class ActionsController < ApplicationController
       @actions=Action.all
     elsif(params[:filter]=="Social")
       @actions=Action.find_all_by_category("Social")
-    elsif(params[:filter]=="Sport")
-      @actions=Action.find_all_by_category("Sport")
-    elsif(params[:filter]=="Loisir")
-      @actions=Action.find_all_by_category("Loisir")
-    elsif(params[:filter]=="Vie")
-      @actions=Action.find_all_by_category("Vie")
+    elsif(params[:filter]=="Sports")
+      @actions=Action.find_all_by_category("Sports")
+    elsif(params[:filter]=="Leisure")
+      @actions=Action.find_all_by_category("Leisure")
+    elsif(params[:filter]=="Routine")
+      @actions=Action.find_all_by_category("Routine")
     else
       @actions=Action.all
     end
