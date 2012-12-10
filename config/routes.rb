@@ -26,7 +26,7 @@ Fingerprints::Application.routes.draw do
   match '/about',   to: 'static_pages#about'
   match '/contact', to: 'static_pages#contact'
 
-  match '/auth/:provider/callback', :to => 'sessions#create_with_fb'
+  match '/auth/:provider/callback', :to => 'sessions#add_fb'
   match '/auth/failure', :to => 'sessions#failure'
 
   match '/actions', to: 'actions#index'

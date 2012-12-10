@@ -2,16 +2,26 @@ class SessionsController < ApplicationController
   def new
   end
 
-  def create_with_fb
-    auth_hash = request.env['omniauth.auth']
-    @authorization = Authorization.find_by_provider_and_uid(auth_hash["provider"], auth_hash["uid"])
-    if @authorization
-      render :text => "Welcome back #{@authorization.user.name}! You have already signed up."
+  def add_fb
+    auth_hash = request.env["omniauth.auth"]
+    if signed_in?
+      @authorisation= current_user.authorizations.build(:provider => auth_hash["provider"], :uid => auth_hash["uid"])
+      if @authorisation.save
+        flash[:success] = "Your Facebook account has been linked"
+        redirect_to root_url
+      else
+        flash[:error] = "Your Facebook account has not been linked"
+        redirect_to root_url
+      end
     else
-      user = User.new :name => auth_hash["user_info"]["name"], :email => auth_hash["user_info"]["email"],:password => "123456",:password_confirmation => "123456"
-      user.authorizations.build :provider => auth_hash["provider"], :uid => auth_hash["uid"]
-      user.save
-      render :text => "Hi #{user.name}! You've signed up."
+      auth=Authorization.find(auth_hash)
+      if(auth!=nil)
+        user = auth.user
+        sign_in user
+        redirect_to root_url
+      end
+      flash.now[:error] = 'Please create an account'
+      redirect_to root_url
     end
   end
 
@@ -24,6 +34,10 @@ class SessionsController < ApplicationController
       flash.now[:error] = 'Invalid email/password combination'
       render 'new'
     end
+  end
+
+  def failure
+    render :text => "Sorry, but you didn't allow access to our app!"
   end
 
   def destroy
