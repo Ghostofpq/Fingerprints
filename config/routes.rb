@@ -11,7 +11,7 @@ Fingerprints::Application.routes.draw do
   end
   resources :action_posts do
     member do
-      get :set_private, :set_public
+      get :set_private, :set_public,:publish_on_fb
     end
   end
   # resources :users

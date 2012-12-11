@@ -91,6 +91,10 @@ class User < ActiveRecord::Base
     end
   end
 
+  def has_provider(provider_name)
+    return (authorizations.find_by_provider(provider_name)!=nil)
+  end
+
   def has_not_provider(provider_name)
     return (authorizations.find_by_provider(provider_name)==nil)
   end

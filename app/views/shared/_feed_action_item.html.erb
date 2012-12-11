@@ -4,53 +4,43 @@
 	<span class="timestamp"> Posted <%= time_ago_in_words(feed_action_item.created_at) %> ago. </span>
 	<table class="action_post_desc">
 		<tr>
-			<td id="pic" rowspan="2"> 
-				<% @action=Action.find(feed_action_item.action_id)%>
-				<% if current_user?(feed_action_item.user) %>
-					<%= link_to image_tag(@action.pic_path, :size => "50x50"),:controller => "action_posts", :action => "edit",:id => feed_action_item.id %>
-				<% else %>
-					<%= image_tag(@action.pic_path, :size => "50x50")%>
-				<% end %> 
-			</td>
-			<td id="date">
-				<% @date1= feed_action_item.start_date%>
-				<% @date2= feed_action_item.end_date%>
-				<% if @date1.to_date()==@date2.to_date() %>
-					<%= @date1.to_date().to_formatted_s(:short)%>  <%= @date1.to_time().to_formatted_s(:time)%> => <%= @date2.to_time().to_formatted_s(:time)%>
-				<% else %>
-					<%= feed_action_item.start_date.to_time().to_formatted_s(:short)%> => <%= feed_action_item.end_date.to_time().to_formatted_s(:short)%>
-				<% end %> 
-				
-			</td>
-			<td id="price">
-				<% if feed_action_item.price!=""%>
-					<%= feed_action_item.price %>
-				<% end %>
-			</td>
+			<td id="pic" rowspan="2"> <% @action=Action.find(feed_action_item.action_id)%>
+			<% if current_user?(feed_action_item.user) %>
+			<%= link_to image_tag(@action.pic_path, :size => "50x50"),:controller => "action_posts", :action => "edit",:id => feed_action_item.id %>
+			<% else %>
+			<%= image_tag(@action.pic_path, :size => "50x50")%>
+			<% end %> </td>
+			<td id="date"> <% @date1= feed_action_item.start_date%>
+			<% @date2= feed_action_item.end_date%>
+			<% if @date1.to_date()==@date2.to_date() %>
+			<%= @date1.to_date().to_formatted_s(:short)%>  <%= @date1.to_time().to_formatted_s(:time)%> => <%= @date2.to_time().to_formatted_s(:time)%>
+			<% else %>
+			<%= feed_action_item.start_date.to_time().to_formatted_s(:short)%> => <%= feed_action_item.end_date.to_time().to_formatted_s(:short)%>
+			<% end %> </td>
+			<td id="price"> <% if feed_action_item.price!=""%>
+			<%= feed_action_item.price %>
+			<% end %> </td>
 		</tr>
 		<tr>
-			<td id="place">
-				<% if feed_action_item.place!=""%>
-					<%= feed_action_item.place %>
-				<% end %>
-			</td>	
-			<td id="score">
-				<% if feed_action_item.score!=""%>
-					<%= feed_action_item.score %>
-				<% end %> 
-			</td>
+			<td id="place"> <% if feed_action_item.place!=""%>
+			<%= feed_action_item.place %>
+			<% end %> </td>
+			<td id="score"> <% if feed_action_item.score!=""%>
+			<%= feed_action_item.score %>
+			<% end %> </td>
 		</tr>
 		<tr>
-			<td colspan="3">
-				<% if feed_action_item.comment!=""%>
-				<%= feed_action_item.comment %>
-				<% end %> 
-			</td>
+			<td colspan="3"> <% if feed_action_item.comment!=""%>
+			<%= feed_action_item.comment %>
+			<% end %> </td>
 		</tr>
-	</table>	
-	
+	</table>
 
 	<% if current_user?(feed_action_item.user) %>
+
+	<% if current_user.has_provider("facebook") %>
+	<%= link_to image_tag("FB_LOGO.jpg", :size => "50x50"),:controller => "action_posts", :action => "publish_on_fb",:id => feed_action_item.id%>
+	<% end %>
 
 	<% if feed_action_item.public %>
 	<%= link_to "private",:controller => "action_posts", :action => "set_private",:id => feed_action_item.id%>
