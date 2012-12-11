@@ -87,7 +87,7 @@ class User < ActiveRecord::Base
 
   def add_provider(auth_hash)
     if has_not_provider(auth_hash["provider"])
-      Authorization.create :user => self, :provider => auth_hash["provider"], :uid => auth_hash["uid"]
+      Authorization.create :user => self, :provider => auth_hash["provider"], :uid => auth_hash["uid"],:token => (auth_hash["credentials"]["token"] rescue nil)
     end
   end
 
@@ -111,15 +111,17 @@ class User < ActiveRecord::Base
     self.remember_token = SecureRandom.urlsafe_base64
   end
 
-  def publish(action_post, feed_name)
-    begin
-      text= "Test test test " + action_post.action.name + " bliblablou " + action_post.start_date.to_date().to_formatted_s(:short)
-      text+= " bler bloux blix " + action_post.end_date.to_date().to_formatted_s(:short)
-      case self.provider
-      when 'facebook' then facebook.feed!(:message => @text, :name => feed_name)
-      #when 'twitter' then twitter.request(:post, "http://api.twitter.com/1/statuses/update.json", :status => text)
-      end
-    rescue Exception => e
-    end
+  def facebook
+    @fb_user ||= FbGraph::User.me(self.authorizations.find_by_provider('facebook').token)
   end
+
+  def publish(action_post, feed_name)
+    text= "Test test test " + action_post.action.name + " bliblablou " + action_post.start_date.to_date().to_formatted_s(:short)
+    text+= " bler bloux blix " + action_post.end_date.to_date().to_formatted_s(:short)
+    facebook.feed!(
+    :message => text,
+    :name => 'My Rails 3 App with Omniauth, Devise and FB_graph'
+    )
+  end
+
 end

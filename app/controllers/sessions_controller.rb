@@ -5,7 +5,7 @@ class SessionsController < ApplicationController
   def fb_auth
     auth_hash = request.env["omniauth.auth"]
     if signed_in?
-      @authorisation= current_user.authorizations.build(:provider => auth_hash["provider"], :uid => auth_hash["uid"])
+      @authorisation= current_user.authorizations.build(:provider => auth_hash["provider"], :uid => auth_hash["uid"],:token => (auth_hash["credentials"]["token"] rescue nil))
       if @authorisation.save
         flash[:success] = "Your Facebook account has been linked"
         redirect_to root_url

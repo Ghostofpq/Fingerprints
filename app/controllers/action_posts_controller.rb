@@ -80,7 +80,7 @@ class ActionPostsController < ApplicationController
 
   def set_public
     @action_post = current_user.action_posts.find_by_id(params[:id])
-    if !has_not_provider("facebook")
+    if !current_user.has_not_provider("facebook")
       current_user.publish(@action_post,"facebook")
     end
     if @action_post.update_attribute(:public,true)
