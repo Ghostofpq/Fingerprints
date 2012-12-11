@@ -2,7 +2,7 @@ class SessionsController < ApplicationController
   def new
   end
 
-  def add_fb
+  def fb_auth
     auth_hash = request.env["omniauth.auth"]
     if signed_in?
       @authorisation= current_user.authorizations.build(:provider => auth_hash["provider"], :uid => auth_hash["uid"])
@@ -14,14 +14,15 @@ class SessionsController < ApplicationController
         redirect_to root_url
       end
     else
-      auth=Authorization.find(auth_hash)
+      auth=Authorization.find_by_provider_and_uid(auth_hash["provider"], auth_hash["uid"])
       if(auth!=nil)
-        user = auth.user
+        user = User.find_by_id(auth.user_id)
         sign_in user
         redirect_to root_url
+      else
+        flash.now[:error] = 'Please create an account'
+        redirect_to root_url
       end
-      flash.now[:error] = 'Please create an account'
-      redirect_to root_url
     end
   end
 
