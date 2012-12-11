@@ -10,6 +10,10 @@ gem 'jquery-rails', '2.0.2'
 gem 'googlecharts','1.6.8'
 gem 'heroku'
 gem 'fb_graph'
+gem 'omniauth-github'
+gem 'omniauth-openid'
+gem 'omniauth-facebook'
+
 group :development, :test do
   gem 'sqlite3', '1.3.5'
   gem 'rspec-rails', '2.11.0'

@@ -1,10 +1,10 @@
 Fingerprints::Application.configure do
-  # Settings specified here will take precedence over those in config/application.rb
+# Settings specified here will take precedence over those in config/application.rb
 
-  # The test environment is used exclusively to run your application's
-  # test suite. You never need to work with it otherwise. Remember that
-  # your test database is "scratch space" for the test suite and is wiped
-  # and recreated between test runs. Don't rely on the data there!
+# The test environment is used exclusively to run your application's
+# test suite. You never need to work with it otherwise. Remember that
+# your test database is "scratch space" for the test suite and is wiped
+# and recreated between test runs. Don't rely on the data there!
   config.cache_classes = true
 
   # Configure static asset server for tests with Cache-Control for performance
@@ -34,7 +34,7 @@ Fingerprints::Application.configure do
 
   # Print deprecation notices to the stderr
   config.active_support.deprecation = :stderr
-  
+
   # Speed up tests by lowering BCrypt's cost function.
   require 'bcrypt'
   silence_warnings do

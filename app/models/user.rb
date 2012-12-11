@@ -36,6 +36,7 @@ class User < ActiveRecord::Base
                                    class_name:  "Relationship",
                                    dependent:   :destroy
   has_many :followers, through: :reverse_relationships, source: :follower
+  has_many :authorizations, dependent: :destroy
 
   before_save { |user| user.email = email.downcase }
   before_save :create_remember_token
@@ -82,6 +83,16 @@ class User < ActiveRecord::Base
     @total_time=0
     @action.each do |x| @total_time += x.duration() end
     return @total_time
+  end
+
+  def add_provider(auth_hash)
+    if has_not_provider(auth_hash["provider"])
+      Authorization.create :user => self, :provider => auth_hash["provider"], :uid => auth_hash["uid"]
+    end
+  end
+
+  def has_not_provider(provider_name)
+    return (authorizations.find_by_provider(provider_name)==nil)
   end
 
   def following?(other_user)

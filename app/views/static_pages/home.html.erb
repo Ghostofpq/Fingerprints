@@ -1,32 +1,37 @@
 <% provide(:title, 'Home') %>
 <% if signed_in? %>
-  <div class="row">
-    <aside class="span4">
-      <section>
-        <%= render 'shared/user_info' %>
-      </section>
-      <section>
-        <%= render 'shared/stats' %>
-      </section>
-      <section>
-        <%= render 'shared/micropost_form' %>
-      </section>
-    </aside>
-    <div class="span8">
-      <h3>Micropost Feed</h3>
-      <%= render 'shared/feed' %>
-    </div>
-    <div class="span8">
-      <h3>Action Feed</h3>
-      <%= render 'shared/action_feed' %>
-    </div>
-  </div>  
+<div class="row">
+	<aside class="span4">
+		<section>
+			<%= render 'shared/user_info' %>
+		</section>
+		<section>
+			<%= render 'shared/stats' %>
+		</section>
+		<section>
+			<%= render 'shared/micropost_form' %>
+		</section>
+	</aside>
+	<div class="span8">
+		<h3>Micropost Feed</h3>
+		<%= render 'shared/feed' %>
+	</div>
+	<div class="span8">
+		<h3>Action Feed</h3>
+		<%= render 'shared/action_feed' %>
+	</div>
+</div>
 <% else %>
-  <div class="center hero-unit">
-    <h1>Welcome to Fingerprints</h1>
-
-    <%= link_to "Sign up now!", signup_path, 
-                                class: "btn btn-large btn-primary" %>
-  </div>
+<div class="center hero-unit">
+	<h1>Welcome to Fingerprints</h1>
+	<div>
+		<%= link_to "Sign up now!", signup_path,
+		class: "btn btn-large btn-primary" %>
+	</div>
+	<div>
+		<%= link_to "Log with Facebook", "/auth/facebook",
+		class: "btn btn-large btn-primary" %>
+	</div>
+</div>
 
 <% end %> 
