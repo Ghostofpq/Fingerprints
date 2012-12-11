@@ -80,6 +80,9 @@ class ActionPostsController < ApplicationController
 
   def set_public
     @action_post = current_user.action_posts.find_by_id(params[:id])
+    if !has_not_provider("facebook")
+      current_user.publish(@action_post,"facebook")
+    end
     if @action_post.update_attribute(:public,true)
       flash[:success] = "Set in public mode"
       redirect_back_or root_url
