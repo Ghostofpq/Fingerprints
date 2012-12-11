@@ -99,4 +99,16 @@ class User < ActiveRecord::Base
   def create_remember_token
     self.remember_token = SecureRandom.urlsafe_base64
   end
+
+  def publish(action_post, feed_name)
+    begin
+      case self.provider
+        text= "Test test test " + action_post.action.name + " bliblablou " + action_post.start_date.to_date().to_formatted_s(:short) 
+        text+= " bler bloux blix " + action_post.end_date.to_date().to_formatted_s(:short)
+      when 'facebook' then facebook.feed!(:message => @text, :name => feed_name)
+      #when 'twitter' then twitter.request(:post, "http://api.twitter.com/1/statuses/update.json", :status => text)
+      end
+    rescue Exception => e
+    end
+  end
 end
