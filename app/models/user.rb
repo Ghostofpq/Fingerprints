@@ -113,9 +113,9 @@ class User < ActiveRecord::Base
 
   def publish(action_post, feed_name)
     begin
+      text= "Test test test " + action_post.action.name + " bliblablou " + action_post.start_date.to_date().to_formatted_s(:short)
+      text+= " bler bloux blix " + action_post.end_date.to_date().to_formatted_s(:short)
       case self.provider
-        text= "Test test test " + action_post.action.name + " bliblablou " + action_post.start_date.to_date().to_formatted_s(:short) 
-        text+= " bler bloux blix " + action_post.end_date.to_date().to_formatted_s(:short)
       when 'facebook' then facebook.feed!(:message => @text, :name => feed_name)
       #when 'twitter' then twitter.request(:post, "http://api.twitter.com/1/statuses/update.json", :status => text)
       end
