@@ -1,7 +1,7 @@
 class UsersController < ApplicationController
   before_filter :signed_in_user,
                 only: [:index, :edit, :update, :destroy, :following, :followers]
-  before_filter :correct_user,   only: [:edit, :update,:stats]
+  before_filter :correct_user,   only: [:edit, :update,:stats,:unlink_facebook]
   before_filter :admin_user,     only: :destroy
   def index
     @users = User.paginate(page: params[:page])
@@ -64,6 +64,13 @@ class UsersController < ApplicationController
     @user = User.find(params[:id])
     @users = @user.followers.paginate(page: params[:page])
     render 'show_follow'
+  end
+
+  def unlink_facebook
+    @user = User.find(params[:id])
+    @user.authorizations.find_by_provider("facebook").destroy
+    flash[:success] = "Facebook is no longer linked to this account"
+    redirect_to root_path
   end
 
   private

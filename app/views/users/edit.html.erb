@@ -10,14 +10,17 @@
 		<%= gravatar_for @user %>
 
 		<a href="http://gravatar.com/emails">change</a>
-
-		<%if @user.has_not_provider("facebook")%>
-		<div>
-			<%= link_to "Add Facebook", "/auth/facebook",
-			class: "btn btn-large btn-primary" %>
-		</div>
-		<%end%>
-
 	</div>
 
+	<%if @user.has_not_provider("facebook")%>
+	<div>
+		<%= link_to "Add Facebook", "/auth/facebook",
+		class: "btn btn-large btn-primary" %>
+	</div>
+	<%else%>
+	<div>
+		<%= link_to "Unlink Facebook", "unlink_facebook",:id=> @user.id,
+		class: "btn btn-large btn-primary" %>
+	</div>
+	<%end%>
 </div>

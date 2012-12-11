@@ -1,7 +1,7 @@
 Fingerprints::Application.routes.draw do
   resources :users do
     member do
-      get :following, :followers,:stats
+      get :following, :followers,:stats,:unlink_facebook
     end
   end
   resources :microposts do

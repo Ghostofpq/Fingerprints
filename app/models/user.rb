@@ -85,12 +85,7 @@ class User < ActiveRecord::Base
     return @total_time
   end
 
-  def add_provider(auth_hash)
-    if has_not_provider(auth_hash["provider"])
-      Authorization.create :user => self, :provider => auth_hash["provider"], :uid => auth_hash["uid"],:token => (auth_hash["credentials"]["token"] rescue nil)
-    end
-  end
-
+  #PROVIDERS STUFF
   def has_provider(provider_name)
     return (authorizations.find_by_provider(provider_name)!=nil)
   end
@@ -99,6 +94,26 @@ class User < ActiveRecord::Base
     return (authorizations.find_by_provider(provider_name)==nil)
   end
 
+  def add_provider(auth_hash)
+    if has_not_provider(auth_hash["provider"])
+      Authorization.create :user => self, :provider => auth_hash["provider"], :uid => auth_hash["uid"],:token => (auth_hash["credentials"]["token"] rescue nil)
+    end
+  end
+
+  def facebook
+    @fb_user ||= FbGraph::User.me(self.authorizations.find_by_provider('facebook').token)
+  end
+
+  def publish(action_post, feed_name)
+    text= "Test test test " + action_post.action.name + " bliblablou " + action_post.start_date.to_date().to_formatted_s(:short)
+    text+= " bler bloux blix " + action_post.end_date.to_date().to_formatted_s(:short)
+    facebook.feed!(
+    :message => text,
+    :name => 'My Rails 3 App with Omniauth, Devise and FB_graph'
+    )
+  end
+
+  #FOLLOW STUFF
   def following?(other_user)
     relationships.find_by_followed_id(other_user.id)
   end
@@ -113,19 +128,6 @@ class User < ActiveRecord::Base
 
   def create_remember_token
     self.remember_token = SecureRandom.urlsafe_base64
-  end
-
-  def facebook
-    @fb_user ||= FbGraph::User.me(self.authorizations.find_by_provider('facebook').token)
-  end
-
-  def publish(action_post, feed_name)
-    text= "Test test test " + action_post.action.name + " bliblablou " + action_post.start_date.to_date().to_formatted_s(:short)
-    text+= " bler bloux blix " + action_post.end_date.to_date().to_formatted_s(:short)
-    facebook.feed!(
-    :message => text,
-    :name => 'My Rails 3 App with Omniauth, Devise and FB_graph'
-    )
   end
 
 end
