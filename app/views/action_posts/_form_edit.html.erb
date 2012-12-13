@@ -19,7 +19,7 @@
 			<td> <%= f.label :score, "Note" %>
 			<%= f.number_field :score, :in=> 0...10%> </td>
 			<td> <%= f.label :price, "Price" %>
-			<%= f.number_field :price, :min =>0%> </td>
+			<%= f.text_field  :price%> </td>
 		</tr>
 	</table>
 	<%= f.submit "Update", class: "btn btn-large btn-primary"%>

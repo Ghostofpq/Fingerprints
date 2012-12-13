@@ -56,7 +56,7 @@ class ActionPostsController < ApplicationController
       @action_post_u.update_attribute(:comment,params[:action_post][:comment])
       @action_post_u.update_attribute(:place,params[:action_post][:place])
       @action_post_u.update_attribute(:score,params[:action_post][:score])
-      @action_post_u.update_attribute(:price,params[:action_post][:price])
+      @action_post_u.update_attribute(:price,params[:action_post][:price].to_f)
 
       redirect_to root_url
     end
