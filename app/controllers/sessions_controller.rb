@@ -20,8 +20,18 @@ class SessionsController < ApplicationController
         sign_in user
         redirect_to root_url
       else
-        flash.now[:error] = 'Please create an account'
-        redirect_to root_url
+        @user=User.new(:name=>auth_hash['info']['name'],:email=>auth_hash['info']['email'],:password=>"123456",:password_confirmation=>"123456")
+        if @user.save
+          sign_in @user
+          @authorisation= current_user.authorizations.build(:provider => auth_hash["provider"], :uid => auth_hash["uid"],:token => (auth_hash["credentials"]["token"] rescue nil))
+          if @authorisation.save
+            flash[:success] = "Your Facebook account has been linked"
+            redirect_to root_url
+          else
+            flash[:error] = "Your Facebook account has not been linked"
+            redirect_to root_url
+          end
+        end
       end
     end
   end
