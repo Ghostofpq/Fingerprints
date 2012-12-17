@@ -12,84 +12,35 @@
 
 <div>
 	<h3>Routine</h3>
-	<%if @sleep!=nil && @sleep>0%>
+	<%if @work !=""%>
 	<div>
-		<%if @filter=="time"%>
-		Time
-		<%elsif @filter=="money"%>
-		Money
-		<%end%> spent sleeping <%if @filter=="time"%>
-		<%= distance_of_time_in_words(@sleep,0,true) %>
-		<%elsif @filter=="money"%>
-		<%= @sleep%>
-		<%end%>
-	</div>
-	<%end%>
-	<%if @work!=nil && @work>0%>
-	<div>
-		<%if @filter=="time"%>
-		Time
-		<%elsif @filter=="money"%>
-		Money
-		<%end%> spent working <%if @filter=="time"%>
-		<%= distance_of_time_in_words(@work,0,true) %>
-		<%elsif @filter=="money"%>
 		<%= @work%>
-		<%end%>
 	</div>
 	<%end%>
-	<%if @study!=nil && @study>0%>
+	<%if @study !=""%>
 	<div>
-		<%if @filter=="time"%>
-		Time
-		<%elsif @filter=="money"%>
-		Money
-		<%end%> spent studying <%if @filter=="time"%>
-		<%= distance_of_time_in_words(@study,0,true) %>
-		<%elsif @filter=="money"%>
 		<%= @study%>
-		<%end%>
 	</div>
 	<%end%>
-	<%if @eat!=nil && @eat>0%>
+	<%if @wash !=""%>
 	<div>
-		<%if @filter=="time"%>
-		Time
-		<%elsif @filter=="money"%>
-		Money
-		<%end%> spent eating <%if @filter=="time"%>
-		<%= distance_of_time_in_words(@eat,0,true) %>
-		<%elsif @filter=="money"%>
-		<%= @eat%>
-		<%end%>
-	</div>
-	<%end%>
-	<%if @wash!=nil && @wash>0%>
-	<div>
-		<%if @filter=="time"%>
-		Time
-		<%elsif @filter=="money"%>
-		Money
-		<%end%> spent washing <%if @filter=="time"%>
-		<%= distance_of_time_in_words(@wash,0,true) %>
-		<%elsif @filter=="money"%>
 		<%= @wash%>
-		<%end%>
 	</div>
 	<%end%>
-
-	<h3>Social</h3>
-	<%if @coffee!=nil && @coffee>0%>
+	<%if @eat !=""%>
 	<div>
-		<%if @filter=="time"%>
-		Time
-		<%elsif @filter=="money"%>
-		Money
-		<%end%> spent drinking coffee <%if @filter=="time"%>
-		<%= distance_of_time_in_words(@coffee,0,true) %>
-		<%elsif @filter=="money"%>
+		<%= @eat%>
+	</div>
+	<%end%>
+	<%if @sleep !=""%>
+	<div>
+		<%= @sleep%>
+	</div>
+	<%end%>
+	<h3>Social</h3>
+	<%if  @coffee !=""%>
+	<div>
 		<%= @coffee%>
-		<%end%>
 	</div>
 	<%end%>
 </div>

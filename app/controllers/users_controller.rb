@@ -1,4 +1,5 @@
 class UsersController < ApplicationController
+  include ActionView::Helpers::DateHelper
   before_filter :signed_in_user,
                 only: [:index, :edit, :update, :destroy, :following, :followers]
   before_filter :correct_user,   only: [:edit, :update,:stats,:unlink_facebook]
@@ -28,22 +29,96 @@ class UsersController < ApplicationController
     end
     if(@filter=="time")
       @filter="time"
+      @time=0
 
-      @work= @user.total_time_doing("Work")
-      @study= @user.total_time_doing("Study")
-      @wash= @user.total_time_doing("Wash")
-      @eat= @user.total_time_doing("Eat")
-      @sleep= @user.total_time_doing("Sleep")
-      @coffee= @user.total_time_doing("Coffee")
+      @time=@user.total_time_doing("Work")
+      if(@time>0)
+        @work="Time spent working : "+distance_of_time_in_words(@time,0,true)
+      else
+        @work=""
+      end
+
+      @time=@user.total_time_doing("Study")
+      if(@time>0)
+        @study="Time spent studying : "+distance_of_time_in_words(@time,0,true)
+      else
+        @study=""
+      end
+
+      @time=@user.total_time_doing("Wash")
+      if(@time>0)
+        @wash="Time spent washing : "+distance_of_time_in_words(@time,0,true)
+      else
+        @wash=""
+      end
+
+      @time=@user.total_time_doing("Eat")
+      if(@time>0)
+        @eat="Time spent eating : "+distance_of_time_in_words(@time,0,true)
+      else
+        @eat=""
+      end
+
+      @time=@user.total_time_doing("Sleep")
+      if(@time>0)
+        @sleep="Time spent sleeping : "+distance_of_time_in_words(@time,0,true)
+      else
+        @sleep=""
+      end
+
+      @time=@user.total_time_doing("Coffee")
+      if(@time>0)
+        @coffee="Time spent drinking coffee : "+distance_of_time_in_words(@time,0,true)
+      else
+        @coffee=""
+      end
+
     elsif(@filter=="money")
       @filter="money"
 
-      @work= @user.total_spent_doing("Work")
-      @study= @user.total_spent_doing("Study")
-      @wash= @user.total_spent_doing("Wash")
-      @eat= @user.total_spent_doing("Eat")
-      @sleep= @user.total_spent_doing("Sleep")
-      @coffee= @user.total_spent_doing("Coffee")
+      @price=0
+
+      @price=@user.total_spent_doing("Work")
+      if(@price>0)
+        @work="Money spent working : "+@price.to_s
+      else
+        @work=""
+      end
+
+      @price=@user.total_spent_doing("Study")
+      if(@price>0)
+        @study="Money spent studying : "+@price.to_s
+      else
+        @study=""
+      end
+
+      @price=@user.total_spent_doing("Wash")
+      if(@price>0)
+        @wash="Money spent washing : "+@price.to_s
+      else
+        @wash=""
+      end
+
+      @price=@user.total_spent_doing("Eat")
+      if(@price>0)
+        @eat="Money spent eating : "+@price.to_s
+      else
+        @eat=""
+      end
+
+      @price=@user.total_spent_doing("Sleep")
+      if(@price>0)
+        @sleep="Money spent sleeping : "+@price.to_s
+      else
+        @sleep=""
+      end
+
+      @price=@user.total_spent_doing("Coffee")
+      if(@price>0)
+        @coffee="Money spent drinking coffee : "+@price.to_s
+      else
+        @coffee=""
+      end
     end
   end
 
