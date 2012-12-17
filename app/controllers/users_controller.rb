@@ -22,6 +22,29 @@ class UsersController < ApplicationController
 
   def stats
     @user = User.find(params[:id])
+    @filter=params[:filter]
+    if (@filter==nil)
+      @filter="time"
+    end
+    if(@filter=="time")
+      @filter="time"
+
+      @work= @user.total_time_doing("Work")
+      @study= @user.total_time_doing("Study")
+      @wash= @user.total_time_doing("Wash")
+      @eat= @user.total_time_doing("Eat")
+      @sleep= @user.total_time_doing("Sleep")
+      @coffee= @user.total_time_doing("Coffee")
+    elsif(@filter=="money")
+      @filter="money"
+
+      @work= @user.total_spent_doing("Work")
+      @study= @user.total_spent_doing("Study")
+      @wash= @user.total_spent_doing("Wash")
+      @eat= @user.total_spent_doing("Eat")
+      @sleep= @user.total_spent_doing("Sleep")
+      @coffee= @user.total_spent_doing("Coffee")
+    end
   end
 
   def create

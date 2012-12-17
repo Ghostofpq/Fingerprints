@@ -26,6 +26,13 @@ class ActionPost < ActiveRecord::Base
     where("public = :public AND user_id = :user_id",user_id: user.id, public: true)
   end
 
+  def get_price
+    if self.price==nil
+    return 0.to_f
+    end
+    return self.price.to_f
+  end
+
   def duration
     diff = (self.end_date.to_time()-self.start_date.to_time())
     return diff

@@ -85,6 +85,15 @@ class User < ActiveRecord::Base
     return @total_time
   end
 
+  def total_spent_doing(action_name)
+    @action=self.user_doing(Action.find_by_name(action_name).id)
+    @total_spent=0.to_f
+    @action.each do |x|
+      @total_spent =@total_spent+ x.get_price()
+    end
+    return @total_spent
+  end
+
   #PROVIDERS STUFF
   def has_provider(provider_name)
     return (authorizations.find_by_provider(provider_name)!=nil)
