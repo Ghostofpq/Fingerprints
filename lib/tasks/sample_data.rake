@@ -45,23 +45,33 @@ end
 def make_actions  
   actionV1= Action.create(name: "Eat",
                         category: "Routine",
-                        pic_path: "routine/eat.jpg")
+                        pic_path: "routine/eat.jpg",
+                        has_duration: true,
+                        has_price: true,
+                        has_place: true,
+                        has_score: true,
+                        has_comment:true)
   actionV2= Action.create(name: "Sleep",
                         category: "Routine",
-                        pic_path: "routine/sleep.jpg")
+                        pic_path: "routine/sleep.jpg",
+                        has_duration: true)
   actionV3= Action.create(name: "Wash",
                         category: "Routine",
-                        pic_path: "routine/wash.jpg")
+                        pic_path: "routine/wash.jpg",
+                        has_duration: true)
   actionV4= Action.create(name: "Work",
                         category: "Routine",
-                        pic_path: "routine/work.jpg")
+                        pic_path: "routine/work.jpg",
+                        has_duration: true)
   actionV5= Action.create(name: "Study",
                         category: "Routine",
-                        pic_path: "routine/study.jpg") 
+                        pic_path: "routine/study.jpg",
+                        has_duration: true) 
                         
   action1= Action.create(name: "Coffee",
                         category: "Social",
-                        pic_path: "social/coffee.jpg") 
+                        pic_path: "social/coffee.jpg",
+                        has_price: true) 
   
   
   actionS1= Action.create(name: "Run",
