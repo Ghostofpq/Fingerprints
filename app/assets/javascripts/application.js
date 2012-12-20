@@ -17,11 +17,7 @@
 //= require jquery-ui-timepicker-addon
 //= require_tree .
 $(function() {
-	$('#action_post_start_date').datetimepicker({
-		dateFormat : 'yy-mm-dd',
-		timeFormat : 'HH:mm'
-	});
-	$('#action_post_end_date').datetimepicker({
+	$('.date_and_time').datetimepicker({
 		dateFormat : 'yy-mm-dd',
 		timeFormat : 'HH:mm'
 	});
