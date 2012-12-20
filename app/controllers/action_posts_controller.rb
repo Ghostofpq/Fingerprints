@@ -11,7 +11,15 @@ class ActionPostsController < ApplicationController
   end
 
   def create
+    @s_date=params["action_post"]["start_date"]
+    @e_date=params["action_post"]["end_date"]
+    
+    
+    
     @action_post = current_user.action_posts.build(params[:action_post])
+    @action_post.start_date=DateTime.parse(@s_date)
+    @action_post.end_date=DateTime.parse(@e_date)
+    
     @action_post.action_id = params[:action_id]
     if @action_post.start_date.future? or @action_post.end_date.future?
       flash[:error] = "You've seen the future? Tell me more about that."

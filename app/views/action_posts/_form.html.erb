@@ -5,9 +5,9 @@
 	<table width="100%">
 		<tr>
 			<td> <%= f.label :start_date, "Start Date" %>
-			<%= f.datetime_select :start_date, :default => 5.minutes.ago%> </td>
+			<%= f.text_field :start_date, :default => 5.minutes.ago%> </td>
 			<td> <%= f.label :end_date, "End Date" %>
-			<%= f.datetime_select :end_date, :default => 5.minutes.ago%> </td>		
+			<%= f.text_field :end_date, :default => 5.minutes.ago%> </td>		
 		</tr>
 		<tr>
 			<%if @action_post.action.has_comment%>
