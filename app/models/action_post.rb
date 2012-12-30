@@ -41,4 +41,8 @@ class ActionPost < ActiveRecord::Base
   def action
     Action.find(action_id)
   end
+  
+  def date_sort
+    self.start_date
+  end
 end

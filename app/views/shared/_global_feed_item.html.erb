@@ -1,0 +1,9 @@
+<% if global_feed_item.class.name.demodulize == "Micropost" %>
+	<ol class="microposts">
+		<%= render 'shared/feed_item', :feed_item=>global_feed_item %>
+	</ol>
+<% elsif global_feed_item.class.name.demodulize == "ActionPost" %>
+	<ol class="actions">
+		<%= render 'shared/feed_action_item', :feed_action_item=> global_feed_item %>
+	</ol>
+<% end %>

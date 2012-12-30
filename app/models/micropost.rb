@@ -10,7 +10,7 @@
 #  public     :boolean          default(FALSE)
 #
 class Micropost < ActiveRecord::Base
-  attr_accessible :content
+  attr_accessible :content,:created_at
 
   belongs_to :user
 
@@ -32,5 +32,9 @@ class Micropost < ActiveRecord::Base
   
   def self.from_user_only(user)
     where("user_id = :user_id", user_id: user.id)
+  end
+  
+  def date_sort
+    self.created_at
   end
 end

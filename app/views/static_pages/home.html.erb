@@ -20,6 +20,11 @@
 		<h3>Action Feed</h3>
 		<%= render 'shared/action_feed' %>
 	</div>
+	<div class="span8">
+		<h3>Global Feed</h3>
+		<%= render partial: 'shared/global_feed_item', collection: @global_feed_items %>
+	</div>
+	
 </div>
 <% else %>
 <div class="center hero-unit">
