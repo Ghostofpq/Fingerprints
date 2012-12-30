@@ -98,7 +98,7 @@ class ActionPostsController < ApplicationController
 
   def publish_on_fb
     @action_post = current_user.action_posts.find_by_id(params[:id])
-    if !current_user.has_not_provider("facebook")
+    if current_user.has_provider("facebook")
       current_user.publish(@action_post,"facebook")
       flash[:success] = "Posted on Facebook"
       redirect_back_or root_url
