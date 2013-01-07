@@ -5,9 +5,9 @@
 	<table width="100%">
 		<tr>
 			<td> <%= f.label :start_date, "Start Date" %>
-			<%= f.datetime_select :start_date%> </td>
+			<%= f.text_field :start_date,:class=>"date_and_time"%> </td>
 			<td> <%= f.label :end_date, "End Date" %>
-			<%= f.datetime_select :end_date%> </td>
+			<%= f.text_field :end_date,:class=>"date_and_time"%> </td>
 		</tr>
 		<tr>
 			<td> <%= f.label :comment, "Comment" %>

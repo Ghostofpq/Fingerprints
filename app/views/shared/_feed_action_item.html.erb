@@ -2,6 +2,24 @@
 	<%= link_to gravatar_for(feed_action_item.user), feed_action_item.user %>
 	<span class="user"> <%= link_to feed_action_item.user.name, feed_action_item.user %> </span>
 	<span class="timestamp"> Posted <%= time_ago_in_words(feed_action_item.created_at) %> ago. </span>
+	<% if current_user?(feed_action_item.user) %>
+	<span>
+		<% if feed_action_item.public %>
+		<%= link_to image_tag("private.jpg", :size => "50x50"),:controller => "action_posts", :action => "set_private",:id => feed_action_item.id%>
+		<% else %>
+		<%= link_to image_tag("public.jpg", :size => "50x50"),:controller => "action_posts", :action => "set_public",:id => feed_action_item.id%>
+		<% end %>
+
+		<%= link_to link_to image_tag("delete.jpg", :size => "25x25"), feed_action_item, method: :delete,
+		data: { confirm: "You sure?" } %>
+
+		<% if current_user.has_provider("facebook") %>
+		<%= link_to image_tag("FB_LOGO.jpg", :size => "25x25"),:controller => "action_posts", :action => "publish_on_fb",:id => feed_action_item.id%>
+		<% end %>
+	</span>
+	<% end %>
+	
+	
 	<table class="action_post_desc">
 		<tr>
 			<td id="pic" rowspan="2"> <% @action=Action.find(feed_action_item.action_id)%>
@@ -36,20 +54,6 @@
 		</tr>
 	</table>
 
-	<% if current_user?(feed_action_item.user) %>
-
-	<% if current_user.has_provider("facebook") %>
-	<%= link_to image_tag("FB_LOGO.jpg", :size => "50x50"),:controller => "action_posts", :action => "publish_on_fb",:id => feed_action_item.id%>
-	<% end %>
-
-	<% if feed_action_item.public %>
-	<%= link_to "private",:controller => "action_posts", :action => "set_private",:id => feed_action_item.id%>
-	<% else %>
-	<%= link_to "public",:controller => "action_posts", :action => "set_public",:id => feed_action_item.id%>
-	<% end %>
-
-	<%= link_to "delete", feed_action_item, method: :delete,
-	data: { confirm: "You sure?" } %>
-	<% end %>
+	
 
 </li>
