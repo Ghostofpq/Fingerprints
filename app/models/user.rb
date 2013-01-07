@@ -11,7 +11,6 @@
 #  remember_token  :string(255)
 #  admin           :boolean          default(FALSE)
 #
-
 class User < ActiveRecord::Base
   attr_accessible :name, :email, :password, :password_confirmation
   has_secure_password
@@ -80,6 +79,21 @@ class User < ActiveRecord::Base
       @total_spent =@total_spent+ x.get_price()
     end
     return @total_spent
+  end
+
+  def favourite_actions(number)
+    actions= self.action_posts.select("action_id").uniq
+    p=[]
+    actions.each do |action|
+      p<<[action.action_id,self.action_posts.where(:action_id=>action.action_id).count]
+    end
+    p.sort_by! do |obj1| -obj1.last end
+    print p.first(number)
+    a=[]
+    p.each do |item|
+      a<<Action.find(item.first)
+    end
+    return a
   end
 
   #PROVIDERS STUFF
