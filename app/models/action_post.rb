@@ -7,6 +7,7 @@ class ActionPost < ActiveRecord::Base
   validates :action_id, presence: true
 
   default_scope order: 'action_posts.start_date DESC'
+  
   def self.from_users_followed_by(user)
     followed_user_ids = "SELECT followed_id FROM relationships
                          WHERE follower_id = :user_id"
