@@ -1,3 +1,21 @@
+# == Schema Information
+#
+# Table name: action_posts
+#
+#  id         :integer          not null, primary key
+#  user_id    :integer
+#  action_id  :integer
+#  start_date :datetime
+#  end_date   :datetime
+#  comment    :string(255)
+#  place      :string(255)
+#  score      :integer
+#  price      :decimal(8, 2)
+#  created_at :datetime         not null
+#  updated_at :datetime         not null
+#  public     :boolean          default(FALSE)
+#
+
 class ActionPost < ActiveRecord::Base
   attr_accessible :start_date, :end_date, :comment, :place, :score, :price,:action_id,:public
 

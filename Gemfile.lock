@@ -29,6 +29,8 @@ GEM
       i18n (~> 0.6)
       multi_json (~> 1.0)
     addressable (2.3.2)
+    annotate (2.5.0)
+      rake
     arel (3.0.2)
     attr_required (0.0.5)
     bcrypt-ruby (3.0.1-x86-mingw32)
@@ -229,6 +231,7 @@ PLATFORMS
   x86-mingw32
 
 DEPENDENCIES
+  annotate
   bcrypt-ruby (= 3.0.1)
   bootstrap-sass (= 2.1)
   bootstrap-will_paginate (= 0.0.6)

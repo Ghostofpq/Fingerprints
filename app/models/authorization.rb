@@ -1,3 +1,16 @@
+# == Schema Information
+#
+# Table name: authorizations
+#
+#  id         :integer          not null, primary key
+#  provider   :string(255)
+#  uid        :string(255)
+#  user_id    :integer
+#  created_at :datetime         not null
+#  updated_at :datetime         not null
+#  token      :string(255)
+#
+
 class Authorization < ActiveRecord::Base
   attr_accessible :provider, :uid,:user_id,:token
   belongs_to :user
