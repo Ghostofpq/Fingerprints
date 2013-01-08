@@ -4,6 +4,8 @@ class ActionPostsController < ApplicationController
   def new
     @action_post = current_user.action_posts.build
     @action_post.action_id = params[:action_id]
+    @action_post.start_date = 5.minutes.ago.to_datetime.to_s(:db)
+    @action_post.end_date = Time.zone.now.to_datetime.to_s(:db)
   end
 
   def edit
@@ -11,13 +13,11 @@ class ActionPostsController < ApplicationController
   end
 
   def create
-    @s_date=params["action_post"]["start_date"]
-    @e_date=params["action_post"]["end_date"] 
-    
     @action_post = current_user.action_posts.build(params[:action_post])
-    @action_post.start_date=DateTime.parse(@s_date)
-    @action_post.end_date=DateTime.parse(@e_date)
-    
+
+    @action_post.start_date=Time.zone.parse(params["action_post"]["start_date"]).utc.to_datetime
+    @action_post.end_date=Time.zone.parse(params["action_post"]["end_date"]).utc.to_datetime
+
     @action_post.action_id = params[:action_id]
     if @action_post.start_date.future? or @action_post.end_date.future?
       flash[:error] = "You've seen the future? Tell me more about that."
@@ -39,8 +39,8 @@ class ActionPostsController < ApplicationController
   def update
     @action_post_u = ActionPost.find(params[:id])
 
-    @date1= DateTime.parse(params["action_post"]["start_date"])
-    @date2= DateTime.parse(params["action_post"]["end_date"])
+    @date1= Time.zone.parse(params["action_post"]["start_date"]).utc.to_datetime
+    @date2= Time.zone.parse(params["action_post"]["end_date"]).utc.to_datetime
 
     if @date1.future? or @date2.future?
       flash[:error] = "You've seen the future? Tell me more about that."
@@ -78,7 +78,7 @@ class ActionPostsController < ApplicationController
 
   def set_public
     @action_post = current_user.action_posts.find_by_id(params[:id])
-    
+
     if @action_post.update_attribute(:public,true)
       flash[:success] = "Set in public mode"
       redirect_back_or root_url

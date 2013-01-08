@@ -15,7 +15,6 @@
 #  updated_at :datetime         not null
 #  public     :boolean          default(FALSE)
 #
-
 class ActionPost < ActiveRecord::Base
   attr_accessible :start_date, :end_date, :comment, :place, :score, :price,:action_id,:public
 
@@ -25,7 +24,6 @@ class ActionPost < ActiveRecord::Base
   validates :action_id, presence: true
 
   default_scope order: 'action_posts.start_date DESC'
-  
   def self.from_users_followed_by(user)
     followed_user_ids = "SELECT followed_id FROM relationships
                          WHERE follower_id = :user_id"
@@ -57,10 +55,22 @@ class ActionPost < ActiveRecord::Base
     return diff
   end
 
+  def local_start_date
+    utc_sd=DateTime.civil_from_format(:utc,self.start_date.year,self.start_date.month,self.start_date.day,self.start_date.hour,self.start_date.min,self.start_date.sec)
+    loc_sd=utc_sd.in_time_zone
+    return loc_sd
+  end
+
+  def local_end_date
+    utc_ed=DateTime.civil_from_format(:utc,self.end_date.year,self.end_date.month,self.end_date.day,self.end_date.hour,self.end_date.min,self.end_date.sec)
+    loc_ed=utc_ed.in_time_zone
+    return loc_ed
+  end
+
   def action
     Action.find(action_id)
   end
-  
+
   def date_sort
     self.start_date
   end
