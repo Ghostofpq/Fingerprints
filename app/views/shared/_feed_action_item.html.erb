@@ -10,7 +10,7 @@
 		<%= link_to image_tag("public.jpg", :size => "50x50"),:controller => "action_posts", :action => "set_public",:id => feed_action_item.id%>
 		<% end %>
 
-		<%= link_to link_to image_tag("delete.jpg", :size => "25x25"), feed_action_item, method: :delete,
+		<%= link_to link_to image_tag("delete.jpg", :size => "50x50"), feed_action_item, method: :delete,
 		data: { confirm: "You sure?" } %>
 
 		<% if current_user.has_provider("facebook") %>

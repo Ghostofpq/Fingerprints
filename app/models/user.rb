@@ -88,12 +88,11 @@ class User < ActiveRecord::Base
       p<<[action.action_id,self.action_posts.where(:action_id=>action.action_id).count]
     end
     p.sort_by! do |obj1| -obj1.last end
-    print p.first(number)
     a=[]
     p.each do |item|
       a<<Action.find(item.first)
     end
-    return a
+    return a.first(number)
   end
 
   #PROVIDERS STUFF
