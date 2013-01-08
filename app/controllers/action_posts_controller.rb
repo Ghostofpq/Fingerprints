@@ -12,9 +12,7 @@ class ActionPostsController < ApplicationController
 
   def create
     @s_date=params["action_post"]["start_date"]
-    @e_date=params["action_post"]["end_date"]
-    
-    
+    @e_date=params["action_post"]["end_date"] 
     
     @action_post = current_user.action_posts.build(params[:action_post])
     @action_post.start_date=DateTime.parse(@s_date)
@@ -41,16 +39,8 @@ class ActionPostsController < ApplicationController
   def update
     @action_post_u = ActionPost.find(params[:id])
 
-    @date1= DateTime.new(params[:action_post]["start_date(1i)"].to_i,
-                        params[:action_post]["start_date(2i)"].to_i,
-                        params[:action_post]["start_date(3i)"].to_i,
-                        params[:action_post]["start_date(4i)"].to_i,
-                        params[:action_post]["start_date(5i)"].to_i)
-    @date2= DateTime.new(params[:action_post]["end_date(1i)"].to_i,
-                        params[:action_post]["end_date(2i)"].to_i,
-                        params[:action_post]["end_date(3i)"].to_i,
-                        params[:action_post]["end_date(4i)"].to_i,
-                        params[:action_post]["end_date(5i)"].to_i)
+    @date1= DateTime.parse(params["action_post"]["start_date"])
+    @date2= DateTime.parse(params["action_post"]["end_date"])
 
     if @date1.future? or @date2.future?
       flash[:error] = "You've seen the future? Tell me more about that."
