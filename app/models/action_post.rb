@@ -55,16 +55,16 @@ class ActionPost < ActiveRecord::Base
     return diff
   end
 
+  def is_on_one_day
+    return (local_start_date.to_date==local_end_date.to_date)
+  end
+
   def local_start_date
-    utc_sd=DateTime.civil_from_format(:utc,self.start_date.year,self.start_date.month,self.start_date.day,self.start_date.hour,self.start_date.min,self.start_date.sec)
-    loc_sd=utc_sd.in_time_zone
-    return loc_sd
+    return DateTime.civil_from_format(:utc,self.start_date.year,self.start_date.month,self.start_date.day,self.start_date.hour,self.start_date.min)
   end
 
   def local_end_date
-    utc_ed=DateTime.civil_from_format(:utc,self.end_date.year,self.end_date.month,self.end_date.day,self.end_date.hour,self.end_date.min,self.end_date.sec)
-    loc_ed=utc_ed.in_time_zone
-    return loc_ed
+    return DateTime.civil_from_format(:utc,self.end_date.year,self.end_date.month,self.end_date.day,self.end_date.hour,self.end_date.min)
   end
 
   def action

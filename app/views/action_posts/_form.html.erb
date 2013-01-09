@@ -1,20 +1,31 @@
 <%= form_for(@action_post,:url => { :action => :create, :action_id => params[:action_id] })  do |f| %>
 <%= render 'shared/error_messages', object: f.object %>
 <div>
-	<aside class="span2">
-		<%= image_tag(@action_post.action.pic_path,:alt=>@action_post.action.name)%>
-	</aside>
-	<div class="span3">
-		<h3><%= @action_post.action.name%></h3>
-		<%= f.label :start_date, "Start Date" %>
-		<%= f.text_field :start_date, :class=>"date_and_time"%>
-		<%= f.label :end_date, "End Date" %>
-		<%= f.text_field :end_date, :class=>"date_and_time"%>
-	</div>
+	<h3><%= @action_post.action.name%></h3>
+
+	<table id="time">
+		<tr>
+			<td rowspan="5"><%= image_tag(@action_post.action.pic_path,:alt=>@action_post.action.name, :size => "150x150")%></td>
+			<td rowspan="2"><%= image_tag("calendrier.jpg", :size => "50x50")%></td>
+			<td colspan="2"><%= text_field_tag :st_date,Date.today.to_s(:db), :class=>"date_picker"%></td>
+		</tr>
+		<tr>
+			<td width="60"><%= number_field_tag :st_date_hou,10.minutes.ago.strftime("%H"), :in=> 0..23%></td>
+			<td width="50"><%= number_field_tag :st_date_min,10.minutes.ago.strftime("%M"), :in=> 0..59%></td>
+		</tr>
+		<tr>
+			<td rowspan="2"><%= image_tag("duration.jpg", :size => "50x50")%></td>
+			<td>Hours</td><td>Minutes</td>
+		</tr>
+		<tr>
+			<td><%= number_field_tag :dur_hou,0, :min=> 0%></td>
+			<td><%= number_field_tag :dur_min,0, :in=> 0..59%></td>
+		</tr>
+	</table>
 </div>
 
 <div class="actions">
-	<table width="100%">
+	<table>
 		<tr>
 			<%if @action_post.action.has_comment%>
 			<td> <%= f.label :comment, "Comment" %>

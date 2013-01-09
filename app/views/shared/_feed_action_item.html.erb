@@ -25,18 +25,22 @@
 			<% else %>
 			<%= image_tag(@action.pic_path, :size => "50x50")%>
 			<% end %> </td>
-			<td id="date"> <% @date1= feed_action_item.local_start_date%>
-			<% @date2= feed_action_item.local_end_date%>
-			<% if @date1.to_date()==@date2.to_date() %>
-			<%= @date1.to_date().to_formatted_s(:short)%>  <%= @date1.to_time().to_formatted_s(:time)%> => <%= @date2.to_time().to_formatted_s(:time)%>
+			<td id="date1"> <% if feed_action_item.is_on_one_day %>
+			<%= feed_action_item.local_start_date.to_date.to_s(:long_ordinal)%>
 			<% else %>
-			<%= feed_action_item.start_date.to_time().to_formatted_s(:short)%> => <%= feed_action_item.end_date.to_time().to_formatted_s(:short)%>
+			<%= feed_action_item.local_start_date.to_s(:long_ordinal)%>
 			<% end %> </td>
+
 			<td id="price"> <% if feed_action_item.price!=""%>
 			<%= feed_action_item.price %>
 			<% end %> </td>
 		</tr>
 		<tr>
+			<td id="date2"> <% if feed_action_item.is_on_one_day %>
+			<%= feed_action_item.local_start_date.to_s(:time)%> => <%= feed_action_item.local_end_date.to_s(:time)%>
+			<% else %>
+			<%= feed_action_item.local_end_date.to_s(:long_ordinal)%>
+			<% end %> </td>
 			<td id="place"> <% if feed_action_item.place!=""%>
 			<%= feed_action_item.place %>
 			<% end %> </td>

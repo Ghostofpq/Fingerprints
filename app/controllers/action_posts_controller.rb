@@ -14,9 +14,9 @@ class ActionPostsController < ApplicationController
 
   def create
     @action_post = current_user.action_posts.build(params[:action_post])
-
-    @action_post.start_date=Time.zone.parse(params["action_post"]["start_date"]).utc.to_datetime
-    @action_post.end_date=Time.zone.parse(params["action_post"]["end_date"]).utc.to_datetime
+    @date_start=params["st_date"]+" "+params["st_date_hou"]+":"+params["st_date_min"]
+    @action_post.start_date=Time.zone.parse(@date_start).utc.to_datetime
+    @action_post.end_date=@action_post.start_date+(params["dur_hou"].to_i).hours+(params["dur_min"].to_i).minutes
 
     @action_post.action_id = params[:action_id]
     if @action_post.start_date.future? or @action_post.end_date.future?

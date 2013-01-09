@@ -22,3 +22,8 @@ $(function() {
 		timeFormat : 'HH:mm'
 	});
 }); 
+$(function() {
+	$('.date_picker').datepicker({
+		dateFormat : 'yy-mm-dd'
+	});
+});
