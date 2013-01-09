@@ -1,52 +1,54 @@
 <%= form_for(@action_post,:url => { :action => :create, :action_id => params[:action_id] })  do |f| %>
 <%= render 'shared/error_messages', object: f.object %>
-<div>
-	<h3><%= @action_post.action.name%></h3>
 
-	<table id="time">
-		<tr>
-			<td rowspan="5"><%= image_tag(@action_post.action.pic_path,:alt=>@action_post.action.name, :size => "150x150")%></td>
-			<td rowspan="2"><%= image_tag("calendrier.jpg", :size => "50x50")%></td>
-			<td colspan="2"><%= text_field_tag :st_date,Date.today.to_s(:db), :class=>"date_picker"%></td>
-		</tr>
-		<tr>
-			<td width="60"><%= number_field_tag :st_date_hou,10.minutes.ago.strftime("%H"), :in=> 0..23%></td>
-			<td width="50"><%= number_field_tag :st_date_min,10.minutes.ago.strftime("%M"), :in=> 0..59%></td>
-		</tr>
-		<tr>
-			<td rowspan="2"><%= image_tag("duration.jpg", :size => "50x50")%></td>
-			<td>Hours</td><td>Minutes</td>
-		</tr>
-		<tr>
-			<td><%= number_field_tag :dur_hou,0, :min=> 0%></td>
-			<td><%= number_field_tag :dur_min,0, :in=> 0..59%></td>
-		</tr>
-	</table>
-</div>
+<h3><%= @action_post.action.name%></h3>
+<table id="time">
+	<tr>
+		<td rowspan="4"><%= image_tag(@action_post.action.pic_path,:alt=>@action_post.action.name, :size => "150x150")%></td>
+		<td rowspan="2"><%= image_tag("calendrier.jpg", :size => "50x50")%></td>
+		<td colspan="2"><%= text_field_tag :st_date,Date.today.to_s(:db), :class=>"date_picker"%></td>
+		<%if @action_post.action.has_price%>
+		<td width="40"></td>
+		<td rowspan="2"><%= image_tag("price.jpg", :size => "50x50")%> </td>
+		<td rowspan="2" width="60"><%= f.text_field  :price%> </td>
+		<%end%>
+	</tr>
+	<tr>
+		<td width="60"><%= number_field_tag :st_date_hou,10.minutes.ago.strftime("%H"), :in=> 0..23%></td>
+		<td width="50"><%= number_field_tag :st_date_min,10.minutes.ago.strftime("%M"), :in=> 0..59%></td>
+	</tr>
+	<tr>
+		<td rowspan="2"><%= image_tag("duration.jpg", :size => "50x50")%></td>
+		<td>Hours</td><td>Minutes</td>
 
-<div class="actions">
-	<table>
-		<tr>
-			<%if @action_post.action.has_comment%>
-			<td> <%= f.label :comment, "Comment" %>
-			<%= f.text_area :comment, placeholder: "Comment..." , :rows=>1%> </td>
-			<%end%>
-			<%if @action_post.action.has_place%>
-			<td> <%= f.label :place, "Place" %>
-			<%= f.text_area :place, placeholder: "Place..." , :rows=>1%> </td>
-			<%end%>
-		</tr>
-		<tr>
-			<%if @action_post.action.has_score%>
-			<td> <%= f.label :score, "Note" %>
-			<%= f.number_field :score, :in=> 0...10%> </td>
-			<%end%>
-			<%if @action_post.action.has_price%>
-			<td> <%= f.label :price, "Price" %>
-			<%= f.text_field  :price%> </td>
-			<%end%>
-		</tr>
-	</table>
+		<%if @action_post.action.has_score%>
+		<td width="40"></td>
+		<td rowspan="2"><%= image_tag("score.jpg", :size => "50x50")%> </td>
+		<td rowspan="2" width="60"><%= f.number_field :score, :in=> 0...11%></td>
+		<%end%>
+	</tr>
+	<tr>
+		<td><%= number_field_tag :dur_hou,0, :min=> 0%></td>
+		<td><%= number_field_tag :dur_min,0, :in=> 0..59%></td>
+	</tr>
+
+	<%if @action_post.action.has_comment%>
+	<tr>
+		<td></td>
+		<td><%= image_tag("comment.jpg", :size => "50x50")%></td>
+		<td colspan="5"><%= f.text_area :comment, placeholder: "Comment..." , :rows=>1, :maxlength=>100%></td>
+	</tr>
+	<%end%>
+
+	<%if @action_post.action.has_place%>
+	<tr>
+		<td></td>
+		<td><%= image_tag("place.jpg", :size => "50x50")%></td>
+		<td colspan="5"><%= f.text_area :place, placeholder: "Place..." , :rows=>1, :maxlength=>100%></td>
+	</tr>
+	<%end%>
+</table>
+<div class="center hero-unit">
 	<%= f.submit "Post", class: "btn btn-large btn-primary"%>
 </div>
 <% end %>
