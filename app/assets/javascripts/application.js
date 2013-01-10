@@ -14,16 +14,9 @@
 //= require jquery_ujs
 //= require jquery.ui.all
 //= require bootstrap
-//= require jquery-ui-timepicker-addon
 //= require_tree .
-$(function() {
-	$('.date_and_time').datetimepicker({
-		dateFormat : 'yy-mm-dd',
-		timeFormat : 'HH:mm'
-	});
-}); 
 $(function() {
 	$('.date_picker').datepicker({
 		dateFormat : 'yy-mm-dd'
 	});
-});
+}); 

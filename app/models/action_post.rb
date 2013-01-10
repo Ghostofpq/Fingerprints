@@ -51,8 +51,34 @@ class ActionPost < ActiveRecord::Base
   end
 
   def duration
-    diff = (self.end_date.to_time()-self.start_date.to_time())
+    diff = (self.end_date.to_time-self.start_date.to_time)
     return diff
+  end
+
+  def score_img
+    if self.score==0
+      return "F.jpg"
+    elsif self.score==1
+      return "E_moins.jpg"
+    elsif self.score==2
+      return "E.jpg"
+    elsif self.score==3
+      return "D_moins.jpg"
+    elsif self.score==4
+      return "D.jpg"
+    elsif self.score==5
+      return "C.jpg"
+    elsif self.score==6
+      return "C.jpg"
+    elsif self.score==7
+      return "B.jpg"
+    elsif self.score==8
+      return "B_plus.jpg"
+    elsif self.score==9
+      return "A.jpg"
+    elsif self.score==10
+      return "A_plus.jpg"
+    end
   end
 
   def is_on_one_day

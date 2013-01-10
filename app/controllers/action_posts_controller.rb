@@ -38,9 +38,9 @@ class ActionPostsController < ApplicationController
 
   def update
     @action_post_u = ActionPost.find(params[:id])
-
-    @date1= Time.zone.parse(params["action_post"]["start_date"]).utc.to_datetime
-    @date2= Time.zone.parse(params["action_post"]["end_date"]).utc.to_datetime
+    @date_start=params["st_date"]+" "+params["st_date_hou"]+":"+params["st_date_min"]
+    @date1= Time.zone.parse(@date_start).utc.to_datetime
+    @date2= @date1+(params["dur_hou"].to_i).hours+(params["dur_min"].to_i).minutes
 
     if @date1.future? or @date2.future?
       flash[:error] = "You've seen the future? Tell me more about that."
@@ -55,7 +55,6 @@ class ActionPostsController < ApplicationController
       @action_post_u.update_attribute(:place,params[:action_post][:place])
       @action_post_u.update_attribute(:score,params[:action_post][:score])
       @action_post_u.update_attribute(:price,params[:action_post][:price].to_f)
-
       redirect_to root_url
     end
   end
@@ -73,7 +72,6 @@ class ActionPostsController < ApplicationController
       redirect_back_or root_url
     else
     end
-
   end
 
   def set_public

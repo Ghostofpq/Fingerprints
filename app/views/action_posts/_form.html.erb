@@ -2,7 +2,7 @@
 <%= render 'shared/error_messages', object: f.object %>
 
 <h3><%= @action_post.action.name%></h3>
-<table id="time">
+<table>
 	<tr>
 		<td rowspan="4"><%= image_tag(@action_post.action.pic_path,:alt=>@action_post.action.name, :size => "150x150")%></td>
 		<td rowspan="2"><%= image_tag("calendrier.jpg", :size => "50x50")%></td>

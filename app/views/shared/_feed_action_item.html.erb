@@ -17,42 +17,42 @@
 		<% end %> </span>
 	<% end %>
 
-	<table class="action_post_desc">
+	<table>
 		<tr>
-			<td id="pic" rowspan="2"> <% @action=Action.find(feed_action_item.action_id)%>
-			<% if current_user?(feed_action_item.user) %>
-			<%= link_to image_tag(@action.pic_path, :size => "50x50"),:controller => "action_posts", :action => "edit",:id => feed_action_item.id %>
-			<% else %>
-			<%= image_tag(@action.pic_path, :size => "50x50")%>
-			<% end %> </td>
-			<td id="date1"> <% if feed_action_item.is_on_one_day %>
-			<%= feed_action_item.local_start_date.to_date.to_s(:long_ordinal)%>
-			<% else %>
-			<%= feed_action_item.local_start_date.to_s(:long_ordinal)%>
-			<% end %> </td>
+			<td rowspan="4" width="150"><%= link_to image_tag(feed_action_item.action.pic_path, :size => "150x150"),:controller => "action_posts", :action => "edit",:id => feed_action_item.id %></td>
+			<td rowspan width="50"> <%= image_tag("calendrier.jpg", :size => "50x50")%></td>
+			<td colspan="6" width="300"><%= feed_action_item.local_start_date.to_s(:long_ordinal)%></td>
+		</tr>
+		<tr>
+			<td><%= image_tag("duration.jpg", :size => "50x50")%></td>
+			<td width="30"><%= Time.at(feed_action_item.duration).utc.strftime("%H")%>h</td>
+			<td width="50"><%= Time.at(feed_action_item.duration).utc.strftime("%M")%>m</td>
 
-			<td id="price"> <% if feed_action_item.price!=""%>
-			<%= feed_action_item.price %>
-			<% end %> </td>
+			<% if feed_action_item.price!=nil && feed_action_item.price>0%>
+			<td width="50"><%= image_tag("price.jpg", :size => "50x50")%> </td>
+			<td width="50"><%= feed_action_item.price%> </td>
+			<%else%>
+			<td colspan="2"></td>
+			<td></td>
+			<% end %>
+
+			<% if feed_action_item.score!=nil %>
+			<td ><%= image_tag("score/"+feed_action_item.score_img, :size => "50x50")%> </td>
+			<%else%>
+			<td></td>
+			<% end %>
 		</tr>
 		<tr>
-			<td id="date2"> <% if feed_action_item.is_on_one_day %>
-			<%= feed_action_item.local_start_date.to_s(:time)%> => <%= feed_action_item.local_end_date.to_s(:time)%>
-			<% else %>
-			<%= feed_action_item.local_end_date.to_s(:long_ordinal)%>
-			<% end %> </td>
-			<td id="place"> <% if feed_action_item.place!=""%>
-			<%= feed_action_item.place %>
-			<% end %> </td>
-			<td id="score"> <% if feed_action_item.score!=""%>
-			<%= feed_action_item.score %>
-			<% end %> </td>
+			<% if feed_action_item.comment!=nil && feed_action_item.comment!=""%>
+			<td><%= image_tag("comment.jpg", :size => "50x50")%></td>
+			<td colspan="6"><%= feed_action_item.comment%></td>
+			<% end %>
 		</tr>
 		<tr>
-			<td colspan="3"> <% if feed_action_item.comment!=""%>
-			<%= feed_action_item.comment %>
-			<% end %> </td>
+			<% if feed_action_item.place!=nil  && feed_action_item.place!=""%>
+			<td><%= image_tag("place.jpg", :size => "50x50")%></td>
+			<td colspan="6"><%= feed_action_item.place%></td>
+			<% end %>
 		</tr>
 	</table>
-
 </li>

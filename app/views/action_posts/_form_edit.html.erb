@@ -1,27 +1,46 @@
 <%= form_for(@action_post,:url => { :action => :update},:id=>@action_post.id)  do |f| %>
 <%= render 'shared/error_messages', object: f.object %>
-<%= image_tag(@action_post.action.pic_path,:alt=>@action_post.action.name)%>
-<div class="actions">
-	<table width="100%">
-		<tr>
-			<td> <%= f.label :start_date, "Start Date" %>
-			<%= f.text_field :start_date,:class=>"date_and_time"%> </td>
-			<td> <%= f.label :end_date, "End Date" %>
-			<%= f.text_field :end_date,:class=>"date_and_time"%> </td>
-		</tr>
-		<tr>
-			<td> <%= f.label :comment, "Comment" %>
-			<%= f.text_area :comment, :rows=>1%> </td>
-			<td> <%= f.label :place, "Place" %>
-			<%= f.text_area :place, :rows=>1%> </td>
-		</tr>
-		<tr>
-			<td> <%= f.label :score, "Note" %>
-			<%= f.number_field :score, :in=> 0...10%> </td>
-			<td> <%= f.label :price, "Price" %>
-			<%= f.text_field  :price%> </td>
-		</tr>
-	</table>
+<h3><%= @action_post.action.name%></h3>
+<table>
+	<tr>
+		<td rowspan="4"><%= image_tag(@action_post.action.pic_path,:alt=>@action_post.action.name, :size => "150x150")%></td>
+		<td rowspan="2"><%= image_tag("calendrier.jpg", :size => "50x50")%></td>
+		<td colspan="2"><%= text_field_tag :st_date,@action_post.start_date.to_date.to_s(:db), :class=>"date_picker"%></td>
+		<td width="40"></td>
+		<td rowspan="2"><%= image_tag("price.jpg", :size => "50x50")%> </td>
+		<td rowspan="2" width="60"><%= f.text_field  :price%> </td>
+	</tr>
+	<tr>		
+		<td width="60"><%= number_field_tag :st_date_hou,@action_post.start_date.to_time.strftime("%H"), :in=> 0..23%></td>
+		<td width="50"><%= number_field_tag :st_date_min,@action_post.start_date.to_time.strftime("%M"), :in=> 0..59%></td>
+	</tr>
+	<tr>
+		<td rowspan="2"><%= image_tag("duration.jpg", :size => "50x50")%></td>
+		<td>Hours</td><td>Minutes</td>
+
+		<td width="40"></td>
+		<td rowspan="2"><%= image_tag("score.jpg", :size => "50x50")%> </td>
+		<td rowspan="2" width="60"><%= f.number_field :score, :in=> 0...11%></td>
+
+	</tr>
+	<tr>
+		<td><%= number_field_tag :dur_hou,Time.at(@action_post.duration).utc.strftime("%H"), :min=> 0%></td>
+		<td><%= number_field_tag :dur_min,Time.at(@action_post.duration).utc.strftime("%M"), :in=> 0..59%></td>
+	</tr>
+
+	<tr>
+		<td></td>
+		<td><%= image_tag("comment.jpg", :size => "50x50")%></td>
+		<td colspan="5"><%= f.text_area :comment, placeholder: "Comment..." , :rows=>1, :maxlength=>100%></td>
+	</tr>
+
+	<tr>
+		<td></td>
+		<td><%= image_tag("place.jpg", :size => "50x50")%></td>
+		<td colspan="5"><%= f.text_area :place, placeholder: "Place..." , :rows=>1, :maxlength=>100%></td>
+	</tr>
+</table>
+<div class="center hero-unit">
 	<%= f.submit "Update", class: "btn btn-large btn-primary"%>
 </div>
 <% end %>
