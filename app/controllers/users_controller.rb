@@ -10,8 +10,8 @@ class UsersController < ApplicationController
 
   def show
     @user = User.find(params[:id])
-    @microposts = @user.self_feed_public.paginate(page: params[:page],per_page: 5)
-    @action_posts= @user.self_action_feed_public.paginate(page: params[:page],per_page: 5)
+    @global_feed_items = @user.self_feed_public+@user.self_action_feed_public
+    @global_feed_items.sort! {|obj1, obj2| (obj2.date_sort) <=> (obj1.date_sort)}
   end
 
   def new

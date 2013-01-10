@@ -5,14 +5,14 @@
 	<tr>
 		<td rowspan="4"><%= image_tag(@action_post.action.pic_path,:alt=>@action_post.action.name, :size => "150x150")%></td>
 		<td rowspan="2"><%= image_tag("calendrier.jpg", :size => "50x50")%></td>
-		<td colspan="2"><%= text_field_tag :st_date,@action_post.start_date.to_date.to_s(:db), :class=>"date_picker"%></td>
+		<td colspan="2"><%= text_field_tag :st_date,@action_post.local_start_date.to_date.to_s(:db), :class=>"date_picker"%></td>
 		<td width="40"></td>
 		<td rowspan="2"><%= image_tag("price.jpg", :size => "50x50")%> </td>
 		<td rowspan="2" width="60"><%= f.text_field  :price%> </td>
 	</tr>
 	<tr>		
-		<td width="60"><%= number_field_tag :st_date_hou,@action_post.start_date.to_time.strftime("%H"), :in=> 0..23%></td>
-		<td width="50"><%= number_field_tag :st_date_min,@action_post.start_date.to_time.strftime("%M"), :in=> 0..59%></td>
+		<td width="60"><%= number_field_tag :st_date_hou,@action_post.local_start_date.to_time.strftime("%H"), :in=> 0..23%></td>
+		<td width="50"><%= number_field_tag :st_date_min,@action_post.local_start_date.to_time.strftime("%M"), :in=> 0..59%></td>
 	</tr>
 	<tr>
 		<td rowspan="2"><%= image_tag("duration.jpg", :size => "50x50")%></td>
