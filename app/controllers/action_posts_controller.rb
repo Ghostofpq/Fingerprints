@@ -30,8 +30,11 @@ class ActionPostsController < ApplicationController
         @action_post.action.achievements.each do |achievement|
           if(achievement.check(current_user))
             flash[:success] = "ACHIEVEMENT!"
+            current_user.unlocks!(achievement)
+            @micropost = current_user.microposts.build(content: "Achievement unlocked : "+achievement.name)
+            @micropost.save
           end
-        end       
+        end
         redirect_to root_url
       else
         flash[:error] = "ActionPost not created!"

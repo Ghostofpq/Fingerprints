@@ -33,7 +33,7 @@ class Micropost < ActiveRecord::Base
   
   def self.from_user_only(user)
     where("user_id = :user_id", user_id: user.id)
-  end
+  end   
   
   def date_sort
     self.created_at

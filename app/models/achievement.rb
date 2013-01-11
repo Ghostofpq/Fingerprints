@@ -42,6 +42,7 @@ class Achievement < ActiveRecord::Base
         return false
       end
     end
+
     return false
   end
 end
