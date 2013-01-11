@@ -27,7 +27,11 @@ class ActionPostsController < ApplicationController
       redirect_to root_url
     else
       if @action_post.save
-        flash[:success] = "ActionPost created!"
+        @action_post.action.achievements.each do |achievement|
+          if(achievement.check(current_user))
+            flash[:success] = "ACHIEVEMENT!"
+          end
+        end       
         redirect_to root_url
       else
         flash[:error] = "ActionPost not created!"

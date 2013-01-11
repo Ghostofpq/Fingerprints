@@ -141,8 +141,14 @@ class User < ActiveRecord::Base
   def create_remember_token
     self.remember_token = SecureRandom.urlsafe_base64
   end
+
   #ACHIEVEMENTS STUFF
   def unlocks!(achievement)
     self.achievements<<achievement
   end
+
+  def has_achievement(achievement_id)
+    return ((self.achievements.find(achievement_id) rescue nil)!=nil)
+  end
+
 end
