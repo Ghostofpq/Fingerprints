@@ -11,7 +11,30 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20121218133110) do
+ActiveRecord::Schema.define(:version => 20130111100646) do
+
+  create_table "achievements", :force => true do |t|
+    t.string   "name"
+    t.string   "pic_path"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  create_table "achievements_actions", :id => false, :force => true do |t|
+    t.integer "achievement_id"
+    t.integer "action_id"
+  end
+
+  add_index "achievements_actions", ["achievement_id", "action_id"], :name => "index_achievements_actions_on_achievement_id_and_action_id"
+  add_index "achievements_actions", ["action_id", "achievement_id"], :name => "index_achievements_actions_on_action_id_and_achievement_id"
+
+  create_table "achievements_users", :id => false, :force => true do |t|
+    t.integer "achievement_id"
+    t.integer "user_id"
+  end
+
+  add_index "achievements_users", ["achievement_id", "user_id"], :name => "index_achievements_users_on_achievement_id_and_user_id"
+  add_index "achievements_users", ["user_id", "achievement_id"], :name => "index_achievements_users_on_user_id_and_achievement_id"
 
   create_table "action_posts", :force => true do |t|
     t.integer  "user_id"
