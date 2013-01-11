@@ -22,4 +22,8 @@ class Action < ActiveRecord::Base
   validates :name, presence: true
   validates :pic_path, presence: true
   validates :category, presence: true
+  
+  def references!(achievement)
+    self.achievements<<achievement
+  end
 end
