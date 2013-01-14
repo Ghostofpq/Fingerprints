@@ -24,8 +24,8 @@
 
     </tr>
     <tr>
-        <td><%= number_field_tag :dur_hou,((feed_action_item.duration/3600).to_i), :min=> 0%></td>
-        <td><%= number_field_tag :dur_min,(((feed_action_item.duration%60)/60).to_i), :in=> 0..59%></td>
+        <td><%= number_field_tag :dur_hou,((@action_post.duration/3600).to_i), :min=> 0%></td>
+        <td><%= number_field_tag :dur_min,(((@action_post.duration%60)/60).to_i), :in=> 0..59%></td>
     </tr>
 
     <tr>
