@@ -67,6 +67,7 @@ Achievement.create(name: "Sleep_c_1W",
               pic_path: "routine/sleep.jpg")
 Achievement.create(name: "Sleep_c_1M",
               pic_path: "routine/sleep.jpg")
+              
 Action.find_by_name("Sleep").references!(Achievement.find_by_name("Sleep10h"))
 Action.find_by_name("Sleep").references!(Achievement.find_by_name("Sleep12h"))
 Action.find_by_name("Sleep").references!(Achievement.find_by_name("Sleep14h"))

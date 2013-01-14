@@ -2,45 +2,45 @@
 <%= render 'shared/error_messages', object: f.object %>
 <h3><%= @action_post.action.name%></h3>
 <table>
-	<tr>
-		<td rowspan="4"><%= image_tag(@action_post.action.pic_path,:alt=>@action_post.action.name, :size => "150x150")%></td>
-		<td rowspan="2"><%= image_tag("calendrier.jpg", :size => "50x50")%></td>
-		<td colspan="2"><%= text_field_tag :st_date,@action_post.local_start_date.to_date.to_s(:db), :class=>"date_picker"%></td>
-		<td width="40"></td>
-		<td rowspan="2"><%= image_tag("price.jpg", :size => "50x50")%> </td>
-		<td rowspan="2" width="60"><%= f.text_field  :price%> </td>
-	</tr>
-	<tr>		
-		<td width="60"><%= number_field_tag :st_date_hou,@action_post.local_start_date.to_time.strftime("%H"), :in=> 0..23%></td>
-		<td width="50"><%= number_field_tag :st_date_min,@action_post.local_start_date.to_time.strftime("%M"), :in=> 0..59%></td>
-	</tr>
-	<tr>
-		<td rowspan="2"><%= image_tag("duration.jpg", :size => "50x50")%></td>
-		<td>Hours</td><td>Minutes</td>
+    <tr>
+        <td rowspan="4"><%= image_tag(@action_post.action.pic_path,:alt=>@action_post.action.name, :size => "150x150")%></td>
+        <td rowspan="2"><%= image_tag("calendrier.jpg", :size => "50x50")%></td>
+        <td colspan="2"><%= text_field_tag :st_date,@action_post.local_start_date.to_date.to_s(:db), :class=>"date_picker"%></td>
+        <td width="40"></td>
+        <td rowspan="2"><%= image_tag("price.jpg", :size => "50x50")%> </td>
+        <td rowspan="2" width="60"><%= f.text_field  :price%> </td>
+    </tr>
+    <tr>
+        <td width="60"><%= number_field_tag :st_date_hou,@action_post.local_start_date.to_time.strftime("%H"), :in=> 0..23%></td>
+        <td width="50"><%= number_field_tag :st_date_min,@action_post.local_start_date.to_time.strftime("%M"), :in=> 0..59%></td>
+    </tr>
+    <tr>
+        <td rowspan="2"><%= image_tag("duration.jpg", :size => "50x50")%></td>
+        <td>Hours</td><td>Minutes</td>
 
-		<td width="40"></td>
-		<td rowspan="2"><%= image_tag("score.jpg", :size => "50x50")%> </td>
-		<td rowspan="2" width="60"><%= f.number_field :score, :in=> 0...11%></td>
+        <td width="40"></td>
+        <td rowspan="2"><%= image_tag("score.jpg", :size => "50x50")%> </td>
+        <td rowspan="2" width="60"><%= f.number_field :score, :in=> 0...11%></td>
 
-	</tr>
-	<tr>
-		<td><%= number_field_tag :dur_hou,Time.at(@action_post.duration).utc.strftime("%H"), :min=> 0%></td>
-		<td><%= number_field_tag :dur_min,Time.at(@action_post.duration).utc.strftime("%M"), :in=> 0..59%></td>
-	</tr>
+    </tr>
+    <tr>
+        <td><%= number_field_tag :dur_hou,((feed_action_item.duration/3600).to_i), :min=> 0%></td>
+        <td><%= number_field_tag :dur_min,(((feed_action_item.duration%60)/60).to_i), :in=> 0..59%></td>
+    </tr>
 
-	<tr>
-		<td></td>
-		<td><%= image_tag("comment.jpg", :size => "50x50")%></td>
-		<td colspan="5"><%= f.text_area :comment, placeholder: "Comment..." , :rows=>1, :maxlength=>100%></td>
-	</tr>
+    <tr>
+        <td></td>
+        <td><%= image_tag("comment.jpg", :size => "50x50")%></td>
+        <td colspan="5"><%= f.text_area :comment, placeholder: "Comment..." , :rows=>1, :maxlength=>100%></td>
+    </tr>
 
-	<tr>
-		<td></td>
-		<td><%= image_tag("place.jpg", :size => "50x50")%></td>
-		<td colspan="5"><%= f.text_area :place, placeholder: "Place..." , :rows=>1, :maxlength=>100%></td>
-	</tr>
+    <tr>
+        <td></td>
+        <td><%= image_tag("place.jpg", :size => "50x50")%></td>
+        <td colspan="5"><%= f.text_area :place, placeholder: "Place..." , :rows=>1, :maxlength=>100%></td>
+    </tr>
 </table>
 <div class="center hero-unit">
-	<%= f.submit "Update", class: "btn btn-large btn-primary"%>
+    <%= f.submit "Update", class: "btn btn-large btn-primary"%>
 </div>
 <% end %>

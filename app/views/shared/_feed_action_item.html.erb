@@ -1,62 +1,62 @@
 <li id="<%= feed_action_item.id %>">
-	<%= link_to gravatar_for(feed_action_item.user), feed_action_item.user %>
-	<span class="user"> <%= link_to feed_action_item.user.name, feed_action_item.user %> </span>
-	<span class="timestamp"> Posted <%= time_ago_in_words(feed_action_item.created_at) %> ago. </span>
-	<% if current_user?(feed_action_item.user) %>
-	<span> <% if feed_action_item.public %>
-		<%= link_to image_tag("private.jpg", :size => "50x50"),:controller => "action_posts", :action => "set_private",:id => feed_action_item.id%>
-		<% else %>
-		<%= link_to image_tag("public.jpg", :size => "50x50"),:controller => "action_posts", :action => "set_public",:id => feed_action_item.id%>
-		<% end %>
+    <%= link_to gravatar_for(feed_action_item.user), feed_action_item.user %>
+    <span class="user"> <%= link_to feed_action_item.user.name, feed_action_item.user %> </span>
+    <span class="timestamp"> Posted <%= time_ago_in_words(feed_action_item.created_at) %> ago. </span>
+    <% if current_user?(feed_action_item.user) %>
+    <span> <% if feed_action_item.public %>
+        <%= link_to image_tag("private.jpg", :size => "50x50"),:controller => "action_posts", :action => "set_private",:id => feed_action_item.id%>
+        <% else %>
+        <%= link_to image_tag("public.jpg", :size => "50x50"),:controller => "action_posts", :action => "set_public",:id => feed_action_item.id%>
+        <% end %>
 
-		<%= link_to link_to image_tag("delete.jpg", :size => "50x50"), feed_action_item, method: :delete,
-		data: { confirm: "You sure?" } %>
+        <%= link_to link_to image_tag("delete.jpg", :size => "50x50"), feed_action_item, method: :delete,
+        data: { confirm: "You sure?" } %>
 
-		<% if current_user.has_provider("facebook") %>
-		<%= link_to image_tag("FB_LOGO.jpg", :size => "25x25"),:controller => "action_posts", :action => "publish_on_fb",:id => feed_action_item.id%>
-		<% end %> </span>
-	<% end %>
+        <% if current_user.has_provider("facebook") %>
+        <%= link_to image_tag("FB_LOGO.jpg", :size => "25x25"),:controller => "action_posts", :action => "publish_on_fb",:id => feed_action_item.id%>
+        <% end %> </span>
+    <% end %>
 
-	<table>
-		<tr>
-			<td rowspan="4" width="150"> <% if current_user?(feed_action_item.user) %>
-			<%= link_to image_tag(feed_action_item.action.pic_path, :size => "150x150"),:controller => "action_posts", :action => "edit",:id => feed_action_item.id %>
-			<%elsif%>
-			<%= image_tag(feed_action_item.action.pic_path, :size => "150x150")%>
-			<%end%> </td>
-			<td rowspan width="50"> <%= image_tag("calendrier.jpg", :size => "50x50")%></td>
-			<td colspan="6" width="300"><%= feed_action_item.local_start_date.to_s(:long_ordinal)%></td>
-		</tr>
-		<tr>
-			<td><%= image_tag("duration.jpg", :size => "50x50")%></td>
-			<td width="30"><%= Time.at(feed_action_item.duration).utc.strftime("%H")%>h</td>
-			<td width="50"><%= Time.at(feed_action_item.duration).utc.strftime("%M")%>m</td>
+    <table>
+        <tr>
+            <td rowspan="4" width="150"> <% if current_user?(feed_action_item.user) %>
+            <%= link_to image_tag(feed_action_item.action.pic_path, :size => "150x150"),:controller => "action_posts", :action => "edit",:id => feed_action_item.id %>
+            <%elsif%>
+            <%= image_tag(feed_action_item.action.pic_path, :size => "150x150")%>
+            <%end%> </td>
+            <td rowspan width="50"> <%= image_tag("calendrier.jpg", :size => "50x50")%></td>
+            <td colspan="6" width="300"><%= feed_action_item.local_start_date.to_s(:long_ordinal)%></td>
+        </tr>
+        <tr>
+            <td><%= image_tag("duration.jpg", :size => "50x50")%></td>
+            <td width="30"><%= ((feed_action_item.duration/3600).to_i)%>h</td>
+            <td width="50"><%= (((feed_action_item.duration%60)/60).to_i)%>m</td>
 
-			<% if feed_action_item.price!=nil && feed_action_item.price>0%>
-			<td width="50"><%= image_tag("price.jpg", :size => "50x50")%> </td>
-			<td width="50"><%= feed_action_item.price%> </td>
-			<%else%>
-			<td colspan="2"></td>
-			<td></td>
-			<% end %>
+            <% if feed_action_item.price!=nil && feed_action_item.price>0%>
+            <td width="50"><%= image_tag("price.jpg", :size => "50x50")%> </td>
+            <td width="50"><%= feed_action_item.price%> </td>
+            <%else%>
+            <td colspan="2"></td>
+            <td></td>
+            <% end %>
 
-			<% if feed_action_item.score!=nil %>
-			<td ><%= image_tag("score/"+feed_action_item.score_img, :size => "50x50")%> </td>
-			<%else%>
-			<td></td>
-			<% end %>
-		</tr>
-		<tr>
-			<% if feed_action_item.comment!=nil && feed_action_item.comment!=""%>
-			<td><%= image_tag("comment.jpg", :size => "50x50")%></td>
-			<td colspan="6"><%= feed_action_item.comment%></td>
-			<% end %>
-		</tr>
-		<tr>
-			<% if feed_action_item.place!=nil  && feed_action_item.place!=""%>
-			<td><%= image_tag("place.jpg", :size => "50x50")%></td>
-			<td colspan="6"><%= feed_action_item.place%></td>
-			<% end %>
-		</tr>
-	</table>
+            <% if feed_action_item.score!=nil %>
+            <td ><%= image_tag("score/"+feed_action_item.score_img, :size => "50x50")%> </td>
+            <%else%>
+            <td></td>
+            <% end %>
+        </tr>
+        <tr>
+            <% if feed_action_item.comment!=nil && feed_action_item.comment!=""%>
+            <td><%= image_tag("comment.jpg", :size => "50x50")%></td>
+            <td colspan="6"><%= feed_action_item.comment%></td>
+            <% end %>
+        </tr>
+        <tr>
+            <% if feed_action_item.place!=nil  && feed_action_item.place!=""%>
+            <td><%= image_tag("place.jpg", :size => "50x50")%></td>
+            <td colspan="6"><%= feed_action_item.place%></td>
+            <% end %>
+        </tr>
+    </table>
 </li>

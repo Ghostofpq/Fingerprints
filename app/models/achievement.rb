@@ -32,13 +32,34 @@ class Achievement < ActiveRecord::Base
         end
         return false
 
-      when "Sleep_c_1D"
+      when "Sleep_c_1D" 
+        @total=0
+        user.user_doing(Action.find_by_name("Sleep").id).each do |action|
+          @total+=action.duration
+        end
+        if(@total>=86400)
+        return true
+        end
         return false
 
       when "Sleep_c_1W"
+        @total=0
+        user.user_doing(Action.find_by_name("Sleep").id).each do |action|
+          @total+=action.duration
+        end
+        if(@total>=604800)
+        return true
+        end
         return false
 
       when "Sleep_c_1M"
+        @total=0
+        user.user_doing(Action.find_by_name("Sleep").id).each do |action|
+          @total+=action.duration
+        end
+        if(@total>=2419200)
+        return true
+        end
         return false
       end
     end
