@@ -12,14 +12,13 @@ user2=User.create(name: "user2",email: "ex2@amp.le",password: "123456",password_
 user1.follow!(user2)
 user2.follow!(user1)
 
-Action.create(name: "Eat",
+ Action.create(name: "Eat",
               category: "Routine",
               pic_path: "routine/eat.jpg",
-              has_duration: true,
               has_price: true,
               has_place: true,
               has_score: true,
-              has_comment:true)         
+              has_comment:true)        
 Action.create(name: "Sleep",
               category: "Routine",
               pic_path: "routine/sleep.jpg")         
@@ -32,10 +31,7 @@ Action.create(name: "Work",
 Action.create(name: "Study",
               category: "Routine",
               pic_path: "routine/study.jpg")                     
-Action.create(name: "Coffee",
-              category: "Social",
-              pic_path: "social/coffee.jpg",
-              has_price: true) 
+
 Action.create(name: "Run",
               category: "Sports",
               pic_path: "sports/run.jpg")
@@ -54,6 +50,91 @@ Action.create(name: "Team Sports",
 Action.create(name: "Fitness",
               category: "Sports",
               pic_path: "sports/fitness.jpg")  
+##DUTY  
+Action.create(name: "Dishwashing",
+              category: "Duty",
+              pic_path: "duty/dishwashing.jpg")
+Action.create(name: "Supplies",
+              category: "Duty",
+              pic_path: "duty/supplies.jpg",
+              has_price: true,
+              has_place: true)
+Action.create(name: "Housework",
+              category: "Duty",
+              pic_path: "duty/housework.jpg")   
+Action.create(name: "Laundry",
+              category: "Duty",
+              pic_path: "duty/laundry.jpg")  
+##LEISURE               
+Action.create(name: "Take a walk",
+              category: "Leisure",
+              pic_path: "leisure/walk.jpg",
+              has_place: true)  
+Action.create(name: "Coffee",
+              category: "Leisure",
+              pic_path: "leisure/coffee.jpg",
+              has_price: true,
+              has_place: true,
+              has_score: true,
+              has_comment:true) 
+Action.create(name: "Bar",
+              category: "Leisure",
+              pic_path: "leisure/bar.jpg",
+              has_price: true,
+              has_place: true,
+              has_score: true,
+              has_comment:true) 
+Action.create(name: "Nightclub",
+              category: "Leisure",
+              pic_path: "leisure/nightclub.jpg",
+              has_price: true,
+              has_place: true,
+              has_score: true,
+              has_comment:true)                
+Action.create(name: "Cinema",
+              category: "Leisure",
+              pic_path: "leisure/cinema.jpg",
+              has_price: true,
+              has_place: true,
+              has_score: true,
+              has_comment:true) 
+Action.create(name: "Concert",
+              category: "Leisure",
+              pic_path: "leisure/concert.jpg",
+              has_price: true,
+              has_place: true,
+              has_score: true,
+              has_comment:true)             
+Action.create(name: "Theatre",
+              category: "Leisure",
+              pic_path: "leisure/theatre.jpg",
+              has_price: true,
+              has_place: true,
+              has_score: true,
+              has_comment:true)             
+Action.create(name: "Meet friends",
+              category: "Leisure",
+              pic_path: "leisure/friends.jpg",
+              has_place: true) 
+Action.create(name: "Movie",
+              category: "Leisure",
+              pic_path: "leisure/movie.jpg",
+              has_score: true,
+              has_comment:true) 
+Action.create(name: "Video Games",
+              category: "Leisure",
+              pic_path: "leisure/videogames.jpg",
+              has_score: true,
+              has_comment:true) 
+Action.create(name: "Board Games",
+              category: "Leisure",
+              pic_path: "leisure/boardgames.jpg",
+              has_score: true,
+              has_comment:true)           
+Action.create(name: "Play an instrument",
+              category: "Leisure",
+              pic_path: "leisure/instrument.jpg") 
+
 
 Achievement.create(name: "Sleep10h",
               pic_path: "routine/sleep.jpg")
