@@ -34,19 +34,24 @@ Action.create(name: "Study",
 ##SPORTS 
 Action.create(name: "Run",
               category: "Sports",
-              pic_path: "sports/run.jpg")
+              pic_path: "sports/run.jpg",
+              has_place: true)
 Action.create(name: "Bike",
               category: "Sports",
-              pic_path: "sports/bike.jpg")
+              pic_path: "sports/bike.jpg",
+              has_place: true)
 Action.create(name: "Swim",
               category: "Sports",
-              pic_path: "sports/swim.jpg")
+              pic_path: "sports/swim.jpg",
+              has_place: true)
 Action.create(name: "Duel Sports",
               category: "Sports",
-              pic_path: "sports/tennis.jpg")
+              pic_path: "sports/tennis.jpg",
+              has_place: true)
 Action.create(name: "Team Sports",
               category: "Sports",
-              pic_path: "sports/basket.jpg")   
+              pic_path: "sports/basket.jpg",
+              has_place: true)   
 Action.create(name: "Fitness",
               category: "Sports",
               pic_path: "sports/fitness.jpg")  
