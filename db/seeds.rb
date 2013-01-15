@@ -11,8 +11,8 @@ user2=User.create(name: "user2",email: "ex2@amp.le",password: "123456",password_
 
 user1.follow!(user2)
 user2.follow!(user1)
-
- Action.create(name: "Eat",
+##ROUTINE
+Action.create(name: "Eat",
               category: "Routine",
               pic_path: "routine/eat.jpg",
               has_price: true,
@@ -31,7 +31,7 @@ Action.create(name: "Work",
 Action.create(name: "Study",
               category: "Routine",
               pic_path: "routine/study.jpg")                     
-
+##SPORTS 
 Action.create(name: "Run",
               category: "Sports",
               pic_path: "sports/run.jpg")
