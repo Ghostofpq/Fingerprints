@@ -12,6 +12,7 @@ class UsersController < ApplicationController
     @user = User.find(params[:id])
     @global_feed_items = @user.self_feed_public+@user.self_action_feed_public
     @global_feed_items.sort! {|obj1, obj2| (obj2.date_sort) <=> (obj1.date_sort)}
+    @achievements = @user.achievements
   end
 
   def new

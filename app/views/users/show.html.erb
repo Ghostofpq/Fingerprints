@@ -1,14 +1,19 @@
 <% provide(:title, @user.name) %>
 <div class="row">
-	<aside class="span4">
-		<section>
-			<h1> <%= gravatar_for @user %>
-			<%= @user.name %> </h1>
-		</section>
-	</aside>
-	<div class="span8">
-		<%= render 'follow_form' if signed_in? %>
-		<h3>Feed</h3>
-		<%= render partial: 'shared/global_feed_item', collection: @global_feed_items %>
-	</div>
+    <aside class="span4">
+        <section>
+            <h1> <%= gravatar_for @user %>
+            <%= @user.name %> </h1>
+        </section>
+
+        <section>
+            <h3>Achievements</h3>
+            <%= render partial: 'shared/achievement', collection: @achievements %>
+        </section>
+    </aside>
+    <div class="span8">
+        <%= render 'follow_form' if signed_in? %>
+        <h3>Feed</h3>
+        <%= render partial: 'shared/global_feed_item', collection: @global_feed_items %>
+    </div>
 </div>

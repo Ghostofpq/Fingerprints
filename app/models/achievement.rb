@@ -9,61 +9,55 @@ class Achievement < ActiveRecord::Base
     else
       case self.name
       when "Sleep10h"
-        user.user_doing(Action.find_by_name("Sleep").id).each do |action|
-          if(action.duration>=36000)
-          return true
-          end
+        if(max_sleep_time(user)>=36000)
+        return true
         end
         return false
 
       when "Sleep12h"
-        user.user_doing(Action.find_by_name("Sleep").id).each do |action|
-          if(action.duration>=43200)
-          return true
-          end
+        if(max_sleep_time(user)>=43200)
+        return true
         end
         return false
 
       when "Sleep14h"
-        user.user_doing(Action.find_by_name("Sleep").id).each do |action|
-          if(action.duration>=50400)
-          return true
-          end
+        if(max_sleep_time(user)>=50400)
+        return true
         end
         return false
 
-      when "Sleep_c_1D" 
-        @total=0
-        user.user_doing(Action.find_by_name("Sleep").id).each do |action|
-          @total+=action.duration
-        end
-        if(@total>=86400)
+      when "Sleep_c_1D"
+        if(total_sleep_time(user)>=86400)
         return true
         end
         return false
 
       when "Sleep_c_1W"
-        @total=0
-        user.user_doing(Action.find_by_name("Sleep").id).each do |action|
-          @total+=action.duration
-        end
-        if(@total>=604800)
+        if(total_sleep_time(user)>=604800)
         return true
         end
         return false
 
       when "Sleep_c_1M"
-        @total=0
-        user.user_doing(Action.find_by_name("Sleep").id).each do |action|
-          @total+=action.duration
-        end
-        if(@total>=2419200)
+        if(total_sleep_time(user)>=2419200)
         return true
         end
         return false
       end
     end
-
     return false
   end
+
+  def max_sleep_time(user)
+    return user.user_doing(Action.find_by_name("Sleep").id).max_by(&:duration).duration
+  end
+
+  def total_sleep_time(user)
+    total=0
+    user.user_doing(Action.find_by_name("Sleep").id).each do |action|
+      total+=action.duration
+    end
+    return total
+  end
+
 end

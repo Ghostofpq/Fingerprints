@@ -142,17 +142,17 @@ Action.create(name: "Play an instrument",
 
 
 Achievement.create(name: "Sleep10h",
-              pic_path: "routine/sleep.jpg")
+              pic_path: "achievements/marmotte.jpg")
 Achievement.create(name: "Sleep12h",
-              pic_path: "routine/sleep.jpg")
+              pic_path: "achievements/ours.jpg")
 Achievement.create(name: "Sleep14h",
-              pic_path: "routine/sleep.jpg")              
+              pic_path: "achievements/snorlax.jpg")              
 Achievement.create(name: "Sleep_c_1D",
-              pic_path: "routine/sleep.jpg")
+              pic_path: "achievements/marmotte.jpg")
 Achievement.create(name: "Sleep_c_1W",
-              pic_path: "routine/sleep.jpg")
+              pic_path: "achievements/ours.jpg")
 Achievement.create(name: "Sleep_c_1M",
-              pic_path: "routine/sleep.jpg")
+              pic_path: "achievements/snorlax.jpg")  
               
 Action.find_by_name("Sleep").references!(Achievement.find_by_name("Sleep10h"))
 Action.find_by_name("Sleep").references!(Achievement.find_by_name("Sleep12h"))
