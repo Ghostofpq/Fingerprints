@@ -148,8 +148,8 @@ GEM
     omniauth-openid (1.0.1)
       omniauth (~> 1.0)
       rack-openid (~> 1.3.1)
-    pg (0.12.2)
-    pg (0.12.2-x86-mingw32)
+    pg (0.14.1)
+    pg (0.14.1-x86-mingw32)
     polyglot (0.3.3)
     rack (1.4.3)
     rack-cache (1.2)
@@ -235,6 +235,7 @@ GEM
       nokogiri (~> 1.3)
 
 PLATFORMS
+  ruby
   x86-mingw32
 
 DEPENDENCIES
@@ -256,7 +257,7 @@ DEPENDENCIES
   omniauth-facebook
   omniauth-github
   omniauth-openid
-  pg
+  pg (= 0.14.1)
   rails (= 3.2.11)
   rspec-rails (= 2.11.0)
   sass-rails (= 3.2.5)

@@ -48,5 +48,5 @@ group :test do
 end
 
 group :production do
-  gem 'pg'
+  gem 'pg', '0.14.1'
 end
