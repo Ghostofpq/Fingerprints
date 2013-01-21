@@ -257,7 +257,7 @@ DEPENDENCIES
   omniauth-facebook
   omniauth-github
   omniauth-openid
-  pg (= 0.14.1)
+  pg
   rails (= 3.2.11)
   rspec-rails (= 2.11.0)
   sass-rails (= 3.2.5)
