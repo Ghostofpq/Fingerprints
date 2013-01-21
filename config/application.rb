@@ -57,7 +57,9 @@ module Fingerprints
 
     # Version of your assets, change this if you want to expire all your assets
     config.assets.version = '1.0'
-
-    config.time_zone= "Paris"
+    config.time_zone= "Paris"    
+    
+    config.assets.initialize_on_precompile = false
+    
   end
 end
