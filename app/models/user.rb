@@ -84,7 +84,7 @@ class User < ActiveRecord::Base
   end
 
   def favourite_actions(number)
-    actions= self.action_posts.select("action_id").uniq
+    actions= self.action_posts.uniq
     p=[]
     actions.each do |action|
       p<<[action.action_id,self.action_posts.where(:action_id=>action.action_id).count]
