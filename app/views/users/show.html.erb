@@ -1,21 +1,28 @@
-<% provide(:title, @user.name) %> 
+<% provide(:title, @user.name) %>
 <div class="row">
-  <aside class="span4">
-    <section>
-      <h1>
-        <%= gravatar_for @user %>
-        <%= @user.name %>
-      </h1>
-    </section>
-  </aside>
-  <div class="span8">
-  	<%= render 'follow_form' if signed_in? %>
-    <% if @user.microposts.any? %>
-      <h3>Microposts (<%= @user.microposts.count %>)</h3>
-      <ol class="microposts">
-        <%= render @microposts %>
-      </ol>
-      <%= will_paginate @microposts %>
-    <% end %>
-  </div>
+	<aside class="span4">
+		<section>
+			<h1> <%= gravatar_for @user %>
+			<%= @user.name %> </h1>
+		</section>
+	</aside>
+	<div class="span8">
+		<%= render 'follow_form' if signed_in? %>
+		<% if @user.microposts.any? %>
+		<h3>Microposts (<%= @user.microposts.count %>)</h3>
+		<ol class="microposts">
+			<%= render partial: 'shared/feed_item', collection: @microposts %>
+		</ol>
+		<%= will_paginate @microposts %>
+		<% end %>
+	</div>
+	<div class="span8">
+		<% if @user.action_posts.any? %>
+		<h3>Actions (<%= @user.action_posts.count %>)</h3>
+		<ol class="actions">
+			<%= render partial: 'shared/feed_action_item', collection: @action_posts %>
+		</ol>
+		<%= will_paginate @action_posts %>
+		<% end %>
+	</div>
 </div>
