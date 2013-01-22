@@ -84,10 +84,15 @@ class User < ActiveRecord::Base
   end
 
   def favourite_actions(number)
-    actions= self.action_posts.uniq
+    actions=[]
+    self.action_posts.each do |action_post|
+      unless actions.include?(action_post.action)
+      actions<<action_post.action
+      end
+    end
     p=[]
     actions.each do |action|
-      p<<[action.action_id,self.action_posts.where(:action_id=>action.action_id).count]
+      p<<[action.id,self.action_posts.where(:action_id=>action.id).count]
     end
     p.sort_by! do |obj1| -obj1.last end
     a=[]
