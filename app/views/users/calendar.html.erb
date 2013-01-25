@@ -1,0 +1,24 @@
+<h1>Users#calendar</h1>
+
+<table border="1">
+	<% @hour=@date_cal.beginning_of_day()%>
+	<% i=0%>
+	<%until @hour>=@date_cal.end_of_day() or i==100%>
+
+	<tr>
+		<td> <%= @hour.to_formatted_s(:time)%> </td>
+
+		<%@action.each do |a|%>
+			<%if @hour>=a.start_date%>
+				<td rowspan=<%= a.duration_in_quarters(@date_cal)%>>#<%= a.id%> // <%= a.action.name%> </td>
+				<% @action.slice!(@action.index(a))%>
+			<%end%>
+		<%end%>
+
+	</tr>
+
+	<% @hour+=15.minutes%>
+	<% i+=1%>
+	<%end%>
+
+</table>

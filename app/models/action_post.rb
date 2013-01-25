@@ -93,6 +93,15 @@ class ActionPost < ActiveRecord::Base
     return DateTime.civil_from_format(:utc,self.end_date.year,self.end_date.month,self.end_date.day,self.end_date.hour,self.end_date.min)
   end
 
+  def duration_in_quarters(date)
+    unless is_on_one_day
+      diff = (self.end_date.to_time-date.beginning_of_day())
+    else
+      diff = duration
+    end
+    return (diff/(900)).to_i 
+  end
+
   def action
     Action.find(action_id)
   end

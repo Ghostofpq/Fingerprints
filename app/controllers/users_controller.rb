@@ -22,6 +22,25 @@ class UsersController < ApplicationController
   def edit
   end
 
+  def calendar
+    @user = User.find(params[:id])
+
+    if(params[:date]==nil)
+      params[:date]=Date.today
+    end
+    @date_cal=params[:date]
+
+    @action=@user.action_posts.where(:start_date==@date)
+    @actions_in_e=@user.action_posts.where(:end_date==@date)
+
+    @actions_in_e.each do |action_end|
+      unless (@action.include?(action_end))
+      @action.push(action_end)
+      end
+    end
+
+  end
+
   def stats
     @user = User.find(params[:id])
     @filter=params[:filter]

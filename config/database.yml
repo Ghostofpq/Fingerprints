@@ -15,10 +15,12 @@ development:
 # re-generated from your development database when you run "rake".
 # Do not set this db to the same as development or production.
 test: &test
-  adapter: sqlite3
-  database: db/test.sqlite3
+  adapter: postgresql
+  database: FINGERPRINT_TEST
   pool: 5
   timeout: 5000
+  username: rails_fingerprints
+  password: fpadmin1
 
 production:
   adapter: postgresql
