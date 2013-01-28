@@ -28,14 +28,11 @@ class UsersController < ApplicationController
     if(params[:date]==nil)
       params[:date]=Date.today
     end
-    @date_cal=params[:date]
-
-    @action=@user.action_posts.where(:start_date==@date)
-    @actions_in_e=@user.action_posts.where(:end_date==@date)
-
-    @actions_in_e.each do |action_end|
-      unless (@action.include?(action_end))
-      @action.push(action_end)
+    @date_cal=params[:date].beginning_of_day()
+    @action=[]
+    @user.action_posts.each do |action_p|
+      if(@date_cal<=action_p.start_date || @date_cal<=action_p.end_date)
+      @action.push(action_p)
       end
     end
 
