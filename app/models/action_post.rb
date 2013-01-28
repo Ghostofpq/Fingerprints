@@ -95,11 +95,16 @@ class ActionPost < ActiveRecord::Base
 
   def duration_in_quarters(date)
     unless is_on_one_day
-      diff = (self.end_date.to_time-date.beginning_of_day())
+    diff = (self.end_date.to_time-date.beginning_of_day())
     else
       diff = duration
     end
-    return (diff/(900)).to_i 
+    ret=(diff/(900)).to_i
+    if(ret==0)
+    return 1
+    else
+    return ret
+    end
   end
 
   def action

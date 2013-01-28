@@ -30,7 +30,7 @@
         <tr>
             <td><%= image_tag("duration.jpg", :size => "50x50")%></td>
             <td width="30"><%= ((feed_action_item.duration/3600).to_i)%>h</td>
-            <td width="50"><%= (((feed_action_item.duration%60)/60).to_i)%>m</td>
+            <td width="50"><%= (((feed_action_item.duration/60)%60).to_i)%>m</td>
 
             <% if feed_action_item.price!=nil && feed_action_item.price>0%>
             <td width="50"><%= image_tag("price.jpg", :size => "50x50")%> </td>

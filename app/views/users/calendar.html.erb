@@ -9,7 +9,7 @@
 		<td> <%= @hour.to_formatted_s(:time)%> </td>
 
 		<%@action.each do |a|%>
-			<%if @hour>=a.start_date%>
+			<%if @hour>=a.start_date || @hour+8.minutes>=a.start_date%>
 				<td rowspan=<%= a.duration_in_quarters(@date_cal)%>>#<%= a.id%> // <%= a.action.name%> </td>
 				<% @action.slice!(@action.index(a))%>
 			<%end%>
