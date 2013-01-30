@@ -11,8 +11,8 @@
         <td rowspan="2" width="60"><%= f.text_field  :price%> </td>
     </tr>
     <tr>
-        <td width="60"><%= number_field_tag :st_date_hou,@action_post.local_start_date.to_time.strftime("%H"), :in=> 0..23%></td>
-        <td width="50"><%= number_field_tag :st_date_min,@action_post.local_start_date.to_time.strftime("%M"), :in=> 0..59%></td>
+        <td width="60"><%= number_field_tag :st_date_hou,@action_post.local_start_date.hour.to_i, :in=> 0..23%></td>
+        <td width="50"><%= number_field_tag :st_date_min,@action_post.local_start_date.min.to_i, :in=> 0..59%></td>
     </tr>
     <tr>
         <td rowspan="2"><%= image_tag("duration.jpg", :size => "50x50")%></td>

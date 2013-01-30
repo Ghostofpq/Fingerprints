@@ -26,12 +26,12 @@ class UsersController < ApplicationController
     @user = User.find(params[:id])
 
     if(params[:date]==nil)
-      params[:date]=Date.today
+      params[:date]=DateTime.current()
     end
     @date_cal=params[:date].beginning_of_day()
     @action=[]
     @user.action_posts.each do |action_p|
-      if(@date_cal<=action_p.start_date || @date_cal<=action_p.end_date)
+      if(@date_cal<=action_p.local_start_date || @date_cal<=action_p.local_end_date)
       @action.push(action_p)
       end
     end

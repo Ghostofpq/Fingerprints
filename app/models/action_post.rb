@@ -86,20 +86,20 @@ class ActionPost < ActiveRecord::Base
   end
 
   def local_start_date
-    return DateTime.civil_from_format(:utc,self.start_date.year,self.start_date.month,self.start_date.day,self.start_date.hour,self.start_date.min)
+    return start_date.in_time_zone(Time.zone)
   end
 
   def local_end_date
-    return DateTime.civil_from_format(:utc,self.end_date.year,self.end_date.month,self.end_date.day,self.end_date.hour,self.end_date.min)
+    return end_date.in_time_zone(Time.zone)
   end
 
   def duration_in_quarters(date)
     unless is_on_one_day
-    diff = (self.end_date.to_time-date.beginning_of_day())
+      diff = (local_end_date.to_time-date.beginning_of_day())
     else
       diff = duration
     end
-    ret=(diff/(900)).to_i
+    ret=(diff/(900)).round.to_i
     if(ret==0)
     return 1
     else

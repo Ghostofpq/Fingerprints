@@ -6,11 +6,11 @@
 	<%until @hour>=@date_cal.end_of_day() or i==100%>
 
 	<tr>
-		<td> <%= @hour.to_formatted_s(:time)%> </td>
+		<td> <%= @hour.to_s(:time)%> </td>
 
 		<%@action.each do |a|%>
-			<%if @hour>=a.start_date || @hour+8.minutes>=a.start_date%>
-				<td rowspan=<%= a.duration_in_quarters(@date_cal)%>>#<%= a.id%> // <%= a.action.name%> </td>
+			<%if @hour>=a.start_date.to_time() || @hour+8.minutes>=a.start_date.to_time() %>
+				<td rowspan=<%= a.duration_in_quarters(@date_cal)%>><%= link_to image_tag(a.action.pic_path, :size => "50x50"),:controller => "action_posts", :action => "edit",:id => a.id %></td>
 				<% @action.slice!(@action.index(a))%>
 			<%end%>
 		<%end%>
