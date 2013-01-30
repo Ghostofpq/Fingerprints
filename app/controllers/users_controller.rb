@@ -5,7 +5,13 @@ class UsersController < ApplicationController
   before_filter :correct_user,   only: [:edit, :update,:stats,:unlink_facebook,:calendar]
   before_filter :admin_user,     only: :destroy
   def index
-    @users = User.paginate(page: params[:page])
+    if(params[:filter]==nil)
+      @users = User.order("name").paginate(page: params[:page])
+    else
+      a=params[:filter]
+      req="%"+a+"%"
+      @users= User.where("name LIKE ?",req).order("name").paginate(page: params[:page])
+    end
   end
 
   def show
