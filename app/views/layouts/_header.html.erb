@@ -17,9 +17,7 @@
 					<li>
 						<%= link_to "Users", users_path %>
 					</li>
-					<li>
-						<%= link_to "Cal", calendar_user_path(current_user) %>
-					</li>
+
 					<li id="fat-menu" class="dropdown">
 						<a href="#" class="dropdown-toggle" data-toggle="dropdown"> Account <b class="caret"></b> </a>
 						<ul class="dropdown-menu">
@@ -28,6 +26,9 @@
 							</li>
 							<li>
 								<%= link_to "Stats", stats_user_path(current_user) %>
+							</li>
+							<li>
+								<%= link_to "Calendar", calendar_user_path(current_user) %>
 							</li>
 							<li>
 								<%= link_to "Settings", edit_user_path(current_user) %>
