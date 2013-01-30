@@ -1,8 +1,8 @@
 class UsersController < ApplicationController
   include ActionView::Helpers::DateHelper
   before_filter :signed_in_user,
-                only: [:index, :edit, :update, :destroy, :following, :followers]
-  before_filter :correct_user,   only: [:edit, :update,:stats,:unlink_facebook]
+                only: [:index, :edit, :update, :destroy, :following, :followers,:calendar]
+  before_filter :correct_user,   only: [:edit, :update,:stats,:unlink_facebook,:calendar]
   before_filter :admin_user,     only: :destroy
   def index
     @users = User.paginate(page: params[:page])
@@ -26,9 +26,10 @@ class UsersController < ApplicationController
     @user = User.find(params[:id])
 
     if(params[:date]==nil)
-      params[:date]=DateTime.current()
+      @date_cal=DateTime.current().beginning_of_day()
+    else
+      @date_cal=Date.parse(params[:date]).beginning_of_day()
     end
-    @date_cal=params[:date].beginning_of_day()
     @action=[]
     @user.action_posts.each do |action_p|
       if(@date_cal<=action_p.local_start_date || @date_cal<=action_p.local_end_date)

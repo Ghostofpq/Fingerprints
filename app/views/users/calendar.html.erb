@@ -1,5 +1,10 @@
 <h1>Users#calendar</h1>
-
+<div>
+	<%= form_tag({:controller => "users", :action => "calendar"},:method=> "get") do%>
+	<%= text_field_tag :date,@date_cal.to_date.to_s(:db), :class=>"date_picker"%>
+	<%= submit_tag "Go", class: "btn btn-large btn-primary"%>
+	<%end%>
+</div>
 <table border="1">
 	<% @hour=@date_cal.beginning_of_day()%>
 	<% i=0%>
@@ -9,10 +14,10 @@
 		<td> <%= @hour.to_s(:time)%> </td>
 
 		<%@action.each do |a|%>
-			<%if @hour>=a.start_date.to_time() || @hour+8.minutes>=a.start_date.to_time() %>
-				<td rowspan=<%= a.duration_in_quarters(@date_cal)%>><%= link_to image_tag(a.action.pic_path, :size => "50x50"),:controller => "action_posts", :action => "edit",:id => a.id %></td>
-				<% @action.slice!(@action.index(a))%>
-			<%end%>
+		<%if @hour>=a.start_date.to_time() || @hour+8.minutes>=a.start_date.to_time() %>
+		<td rowspan=<%= a.duration_in_quarters(@date_cal)%>><%= link_to image_tag(a.action.pic_path, :size => "50x50"),:controller => "action_posts", :action => "edit",:id => a.id %></td>
+		<% @action.slice!(@action.index(a))%>
+		<%end%>
 		<%end%>
 
 	</tr>
