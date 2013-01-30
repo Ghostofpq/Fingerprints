@@ -14,6 +14,7 @@ user1.follow!(user2)
 user2.follow!(user1)
 ##ROUTINE
 Action.create(name: "Eat",
+              past_participle: "eaten",
               category: "Routine",
               pic_path: "routine/eat.jpg",
               has_price: true,
@@ -21,62 +22,78 @@ Action.create(name: "Eat",
               has_score: true,
               has_comment:true).save!        
 Action.create(name: "Sleep",
+              past_participle: "slept",
               category: "Routine",
               pic_path: "routine/sleep.jpg").save!         
 Action.create(name: "Wash",
+              past_participle: "washed myself",
               category: "Routine",
               pic_path: "routine/wash.jpg").save!
 Action.create(name: "Work",
+              past_participle: "worked",
               category: "Routine",
               pic_path: "routine/work.jpg").save!
 Action.create(name: "Study",
+              past_participle: "studied",
               category: "Routine",
               pic_path: "routine/study.jpg").save!                     
 ##SPORTS 
 Action.create(name: "Run",
+              past_participle: "run",
               category: "Sports",
               pic_path: "sports/run.jpg",
               has_place: true).save!
 Action.create(name: "Bike",
+              past_participle: "cycled",
               category: "Sports",
               pic_path: "sports/bike.jpg",
               has_place: true).save!
 Action.create(name: "Swim",
+              past_participle: "swum",
               category: "Sports",
               pic_path: "sports/swim.jpg",
               has_place: true).save!
 Action.create(name: "Duel Sports",
+              past_participle: "played duel sport",
               category: "Sports",
               pic_path: "sports/tennis.jpg",
               has_place: true).save!
 Action.create(name: "Team Sports",
+              past_participle: "played team sport",
               category: "Sports",
               pic_path: "sports/basket.jpg",
               has_place: true).save!   
 Action.create(name: "Fitness",
+              past_participle: "exercised",
               category: "Sports",
               pic_path: "sports/fitness.jpg")  
 ##DUTY  
 Action.create(name: "Dishwashing",
+              past_participle: "done the dishes",
               category: "Duty",
               pic_path: "duty/dishwashing.jpg").save!
 Action.create(name: "Supplies",
+              past_participle: "bought the supplies",
               category: "Duty",
               pic_path: "duty/supplies.jpg",
               has_price: true,
               has_place: true).save!
 Action.create(name: "Housework",
+              past_participle: "done the houseworks",
               category: "Duty",
               pic_path: "duty/housework.jpg").save!   
 Action.create(name: "Laundry",
+              past_participle: "done the laundry",
               category: "Duty",
               pic_path: "duty/laundry.jpg").save!  
 ##LEISURE               
 Action.create(name: "Take a walk",
+              past_participle: "walked",      
               category: "Leisure",
               pic_path: "leisure/walk.jpg",
               has_place: true).save!  
 Action.create(name: "Coffee",
+              past_participle: "been to a coffee",    
               category: "Leisure",
               pic_path: "leisure/coffee.jpg",
               has_price: true,
@@ -84,6 +101,7 @@ Action.create(name: "Coffee",
               has_score: true,
               has_comment:true).save! 
 Action.create(name: "Bar",
+              past_participle: "been to a bar",   
               category: "Leisure",
               pic_path: "leisure/bar.jpg",
               has_price: true,
@@ -91,6 +109,7 @@ Action.create(name: "Bar",
               has_score: true,
               has_comment:true).save! 
 Action.create(name: "Nightclub",
+              past_participle: "been to a nightclub",
               category: "Leisure",
               pic_path: "leisure/nightclub.jpg",
               has_price: true,
@@ -98,6 +117,7 @@ Action.create(name: "Nightclub",
               has_score: true,
               has_comment:true).save!                
 Action.create(name: "Cinema",
+              past_participle: "been to the cinema",
               category: "Leisure",
               pic_path: "leisure/cinema.jpg",
               has_price: true,
@@ -105,6 +125,7 @@ Action.create(name: "Cinema",
               has_score: true,
               has_comment:true).save! 
 Action.create(name: "Concert",
+              past_participle: "been a concert",
               category: "Leisure",
               pic_path: "leisure/concert.jpg",
               has_price: true,
@@ -112,6 +133,7 @@ Action.create(name: "Concert",
               has_score: true,
               has_comment:true).save!             
 Action.create(name: "Theatre",
+              past_participle: "been a theatre",
               category: "Leisure",
               pic_path: "leisure/theatre.jpg",
               has_price: true,
@@ -119,25 +141,30 @@ Action.create(name: "Theatre",
               has_score: true,
               has_comment:true).save!             
 Action.create(name: "Meet friends",
+              past_participle: "been with friends",
               category: "Leisure",
               pic_path: "leisure/friends.jpg",
               has_place: true).save! 
 Action.create(name: "Movie",
+              past_participle: "watched a movie",
               category: "Leisure",
               pic_path: "leisure/movie.jpg",
               has_score: true,
               has_comment:true).save! 
 Action.create(name: "Video Games",
+              past_participle: "played video games",
               category: "Leisure",
               pic_path: "leisure/videogames.jpg",
               has_score: true,
               has_comment:true).save! 
 Action.create(name: "Board Games",
+              past_participle: "played board games",
               category: "Leisure",
               pic_path: "leisure/boardgames.jpg",
               has_score: true,
               has_comment:true).save!           
 Action.create(name: "Play an instrument",
+              past_participle: "played an instrument",
               category: "Leisure",
               pic_path: "leisure/instrument.jpg").save! 
 

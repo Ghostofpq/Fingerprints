@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130111100646) do
+ActiveRecord::Schema.define(:version => 20130130170124) do
 
   create_table "achievements", :force => true do |t|
     t.string   "name"
@@ -54,13 +54,14 @@ ActiveRecord::Schema.define(:version => 20130111100646) do
     t.string   "name"
     t.string   "category"
     t.string   "pic_path"
-    t.datetime "created_at",                      :null => false
-    t.datetime "updated_at",                      :null => false
-    t.boolean  "has_price",    :default => false
-    t.boolean  "has_place",    :default => false
-    t.boolean  "has_score",    :default => false
-    t.boolean  "has_comment",  :default => false
-    t.boolean  "has_duration", :default => false
+    t.datetime "created_at",                         :null => false
+    t.datetime "updated_at",                         :null => false
+    t.boolean  "has_price",       :default => false
+    t.boolean  "has_place",       :default => false
+    t.boolean  "has_score",       :default => false
+    t.boolean  "has_comment",     :default => false
+    t.boolean  "has_duration",    :default => false
+    t.string   "past_participle"
   end
 
   create_table "authorizations", :force => true do |t|
