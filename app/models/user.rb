@@ -1,16 +1,3 @@
-# == Schema Information
-#
-# Table name: users
-#
-#  id              :integer          not null, primary key
-#  name            :string(255)
-#  email           :string(255)
-#  created_at      :datetime         not null
-#  updated_at      :datetime         not null
-#  password_digest :string(255)
-#  remember_token  :string(255)
-#  admin           :boolean          default(FALSE)
-#
 class User < ActiveRecord::Base
   attr_accessible :name, :email, :password, :password_confirmation
   has_secure_password
@@ -63,41 +50,41 @@ class User < ActiveRecord::Base
     Micropost.public_ones(self)
   end
 
-  def user_doing(action_id)
-    ActionPost.from_user_only_doing(self,action_id)
+  def user_doing(activity_id)
+    ActionPost.from_user_only_doing(self,activity_id)
   end
 
-  def total_time_doing(action_name)
-    @action=self.user_doing(Action.find_by_name(action_name).id)
+  def total_time_doing(activity_name)
+    @activity=self.user_doing(Activity.find_by_name(activity_name).id)
     @total_time=0
-    @action.each do |x| @total_time += x.duration() end
+    @activity.each do |x| @total_time += x.duration() end
     return @total_time
   end
 
   def total_spent_doing(action_name)
-    @action=self.user_doing(Action.find_by_name(action_name).id)
+    @activity=self.user_doing(Activity.find_by_name(activity_name).id)
     @total_spent=0.to_f
-    @action.each do |x|
+    @activity.each do |x|
       @total_spent =@total_spent+ x.get_price()
     end
     return @total_spent
   end
 
   def favourite_actions(number)
-    actions=[]
+    activities=[]
     self.action_posts.each do |action_post|
-      unless actions.include?(action_post.action)
-      actions<<action_post.action
+      unless activities.include?(action_post.action)
+      activities<<action_post.action
       end
     end
     p=[]
-    actions.each do |action|
-      p<<[action.id,self.action_posts.where(:action_id=>action.id).count]
+    activities.each do |activity|
+      p<<[activity.id,self.action_posts.where(:activity_id=>activity.id).count]
     end
     p.sort_by! do |obj1| -obj1.last end
     a=[]
     p.each do |item|
-      a<<Action.find(item.first)
+      a<<Activity.find(item.first)
     end
     return a.first(number)
   end
@@ -129,7 +116,7 @@ class User < ActiveRecord::Base
     else
       text="On "+action_post.start_date.to_date().to_s(:long_ordinal)+", "
     end
-    text+="I have "+ action_post.action.past_participle
+    text+="I have "+ action_post.activity.past_participle
 
     facebook.feed!(
     :message => text,

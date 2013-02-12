@@ -1,27 +1,10 @@
-# == Schema Information
-#
-# Table name: action_posts
-#
-#  id         :integer          not null, primary key
-#  user_id    :integer
-#  action_id  :integer
-#  start_date :datetime
-#  end_date   :datetime
-#  comment    :string(255)
-#  place      :string(255)
-#  score      :integer
-#  price      :decimal(8, 2)
-#  created_at :datetime         not null
-#  updated_at :datetime         not null
-#  public     :boolean          default(FALSE)
-#
 class ActionPost < ActiveRecord::Base
-  attr_accessible :start_date, :end_date, :comment, :place, :score, :price,:action_id,:public
+  attr_accessible :start_date, :end_date, :comment, :place, :score, :price,:activity_id,:public
 
   belongs_to :user
 
   validates :user_id, presence: true
-  validates :action_id, presence: true
+  validates :activity_id, presence: true
 
   default_scope order: 'action_posts.start_date DESC'
   def self.from_users_followed_by(user)
@@ -35,8 +18,8 @@ class ActionPost < ActiveRecord::Base
     where("user_id = :user_id", user_id: user.id)
   end
 
-  def self.from_user_only_doing(user,action_id)
-    where("user_id = :user_id and action_id=:action_id", user_id: user.id,action_id: action_id)
+  def self.from_user_only_doing(user,activity_id)
+    where("user_id = :user_id and activity_id=:activity_id", user_id: user.id,activity_id: activity_id)
   end
 
   def self.public_ones(user)
@@ -107,8 +90,8 @@ class ActionPost < ActiveRecord::Base
     end
   end
 
-  def action
-    Action.find(action_id)
+  def activity
+    Activity.find(activity_id)
   end
 
   def date_sort
