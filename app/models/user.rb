@@ -70,7 +70,7 @@ class User < ActiveRecord::Base
     return @total_spent
   end
 
-  def favourite_actions(number)
+  def favourite_activities(number)
     activities=[]
     self.action_posts.each do |action_post|
       unless activities.include?(action_post.action)

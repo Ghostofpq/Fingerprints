@@ -3,7 +3,7 @@ class ActionPostsController < ApplicationController
   before_filter :correct_user,   only: [:destroy,:set_public,:set_private,:edit]
   def new
     @action_post = current_user.action_posts.build
-    @action_post.action_id = params[:action_id]
+    @action_post.activity_id = params[:activity_id]
     @action_post.start_date = 5.minutes.ago.to_datetime.to_s(:db)
     @action_post.end_date = Time.zone.now.to_datetime.to_s(:db)
   end
@@ -18,7 +18,7 @@ class ActionPostsController < ApplicationController
     @action_post.start_date=Time.zone.parse(@date_start).utc.to_datetime
     @action_post.end_date=@action_post.start_date+(params["dur_hou"].to_i).hours+(params["dur_min"].to_i).minutes
 
-    @action_post.action_id = params[:action_id]
+    @action_post.activity_id = params[:activity_id]
     if @action_post.start_date.future? or @action_post.end_date.future?
       flash[:error] = "You've seen the future? Tell me more about that."
       redirect_to root_url
@@ -27,7 +27,7 @@ class ActionPostsController < ApplicationController
       redirect_to root_url
     else
       if @action_post.save
-        @action_post.action.achievements.each do |achievement|
+        @action_post.activity.achievements.each do |achievement|
           if(achievement.check(current_user))
             flash[:success] = "ACHIEVEMENT!"
             current_user.unlocks!(achievement)
