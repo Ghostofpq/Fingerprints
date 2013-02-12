@@ -13,7 +13,7 @@ user2.save!
 user1.follow!(user2)
 user2.follow!(user1)
 ##ROUTINE
-Action.create(name: "Eat",
+Activity.create(name: "Eat",
               past_participle: "eaten",
               category: "Routine",
               pic_path: "routine/eat.jpg",
@@ -21,78 +21,78 @@ Action.create(name: "Eat",
               has_place: true,
               has_score: true,
               has_comment:true).save!        
-Action.create(name: "Sleep",
+Activity.create(name: "Sleep",
               past_participle: "slept",
               category: "Routine",
               pic_path: "routine/sleep.jpg").save!         
-Action.create(name: "Wash",
+Activity.create(name: "Wash",
               past_participle: "washed myself",
               category: "Routine",
               pic_path: "routine/wash.jpg").save!
-Action.create(name: "Work",
+Activity.create(name: "Work",
               past_participle: "worked",
               category: "Routine",
               pic_path: "routine/work.jpg").save!
-Action.create(name: "Study",
+Activity.create(name: "Study",
               past_participle: "studied",
               category: "Routine",
               pic_path: "routine/study.jpg").save!                     
 ##SPORTS 
-Action.create(name: "Run",
+Activity.create(name: "Run",
               past_participle: "run",
               category: "Sports",
               pic_path: "sports/run.jpg",
               has_place: true).save!
-Action.create(name: "Bike",
+Activity.create(name: "Bike",
               past_participle: "cycled",
               category: "Sports",
               pic_path: "sports/bike.jpg",
               has_place: true).save!
-Action.create(name: "Swim",
+Activity.create(name: "Swim",
               past_participle: "swum",
               category: "Sports",
               pic_path: "sports/swim.jpg",
               has_place: true).save!
-Action.create(name: "Duel Sports",
+Activity.create(name: "Duel Sports",
               past_participle: "played duel sport",
               category: "Sports",
               pic_path: "sports/tennis.jpg",
               has_place: true).save!
-Action.create(name: "Team Sports",
+Activity.create(name: "Team Sports",
               past_participle: "played team sport",
               category: "Sports",
               pic_path: "sports/basket.jpg",
               has_place: true).save!   
-Action.create(name: "Fitness",
+Activity.create(name: "Fitness",
               past_participle: "exercised",
               category: "Sports",
               pic_path: "sports/fitness.jpg")  
 ##DUTY  
-Action.create(name: "Dishwashing",
+Activity.create(name: "Dishwashing",
               past_participle: "done the dishes",
               category: "Duty",
               pic_path: "duty/dishwashing.jpg").save!
-Action.create(name: "Supplies",
+Activity.create(name: "Supplies",
               past_participle: "bought the supplies",
               category: "Duty",
               pic_path: "duty/supplies.jpg",
               has_price: true,
               has_place: true).save!
-Action.create(name: "Housework",
+Activity.create(name: "Housework",
               past_participle: "done the houseworks",
               category: "Duty",
               pic_path: "duty/housework.jpg").save!   
-Action.create(name: "Laundry",
+Activity.create(name: "Laundry",
               past_participle: "done the laundry",
               category: "Duty",
               pic_path: "duty/laundry.jpg").save!  
 ##LEISURE               
-Action.create(name: "Take a walk",
+Activity.create(name: "Take a walk",
               past_participle: "walked",      
               category: "Leisure",
               pic_path: "leisure/walk.jpg",
               has_place: true).save!  
-Action.create(name: "Coffee",
+Activity.create(name: "Coffee",
               past_participle: "been to a coffee",    
               category: "Leisure",
               pic_path: "leisure/coffee.jpg",
@@ -100,7 +100,7 @@ Action.create(name: "Coffee",
               has_place: true,
               has_score: true,
               has_comment:true).save! 
-Action.create(name: "Bar",
+Activity.create(name: "Bar",
               past_participle: "been to a bar",   
               category: "Leisure",
               pic_path: "leisure/bar.jpg",
@@ -108,7 +108,7 @@ Action.create(name: "Bar",
               has_place: true,
               has_score: true,
               has_comment:true).save! 
-Action.create(name: "Nightclub",
+Activity.create(name: "Nightclub",
               past_participle: "been to a nightclub",
               category: "Leisure",
               pic_path: "leisure/nightclub.jpg",
@@ -116,7 +116,7 @@ Action.create(name: "Nightclub",
               has_place: true,
               has_score: true,
               has_comment:true).save!                
-Action.create(name: "Cinema",
+Activity.create(name: "Cinema",
               past_participle: "been to the cinema",
               category: "Leisure",
               pic_path: "leisure/cinema.jpg",
@@ -124,7 +124,7 @@ Action.create(name: "Cinema",
               has_place: true,
               has_score: true,
               has_comment:true).save! 
-Action.create(name: "Concert",
+Activity.create(name: "Concert",
               past_participle: "been a concert",
               category: "Leisure",
               pic_path: "leisure/concert.jpg",
@@ -132,7 +132,7 @@ Action.create(name: "Concert",
               has_place: true,
               has_score: true,
               has_comment:true).save!             
-Action.create(name: "Theatre",
+Activity.create(name: "Theatre",
               past_participle: "been a theatre",
               category: "Leisure",
               pic_path: "leisure/theatre.jpg",
@@ -140,30 +140,30 @@ Action.create(name: "Theatre",
               has_place: true,
               has_score: true,
               has_comment:true).save!             
-Action.create(name: "Meet friends",
+Activity.create(name: "Meet friends",
               past_participle: "been with friends",
               category: "Leisure",
               pic_path: "leisure/friends.jpg",
               has_place: true).save! 
-Action.create(name: "Movie",
+Activity.create(name: "Movie",
               past_participle: "watched a movie",
               category: "Leisure",
               pic_path: "leisure/movie.jpg",
               has_score: true,
               has_comment:true).save! 
-Action.create(name: "Video Games",
+Activity.create(name: "Video Games",
               past_participle: "played video games",
               category: "Leisure",
               pic_path: "leisure/videogames.jpg",
               has_score: true,
               has_comment:true).save! 
-Action.create(name: "Board Games",
+Activity.create(name: "Board Games",
               past_participle: "played board games",
               category: "Leisure",
               pic_path: "leisure/boardgames.jpg",
               has_score: true,
               has_comment:true).save!           
-Action.create(name: "Play an instrument",
+Activity.create(name: "Play an instrument",
               past_participle: "played an instrument",
               category: "Leisure",
               pic_path: "leisure/instrument.jpg").save! 
@@ -182,12 +182,12 @@ Achievement.create(name: "Sleep_c_1W",
 Achievement.create(name: "Sleep_c_1M",
               pic_path: "achievements/snorlax.jpg").save!  
               
-Action.find_by_name("Sleep").references!(Achievement.find_by_name("Sleep10h"))
-Action.find_by_name("Sleep").references!(Achievement.find_by_name("Sleep12h"))
-Action.find_by_name("Sleep").references!(Achievement.find_by_name("Sleep14h"))
-Action.find_by_name("Sleep").references!(Achievement.find_by_name("Sleep_c_1D"))
-Action.find_by_name("Sleep").references!(Achievement.find_by_name("Sleep_c_1W"))
-Action.find_by_name("Sleep").references!(Achievement.find_by_name("Sleep_c_1M"))
+Activity.find_by_name("Sleep").references!(Achievement.find_by_name("Sleep10h"))
+Activity.find_by_name("Sleep").references!(Achievement.find_by_name("Sleep12h"))
+Activity.find_by_name("Sleep").references!(Achievement.find_by_name("Sleep14h"))
+Activity.find_by_name("Sleep").references!(Achievement.find_by_name("Sleep_c_1D"))
+Activity.find_by_name("Sleep").references!(Achievement.find_by_name("Sleep_c_1W"))
+Activity.find_by_name("Sleep").references!(Achievement.find_by_name("Sleep_c_1M"))
 
 
 
