@@ -1,4 +1,4 @@
-<%= form_for(@action_post,:url => { :action => :create, :action_id => params[:action_id] })  do |f| %>
+<%= form_for(@action_post,:url => { :action => :create, :activity_id => params[:activity_id] })  do |f| %>
 <%= render 'shared/error_messages', object: f.object %>
 
 <h3><%= @action_post.activity.name%></h3>
