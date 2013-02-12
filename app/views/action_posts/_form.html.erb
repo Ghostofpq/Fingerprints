@@ -1,13 +1,13 @@
 <%= form_for(@action_post,:url => { :action => :create, :action_id => params[:action_id] })  do |f| %>
 <%= render 'shared/error_messages', object: f.object %>
 
-<h3><%= @action_post.action.name%></h3>
+<h3><%= @action_post.activity.name%></h3>
 <table>
     <tr>
-        <td rowspan="4"><%= image_tag(@action_post.action.pic_path,:alt=>@action_post.action.name, :size => "150x150")%></td>
+        <td rowspan="4"><%= image_tag(@action_post.activity.pic_path,:alt=>@action_post.activity.name, :size => "150x150")%></td>
         <td rowspan="2"><%= image_tag("calendrier.jpg", :size => "50x50")%></td>
         <td colspan="2"><%= text_field_tag :st_date,Date.today.to_s(:db), :class=>"date_picker"%></td>
-        <%if @action_post.action.has_price%>
+        <%if @action_post.activity.has_price%>
         <td width="40"></td>
         <td rowspan="2"><%= image_tag("price.jpg", :size => "50x50")%> </td>
         <td rowspan="2" width="60"><%= f.text_field  :price%> </td>
@@ -21,7 +21,7 @@
         <td rowspan="2"><%= image_tag("duration.jpg", :size => "50x50")%></td>
         <td>Hours</td><td>Minutes</td>
 
-        <%if @action_post.action.has_score%>
+        <%if @action_post.activity.has_score%>
         <td width="40"></td>
         <td rowspan="2"><%= image_tag("score.jpg", :size => "50x50")%> </td>
         <td rowspan="2" width="60"><%= f.number_field :score, :in=> 0...11%></td>
@@ -32,7 +32,7 @@
         <td><%= number_field_tag :dur_min,0, :in=> 0..59%></td>
     </tr>
 
-    <%if @action_post.action.has_comment%>
+    <%if @action_post.activity.has_comment%>
     <tr>
         <td></td>
         <td><%= image_tag("comment.jpg", :size => "50x50")%></td>
@@ -40,7 +40,7 @@
     </tr>
     <%end%>
 
-    <%if @action_post.action.has_place%>
+    <%if @action_post.activity.has_place%>
     <tr>
         <td></td>
         <td><%= image_tag("place.jpg", :size => "50x50")%></td>

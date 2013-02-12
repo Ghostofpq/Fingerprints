@@ -20,9 +20,9 @@
     <table>
         <tr>
             <td rowspan="4" width="150"> <% if current_user?(feed_action_item.user) %>
-            <%= link_to image_tag(feed_action_item.action.pic_path, :size => "150x150"),:controller => "action_posts", :action => "edit",:id => feed_action_item.id %>
+            <%= link_to image_tag(feed_action_item.activity.pic_path, :size => "150x150"),:controller => "action_posts", :action => "edit",:id => feed_action_item.id %>
             <%elsif%>
-            <%= image_tag(feed_action_item.action.pic_path, :size => "150x150")%>
+            <%= image_tag(feed_action_item.activity.pic_path, :size => "150x150")%>
             <%end%> </td>
             <td rowspan width="50"> <%= image_tag("calendrier.jpg", :size => "50x50")%></td>
             <td colspan="6" width="300"><%= feed_action_item.local_start_date.to_s(:long_ordinal)%></td>

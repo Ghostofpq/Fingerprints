@@ -73,8 +73,8 @@ class User < ActiveRecord::Base
   def favourite_activities(number)
     activities=[]
     self.action_posts.each do |action_post|
-      unless activities.include?(action_post.action)
-      activities<<action_post.action
+      unless activities.include?(action_post.activity)
+      activities<<action_post.activity
       end
     end
     p=[]

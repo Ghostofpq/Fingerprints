@@ -1,9 +1,9 @@
 <%= form_for(@action_post,:url => { :action => :update},:id=>@action_post.id)  do |f| %>
 <%= render 'shared/error_messages', object: f.object %>
-<h3><%= @action_post.action.name%></h3>
+<h3><%= @action_post.activity.name%></h3>
 <table>
     <tr>
-        <td rowspan="4"><%= image_tag(@action_post.action.pic_path,:alt=>@action_post.action.name, :size => "150x150")%></td>
+        <td rowspan="4"><%= image_tag(@action_post.activity.pic_path,:alt=>@action_post.activity.name, :size => "150x150")%></td>
         <td rowspan="2"><%= image_tag("calendrier.jpg", :size => "50x50")%></td>
         <td colspan="2"><%= text_field_tag :st_date,@action_post.local_start_date.to_date.to_s(:db), :class=>"date_picker"%></td>
         <td width="40"></td>

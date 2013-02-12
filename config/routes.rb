@@ -29,7 +29,7 @@ Fingerprints::Application.routes.draw do
   match '/auth/:provider/callback', :to => 'sessions#fb_auth'
   match '/auth/failure', :to => 'sessions#failure'
 
-  match '/actions', to: 'actions#index'
+  match '/activities', to: 'activities#index'
 
   match '/signup',  to: 'users#new'
   match '/signin',  to: 'sessions#new'

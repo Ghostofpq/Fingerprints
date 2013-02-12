@@ -1,0 +1,40 @@
+<% provide(:title, 'Activities') %>
+<div class="container">
+	<table border="2" cellpadding="10">
+		<tr>
+			<td><%= link_to "All",:controller => "activities", :action => "index", :filter => "All"  %></td>
+			<td><%= link_to "Leisure",:controller => "activities", :action => "index", :filter => "Leisure"  %></td>
+			<td><%= link_to "Routine",:controller => "activities", :action => "index", :filter => "Routine"  %></td>
+			<td><%= link_to "Sports",:controller => "activities", :action => "index", :filter => "Sports"  %></td>
+			<td><%= link_to "Duty",:controller => "activities", :action => "index", :filter => "Duty"  %></td>
+		</tr>
+	</table>
+
+</div>
+<% if @activities!=nil %>
+<% if @activities.any? %>
+<div id="mosaique">
+	<table border="2" cellpadding="10">
+		<tr>
+			<% max_col=6%>
+			<% i=0%>
+			<% multiple_rows=false%>
+			<% @activities.each do |activity| %>
+			<% i+=1%>
+			<td><%= render partial: 'activity',:locals => { :activity => activity }%></td>
+			<% if i==max_col%>
+		</tr>
+		<tr>
+			<% i=0%>
+			<% multiple_rows=true%>
+			<% end %>
+			<% end%>
+			<% unless i==0 or !multiple_rows%>
+			<td colspan=<%= max_col-i%>></td>
+			<% end%>
+		</tr>
+	</table>
+
+</div>
+<% end %>
+<% end %>
