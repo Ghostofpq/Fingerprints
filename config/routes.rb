@@ -14,11 +14,12 @@ Fingerprints::Application.routes.draw do
       get :set_private, :set_public,:publish_on_fb
     end
   end
-  # resources :users
+
   resources :sessions,      only: [:new, :create, :destroy]
   resources :microposts,    only: [:create, :destroy]
   resources :relationships, only: [:create, :destroy]
   resources :action_posts,  only: [:create, :destroy, :edit, :update]
+  resources :activities,  only: [:create, :destroy, :edit, :update]
 
   root to: 'static_pages#home'
 

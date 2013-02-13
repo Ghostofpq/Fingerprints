@@ -1,6 +1,9 @@
 <div>
-    <%= activity.name%>
+	<%= activity.name%>
 </div>
 <img>
 <%= link_to image_tag(activity.pic_path,:alt=>activity.name,:size=>"150x150"),:action => 'new', :controller=>'action_posts', :activity_id=>activity.id %>
 </img>
+<% if current_user.admin? %>
+<%= link_to "edit",:action => 'edit', :controller=>'activities',:id=>activity.id%>
+<% end %>

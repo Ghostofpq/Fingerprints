@@ -1,15 +1,26 @@
 class ActionPostsController < ApplicationController
   before_filter :signed_in_user, only: [:create, :destroy]
   before_filter :correct_user,   only: [:destroy,:set_public,:set_private,:edit]
+  
   def new
     @action_post = current_user.action_posts.build
     @action_post.activity_id = params[:activity_id]
     @action_post.start_date = 5.minutes.ago.to_datetime.to_s(:db)
-    @action_post.end_date = Time.zone.now.to_datetime.to_s(:db)
   end
 
   def edit
     @action_post = ActionPost.find(params[:id])
+  end
+
+  def destroy
+    @action_post = ActionPost.find(params[:id])
+    if @action_post.destroy
+      flash[:success] = "Action post #"+params[:id]+" has been deleted."
+      redirect_to root_url
+    else
+      flash[:error] = "Error, Action post #"+params[:id]+" wasn't deleted."
+      redirect_to root_url
+    end
   end
 
   def create
@@ -32,7 +43,7 @@ class ActionPostsController < ApplicationController
             flash[:success] = "ACHIEVEMENT!"
             current_user.unlocks!(achievement)
             @micropost = current_user.microposts.build(content: "Achievement unlocked : "+achievement.name)
-            @micropost.save
+          @micropost.save
           end
         end
         redirect_to root_url
@@ -64,12 +75,6 @@ class ActionPostsController < ApplicationController
       @action_post_u.update_attribute(:price,params[:action_post][:price].to_f)
       redirect_to root_url
     end
-  end
-
-  def destroy
-    @action_post = ActionPost.find(params[:id])
-    @action_post.destroy
-    redirect_to root_url
   end
 
   def set_private
