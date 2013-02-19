@@ -1,24 +1,39 @@
 <%= render 'shared/error_messages', object: f.object %>
+<div>
+	<table>
+		<tr>
+			<td><%= f.label :name, "Name" %>
+			<%= f.text_field :name %></td>
+		</tr>
+		<tr>
+			<td><%= f.label :past_participle, "Past participle" %>
+			<%= f.text_field :past_participle %></td>
+		</tr>
+		<tr>
+			<td> <%= f.label :pic_path, "Pic path" %>
+			<%= f.text_field :pic_path %></td>
+		</tr>
+		<tr>
+			<td> <%= f.label :category, "Category" %>
+			<%= f.text_field :category %></td>
+		</tr>
+	</table>
 
-<%= f.label :name, "Name" %>
-<%= f.text_field :name %>
-
-<%= f.label :past_participle, "Past participle" %>
-<%= f.text_field :past_participle %>
-
-<%= f.label :pic_path, "Pic path" %>
-<%= f.text_field :pic_path %>
-
-<%= f.label :category, "Category" %>
-<%= f.text_field :category %>
-
-<%= f.label :has_price, "Price" %>
-<%= f.check_box  :has_price %>
-<%= f.label :has_place, ":Place" %>
-<%= f.check_box  :has_place %>
-<%= f.label :has_score, "Score" %>
-<%= f.check_box  :has_score %>
-<%= f.label :has_comment, "Comment" %>
-<%= f.check_box  :has_comment %>
-<%= f.label :has_duration, "Duration" %>
-<%= f.check_box  :has_duration %>
+	<table>
+		<tr>
+			<td>Price</td><td> <%= f.check_box  :has_price %></td>
+		</tr>
+		<tr>
+			<td>Place</td><td><%= f.check_box  :has_place %></td>
+		</tr>
+		<tr>
+			<td>Score</td><td><%= f.check_box  :has_score %></td>
+		</tr>
+		<tr>
+			<td>Comment</td><td><%= f.check_box  :has_comment %></td>
+		</tr>
+		<tr>
+			<td>Duration</td><td><%= f.check_box  :has_duration %></td>
+		</tr>
+	</table>
+</div>
