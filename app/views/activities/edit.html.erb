@@ -1,6 +1,11 @@
-<%= form_for(@activity) do |f| %>
-<%= render 'fields', f: f %>
-<div class="center hero-unit">
-<%= f.submit "Save changes", class: "btn btn-large btn-primary" %>
+<div class="row">
+	<div class="span6 offset3">
+		<%= form_for(@activity) do |f| %>
+		<%= render 'fields', f: f %>
+		<div class="center hero-unit">
+			<%= f.submit "Save changes", class: "btn btn-large btn-primary" %>
+		</div>
+		<% end %>
+	</div>
 </div>
-<% end %>
+

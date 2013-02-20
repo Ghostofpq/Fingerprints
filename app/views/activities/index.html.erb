@@ -16,25 +16,24 @@
 <div id="mosaique">
 	<table border="2" cellpadding="10">
 		<tr>
-			<% max_col=6%>
-			<% i=0%>
-			<% multiple_rows=false%>
+			<% max_col=6 %>
+			<% i=0 %>
+			<% multiple_rows=false %>
 			<% @activities.each do |activity| %>
-			<% i+=1%>
-			<td><%= render partial: 'activity',:locals => { :activity => activity }%></td>
+			<% i+=1 %>
+			<td><%= render partial: 'activity',:locals => { :activity => activity } %></td>
 			<% if i==max_col%>
 		</tr>
 		<tr>
-			<% i=0%>
-			<% multiple_rows=true%>
+			<% i=0 %>
+			<% multiple_rows=true %>
 			<% end %>
-			<% end%>
-			<% unless i==0 or !multiple_rows%>
-			<td colspan=<%= max_col-i%>></td>
-			<% end%>
+			<% end %>
+			<% unless i==0 or !multiple_rows %>
+			<td colspan=<%= max_col-i %>></td>
+			<% end %>
 		</tr>
 	</table>
-
 </div>
 <% end %>
 <% end %>

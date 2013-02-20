@@ -39,6 +39,17 @@
 							</li>
 						</ul>
 					</li>
+
+					<% if current_user.admin? %>
+					<li id="fat-menu" class="dropdown">
+						<a href="#" class="dropdown-toggle" data-toggle="dropdown"> Admin <b class="caret"></b> </a>
+						<ul class="dropdown-menu">
+							<li>
+								<%= link_to "Activities", :controller=>'activities', :action=>'admin_activities' %>
+							</li>
+						</ul>
+					</li>
+					<% end %>
 					<% else %>
 					<li>
 						<%= link_to "Sign in", signin_path %>

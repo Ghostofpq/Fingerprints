@@ -19,6 +19,14 @@ class ActivitiesController < ApplicationController
 
   end
 
+  def admin_activities
+    if current_user.admin?
+      @activities=Activity.all
+    else
+      redirect_to
+    end
+  end
+
   def edit
     @activity=Activity.find(params[:id])
   end

@@ -1,0 +1,11 @@
+<% provide(:title, 'Activities') %>
+<div>
+	<% if @activities!=nil %>
+	<% if @activities.any? %>
+	<% @activities.each do |activity| %>
+	<%= activity.name %>
+	<%= link_to "edit",:action => 'edit', :controller=>'activities',:id=>activity.id %>
+	<% end %>
+	<% end %>
+	<% end %>
+</div>

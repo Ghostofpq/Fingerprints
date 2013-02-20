@@ -31,6 +31,7 @@ Fingerprints::Application.routes.draw do
   match '/auth/failure', :to => 'sessions#failure'
 
   match '/activities', to: 'activities#index'
+  match '/activities/admin_login', :controller => 'activities', :action => 'admin_activities'
 
   match '/signup',  to: 'users#new'
   match '/signin',  to: 'sessions#new'
