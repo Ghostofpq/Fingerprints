@@ -7,6 +7,7 @@ class Activity < ActiveRecord::Base
   validates :past_participle, presence: true
   validates :pic_path, presence: true
   validates :category, presence: true
+  
   def references!(achievement)
     self.achievements<<achievement
   end

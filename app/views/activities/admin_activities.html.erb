@@ -1,11 +1,18 @@
 <% provide(:title, 'Activities') %>
 <div>
-	<% if @activities!=nil %>
-	<% if @activities.any? %>
-	<% @activities.each do |activity| %>
-	<%= activity.name %>
-	<%= link_to "edit",:action => 'edit', :controller=>'activities',:id=>activity.id %>
-	<% end %>
-	<% end %>
-	<% end %>
+	<table>
+		<% if @activities!=nil %>
+		<% if @activities.any? %>
+		<% @activities.each do |activity| %>
+		<tr>
+			<td> <%= activity.name %></td>
+			<td> <%= link_to "edit",:action => 'edit', :controller=>'activities',:id=>activity.id %></td>
+			<% activity.achievements.each do |achievement|%>
+			<td><%= achievement.name%></td>
+			<% end %>
+		</tr>
+		<% end %>
+		<% end %>
+		<% end %>
+	</table>
 </div>
