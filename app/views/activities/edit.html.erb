@@ -2,6 +2,7 @@
 	<div class="span6 offset3">
 		<%= form_for(@activity) do |f| %>
 		<%= render 'fields', f: f %>
+		Add links to Achievements (id*space*id*space*...)
 		<%= text_field(:post, :achievements)%>
 		<div class="center hero-unit">
 			<%= f.submit "Save changes", class: "btn btn-large btn-primary" %>
