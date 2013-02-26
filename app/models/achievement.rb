@@ -3,7 +3,6 @@ class Achievement < ActiveRecord::Base
 
   has_and_belongs_to_many  :activities
   has_and_belongs_to_many  :users
-  
   def check(user)
     if(user.has_achievement(self.id))
     return false
@@ -50,12 +49,12 @@ class Achievement < ActiveRecord::Base
   end
 
   def max_sleep_time(user)
-    return user.user_doing(Action.find_by_name("Sleep").id).max_by(&:duration).duration
+   return user.user_doing(Activity.find_by_name("Sleep").id).max_by(&:duration).duration     
   end
 
   def total_sleep_time(user)
     total=0
-    user.user_doing(Action.find_by_name("Sleep").id).each do |action|
+    user.user_doing(Activity.find_by_name("Sleep").id).each do |action|
       total+=action.duration
     end
     return total
