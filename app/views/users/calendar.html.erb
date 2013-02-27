@@ -11,13 +11,13 @@
 	<%until @hour>=@date_cal.end_of_day() or i==100%>
 
 	<tr height="15">
-		<!-- On n'affiche que les heures -->
+		<!-- On affiche les heures avec un fond gris -->
 		<%if i%4==0%>
 		<td bgcolor="grey"> <%= @hour.to_s(:time)%> </td>
 		<%else%>
 		<td> <%= @hour.to_s(:time)%> </td>
 		<%end%>
-		
+
 		<%@action.each do |a|%>
 		<%if @hour>=a.start_date.to_time() || @hour+8.minutes>=a.start_date.to_time() %>
 		<td width="150px" rowspan=<%= a.duration_in_quarters(@date_cal)%>> <%= link_to image_tag(a.activity.pic_path),:controller => "action_posts", :action => "edit",:id => a.id %> </td>
@@ -30,4 +30,76 @@
 	<% i+=1%>
 	<%end%>
 
+</table>
+
+<table border="1">
+	<% @hour=@date_cal.beginning_of_day()%>
+	<% i=0%>
+	<%until @hour>=@date_cal.beginning_of_day()+8.hours or i==100%>
+	<tr height="15">
+		<!-- On affiche les heures avec un fond gris -->
+		<%if i%4==0%>
+		<td bgcolor="grey"> <%= @hour.to_s(:time)%> </td>
+		<%else%>
+		<td> <%= @hour.to_s(:time)%> </td>
+		<%end%>
+
+		<%@action1.each do |a|%>
+		<%if @hour>=a.start_date.to_time() || @hour+8.minutes>=a.start_date.to_time() %>
+		<td width="150px" rowspan=<%= a.duration_in_quarters(@date_cal)%>> <%= link_to image_tag(a.activity.pic_path),:controller => "action_posts", :action => "edit",:id => a.id %> </td>
+		<% @action1.slice!(@action1.index(a))%>
+		<%end%>
+		<%end%>
+	</tr>
+	<% @hour+=15.minutes%>
+	<% i+=1%>
+	<%end%>
+</table>
+
+<table border="1">
+	<% @hour=@date_cal.beginning_of_day()+8.hours %>
+	<% i=0%>
+	<%until @hour>=@date_cal.beginning_of_day()+16.hours or i==100%>
+	<tr height="15">
+		<!-- On affiche les heures avec un fond gris -->
+		<%if i%4==0%>
+		<td bgcolor="grey"> <%= @hour.to_s(:time)%> </td>
+		<%else%>
+		<td> <%= @hour.to_s(:time)%> </td>
+		<%end%>
+
+		<%@action2.each do |a|%>
+		<%if @hour>=a.start_date.to_time() || @hour+8.minutes>=a.start_date.to_time() %>
+		<td width="150px" rowspan=<%= a.duration_in_quarters(@date_cal)%>> <%= link_to image_tag(a.activity.pic_path),:controller => "action_posts", :action => "edit",:id => a.id %> </td>
+		<% @action2.slice!(@action2.index(a))%>
+		<%end%>
+		<%end%>
+	</tr>
+	<% @hour+=15.minutes%>
+	<% i+=1%>
+	<%end%>
+</table>
+
+<table border="1">
+	<% @hour=@date_cal.beginning_of_day()+16.hours%>
+	<% i=0%>
+	<%until @hour>=@date_cal.beginning_of_day()+24.hours or i==100%>
+	<tr height="15">
+		<!-- On affiche les heures avec un fond gris -->
+		<%if i%4==0%>
+		<td bgcolor="grey"> <%= @hour.to_s(:time)%> </td>
+		<%else%>
+		<td> <%= @hour.to_s(:time)%> </td>
+		<%end%>
+
+		<%@action3.each do |a|%>
+		<%if @hour>=a.start_date.to_time() || @hour+8.minutes>=a.start_date.to_time() %>
+		<td width="150px" rowspan=<%= a.duration_in_quarters(@date_cal)%>> <%= link_to image_tag(a.activity.pic_path),:controller => "action_posts", :action => "edit",:id => a.id %> </td>
+		<% @action3.slice!(@action3.index(a))%>
+		<%end%>
+		<%end%>
+	</tr>
+	<% @hour+=15.minutes%>
+	<% i+=1%>
+	<%end%>
 </table>

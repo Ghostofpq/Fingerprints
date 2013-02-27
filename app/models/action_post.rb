@@ -97,4 +97,31 @@ class ActionPost < ActiveRecord::Base
   def date_sort
     self.start_date
   end
+
+  def is_in_first_third_of_the_day(date)
+    if(self.local_start_date<=(date+8.hours) || self.local_end_date<=(date+8.hours))
+    return true
+    end
+    return false
+  end
+
+  def is_in_second_third_of_the_day(date)
+    if(
+    ((date+8.hours<=self.local_start_date) && (self.local_start_date<=date+16.hours)) ||
+    ((date+8.hours<=self.local_end_date) && (self.local_end_date<=date+16.hours))
+    )
+    return true
+    end
+    return false
+  end
+
+  def is_in_third_third_of_the_day(date)
+    if(
+    ((date+16.hours<=self.local_start_date) && (self.local_start_date<=date+24.hours)) ||
+    ((date+16.hours<=self.local_end_date) && (self.local_end_date<=date+24.hours))
+    )
+    return true
+    end
+    return false
+  end
 end

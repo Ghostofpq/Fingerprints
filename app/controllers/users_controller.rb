@@ -37,9 +37,21 @@ class UsersController < ApplicationController
       @date_cal=Date.parse(params[:date]).beginning_of_day()
     end
     @action=[]
+    @action1=[]
+    @action2=[]
+    @action3=[]
     @user.action_posts.each do |action_p|
       if(@date_cal<=action_p.local_start_date || @date_cal<=action_p.local_end_date)
-      @action.push(action_p)
+        @action.push(action_p)
+        if(action_p.is_in_first_third_of_the_day(@date_cal))
+        @action1.push(action_p)
+        end
+        if(action_p.is_in_second_third_of_the_day(@date_cal))
+        @action2.push(action_p)
+        end
+        if(action_p.is_in_third_third_of_the_day(@date_cal))
+        @action3.push(action_p)
+        end
       end
     end
 
