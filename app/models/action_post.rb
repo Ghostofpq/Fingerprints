@@ -76,13 +76,51 @@ class ActionPost < ActiveRecord::Base
     return end_date.in_time_zone(Time.zone)
   end
 
-  def duration_in_quarters(date)
-    unless is_on_one_day
-      diff = (local_end_date.to_time-date.beginning_of_day())
-    else
-      diff = duration
+  def duration_in_quarters(date,third)
+
+    if(third==1)
+      if(local_start_date<=date.beginning_of_day().in_time_zone(Time.zone))
+        t_start=date.beginning_of_day().in_time_zone(Time.zone)
+      else
+        t_start=local_start_date.to_time
+      end
+
+      if(date.beginning_of_day().in_time_zone(Time.zone)+8.hours<=local_end_date.to_time)
+        t_end=date.beginning_of_day().in_time_zone(Time.zone)+8.hours
+      else
+        t_end=local_end_date.to_time
+      end
+
+    elsif (third==2)
+      if(local_start_date<=date.beginning_of_day().in_time_zone(Time.zone)+8.hours)
+        t_start=date.beginning_of_day().in_time_zone(Time.zone)+8.hours
+      else
+        t_start=local_start_date.to_time
+      end
+
+      if(date.beginning_of_day().in_time_zone(Time.zone)+16.hours<=local_end_date.to_time)
+        t_end=date.beginning_of_day().in_time_zone(Time.zone)+16.hours
+      else
+        t_end=local_end_date.to_time
+      end
+
+    elsif (third==3)
+      if(local_start_date<=date.beginning_of_day().in_time_zone(Time.zone)+16.hours)
+        t_start=date.beginning_of_day().in_time_zone(Time.zone)+16.hours
+      else
+        t_start=local_start_date.to_time
+      end
+
+      if(date.beginning_of_day().in_time_zone(Time.zone)+24.hours<=local_end_date.to_time)
+        t_end=date.beginning_of_day().in_time_zone(Time.zone)+24.hours
+      else
+        t_end=local_end_date.to_time
+      end
     end
+    diff = (t_end-t_start)
+
     ret=(diff/(900)).round.to_i
+
     if(ret==0)
     return 1
     else
