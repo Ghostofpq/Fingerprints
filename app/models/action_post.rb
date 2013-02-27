@@ -92,7 +92,7 @@ class ActionPost < ActiveRecord::Base
       end
 
     elsif (third==2)
-      if(local_start_date<=date.beginning_of_day().in_time_zone(Time.zone)+8.hours)
+      if(local_start_date<date.beginning_of_day().in_time_zone(Time.zone)+8.hours)
         t_start=date.beginning_of_day().in_time_zone(Time.zone)+8.hours
       else
         t_start=local_start_date.to_time
@@ -105,7 +105,7 @@ class ActionPost < ActiveRecord::Base
       end
 
     elsif (third==3)
-      if(local_start_date<=date.beginning_of_day().in_time_zone(Time.zone)+16.hours)
+      if(local_start_date<date.beginning_of_day().in_time_zone(Time.zone)+16.hours)
         t_start=date.beginning_of_day().in_time_zone(Time.zone)+16.hours
       else
         t_start=local_start_date.to_time
@@ -145,8 +145,8 @@ class ActionPost < ActiveRecord::Base
 
   def is_in_second_third_of_the_day(date)
     if(
-    ((date+8.hours<=self.local_start_date) && (self.local_start_date<=date+16.hours)) ||
-    ((date+8.hours<=self.local_end_date) && (self.local_end_date<=date+16.hours))
+    ((date+8.hours<self.local_start_date) && (self.local_start_date<=date+16.hours)) ||
+    ((date+8.hours<self.local_end_date-8.minutes) && (self.local_end_date<=date+16.hours))
     )
     return true
     end
@@ -155,8 +155,8 @@ class ActionPost < ActiveRecord::Base
 
   def is_in_third_third_of_the_day(date)
     if(
-    ((date+16.hours<=self.local_start_date) && (self.local_start_date<=date+24.hours)) ||
-    ((date+16.hours<=self.local_end_date) && (self.local_end_date<=date+24.hours))
+    ((date+16.hours<self.local_start_date) && (self.local_start_date<=date+24.hours)) ||
+    ((date+16.hours<self.local_end_date-8.minutes) && (self.local_end_date<=date+24.hours))
     )
     return true
     end
