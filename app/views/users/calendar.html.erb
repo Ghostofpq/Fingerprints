@@ -22,18 +22,17 @@
 
 					<%@action1.each do |a|%>
 					<%if @hour>=a.start_date.to_time() || @hour+8.minutes>=a.start_date.to_time() %>
-					<%=@duration=a.duration_in_quarters(@date_cal, 1)%>
-					<td width="150px" rowspan=<%=@duration %>> 
-						<%if @duration<=2%>
-						pouet
-						<%elsif @duration<=4%>
-						<%= link_to image_tag(a.activity.pic_path,:size => "50x50"),:controller => "action_posts", :action => "edit",:id => a.id %> 
-						<%else%>
-						<%= link_to image_tag(a.activity.pic_path),:controller => "action_posts", :action => "edit",:id => a.id %> 
-						<%end%>
-					</td>
+					<% @duration=a.duration_in_quarters(@date_cal, 1)%>
+					<td width="150px" rowspan=<%= @duration %>> <%if @duration<=2%>
+					pouet
+					<%elsif @duration<=4%>
+					<%= link_to image_tag(a.activity.pic_path,:size => "50x50"),:controller => "action_posts", :action => "edit",:id => a.id %>
+					<%else%>
+					<%= link_to image_tag(a.activity.pic_path),:controller => "action_posts", :action => "edit",:id => a.id %>
+					<%end%> </td>
 					<% @action1.slice!(@action1.index(a))%>
 					<%end%>
+
 					<%end%>
 				</tr>
 				<% @hour+=15.minutes%>
@@ -58,9 +57,17 @@
 
 					<%@action2.each do |a|%>
 					<%if @hour>=a.start_date.to_time() || @hour+8.minutes>=a.start_date.to_time() %>
-					<td width="150px" rowspan=<%= a.duration_in_quarters(@date_cal,2)%>> <%= link_to image_tag(a.activity.pic_path),:controller => "action_posts", :action => "edit",:id => a.id %> </td>
+					<% @duration=a.duration_in_quarters(@date_cal, 2)%>
+					<td width="150px" rowspan=<%= @duration %>> <%if @duration<=2%>
+					pouet
+					<%elsif @duration<=4%>
+					<%= link_to image_tag(a.activity.pic_path,:size => "50x50"),:controller => "action_posts", :action => "edit",:id => a.id %>
+					<%else%>
+					<%= link_to image_tag(a.activity.pic_path),:controller => "action_posts", :action => "edit",:id => a.id %>
+					<%end%> </td>
 					<% @action2.slice!(@action2.index(a))%>
 					<%end%>
+
 					<%end%>
 				</tr>
 				<% @hour+=15.minutes%>
@@ -85,9 +92,17 @@
 
 					<%@action3.each do |a|%>
 					<%if @hour>=a.start_date.to_time() || @hour+8.minutes>=a.start_date.to_time() %>
-					<td width="150px" rowspan=<%= a.duration_in_quarters(@date_cal,3)%>> <%= link_to image_tag(a.activity.pic_path),:controller => "action_posts", :action => "edit",:id => a.id %> </td>
+					<% @duration=a.duration_in_quarters(@date_cal, 3)%>
+					<td width="150px" rowspan=<%= @duration %>> <%if @duration<=2%>
+					pouet
+					<%elsif @duration<=4%>
+					<%= link_to image_tag(a.activity.pic_path,:size => "50x50"),:controller => "action_posts", :action => "edit",:id => a.id %>
+					<%else%>
+					<%= link_to image_tag(a.activity.pic_path),:controller => "action_posts", :action => "edit",:id => a.id %>
+					<%end%> </td>
 					<% @action3.slice!(@action3.index(a))%>
 					<%end%>
+
 					<%end%>
 				</tr>
 				<% @hour+=15.minutes%>
