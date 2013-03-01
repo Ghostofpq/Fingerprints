@@ -1,0 +1,36 @@
+<div>
+	<table border="1">
+		<% @hour=date_cal.beginning_of_day()+(8*(third_number-1)).hours%>
+		<% i=0%>
+		<%until @hour>=date_cal.beginning_of_day()+(8.hours*third_number) or i==32%>
+		<tr height="15">
+			<%if i%4==0%>
+			<td bgcolor="grey"> <%= @hour.to_s(:time)%> </td>
+			<%else%>
+			<td> <%= @hour.to_s(:time)%> </td>
+			<%end%>
+			<%action.each do |a|%>
+			<%if @hour>=a.start_date.to_time() || @hour+8.minutes>=a.start_date.to_time() %>
+			<% @duration=a.duration_in_quarters(date_cal, third_number)%>
+			<td width="150px" rowspan=<%= @duration %>> <%if @duration<=1%>
+			<div class="center">
+				<%= link_to image_tag(a.activity.pic_path,:size => "15x15"),:controller => "action_posts", :action => "edit",:id => a.id %>
+			</div> <%elsif @duration<=2%>
+			<div class="center">
+				<%= link_to image_tag(a.activity.pic_path,:size => "30x30"),:controller => "action_posts", :action => "edit",:id => a.id %>
+			</div> <%elsif @duration<=4%>
+			<div class="center">
+				<%= link_to image_tag(a.activity.pic_path,:size => "60x60"),:controller => "action_posts", :action => "edit",:id => a.id %>
+			</div> <%else%>
+			<div class="center">
+				<%= link_to image_tag(a.activity.pic_path),:controller => "action_posts", :action => "edit",:id => a.id %>
+			</div> <%end%> </td>
+			<% action.slice!(action.index(a))%>
+			<%end%>
+			<%end%>
+		</tr>
+		<% @hour+=15.minutes%>
+		<% i+=1%>
+		<%end%>
+	</table>
+</div>
