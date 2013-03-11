@@ -1,12 +1,18 @@
 <div class="row">
-	<aside class="span4">
+	<aside class="span1">
+		<%= link_to "<<", :controller=>'users', :action=>'calendar',:date=>@date_cal-1.day %>
+	</aside>
+	<aside class="span3">
 		<%= render :partial =>'shared/eight_hours_table', :locals => {:action=> @action1,:date_cal=> @date_cal,:third_number=> 1} %>
 	</aside>
-	<aside class="span4">
+	<aside class="span3">
 		<%= render :partial =>'shared/eight_hours_table', :locals => {:action=> @action2,:date_cal=> @date_cal,:third_number=> 2} %>
 	</aside>
-	<aside class="span4">
+	<aside class="span3">
 		<%= render :partial =>'shared/eight_hours_table', :locals => {:action=> @action3,:date_cal=> @date_cal,:third_number=> 3} %>
+	</aside>
+	<aside class="span1">
+		<%= link_to ">>", :controller=>'users', :action=>'calendar',:date=>@date_cal+1.day %>
 	</aside>
 </div>
 <br />
