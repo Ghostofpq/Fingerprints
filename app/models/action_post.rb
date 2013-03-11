@@ -1,6 +1,6 @@
 class ActionPost < ActiveRecord::Base
+  include ActionView::Helpers::DateHelper
   attr_accessible :start_date, :end_date, :comment, :place, :score, :price,:activity_id,:public
-
   belongs_to :user
 
   validates :user_id, presence: true
@@ -34,8 +34,11 @@ class ActionPost < ActiveRecord::Base
   end
 
   def duration
-    diff = (self.end_date.to_time-self.start_date.to_time)
-    return diff
+    return (self.end_date.to_time-self.start_date.to_time)
+  end
+
+  def duration_human
+    return distance_of_time_in_words(self.start_date.to_time,self.end_date.to_time)
   end
 
   def score_img

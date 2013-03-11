@@ -111,13 +111,15 @@ class User < ActiveRecord::Base
   def publish(action_post, feed_name)
     if(action_post.start_date.to_date().today?)
       text="Today, "
-    elsif(action_post.start_date.to_date().yesterday?)
+    elsif(action_post.start_date.to_date()==Date.yesterday)
       text="Yesterday, "
     else
       text="On "+action_post.start_date.to_date().to_s(:long_ordinal)+", "
     end
-    text+="I have "+ action_post.activity.past_participle
-
+    text+="I have "+ action_post.activity.past_participle+" " 
+    text+="for "+action_post.duration_human+" " 
+    text+="starting at "+action_post.start_date.to_time.to_s(:time)+" " 
+    text+="."
     facebook.feed!(
     :message => text,
     :name => 'My Rails 3 App with Omniauth, Devise and FB_graph'
