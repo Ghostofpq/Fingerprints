@@ -1,0 +1,13 @@
+<%= render 'shared/error_messages', object: f.object %>
+<div>
+	<table>
+		<tr>
+			<td><%= f.label :name, "Name" %>
+			<%= f.text_field :name %></td>
+		</tr>
+		<tr>
+			<td> <%= f.label :pic_path, "Pic path" %>
+			<%= f.text_field :pic_path %></td>
+		</tr>
+	</table>
+</div>

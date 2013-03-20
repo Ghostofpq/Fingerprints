@@ -1,0 +1,19 @@
+<% provide(:title, 'Achievements') %>
+<div>
+	<table>
+		<% if @achievements!=nil %>
+			<% if @achievements.any? %>
+				<% @achievements.each do |achievement| %>
+				<tr>
+					<td> <%= achievement.name %></td>
+					<td> <%= link_to "edit",:action => 'edit', :controller=>'achievements',:id=>achievement.id %></td>
+				</tr>
+				<% end %>
+			<% end %>
+		<% end %>
+	</table>
+
+	<div>
+		<%= link_to "+", {:action => 'new', :controller=>'achievements'}, class: "btn btn-large btn-primary" %>
+	</div>
+</div>

@@ -23,7 +23,6 @@ class ActivitiesController < ApplicationController
   def create
     @activity = Activity.new(params[:activity])
     if @activity.save
-      sign_in @activity
       redirect_to root_path
     else
       render 'new'

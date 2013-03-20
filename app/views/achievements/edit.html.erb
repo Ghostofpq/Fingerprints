@@ -1,0 +1,14 @@
+<% provide(:title, 'Edit an achievement') %>
+
+<div class="row">
+	<div class="span6 offset3">
+		<%= form_for(@achievement) do |f| %>
+		<%= render 'fields', f: f %>
+		<div class="center hero-unit">
+			<%= f.submit "Save changes", class: "btn btn-large btn-primary" %>
+		</div>
+
+		<% end %>
+	</div>
+</div>
+

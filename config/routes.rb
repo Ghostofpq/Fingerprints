@@ -19,7 +19,8 @@ Fingerprints::Application.routes.draw do
   resources :microposts,    only: [:create, :destroy]
   resources :relationships, only: [:create, :destroy]
   resources :action_posts,  only: [:create, :destroy, :edit, :update]
-  resources :activities,  only: [:create, :destroy, :edit, :update]
+  resources :activities,  only: [:new,:create, :destroy, :edit, :update]  
+  resources :achievements,  only: [:new,:create, :destroy, :edit, :update]
 
   root to: 'static_pages#home'
 
@@ -31,7 +32,10 @@ Fingerprints::Application.routes.draw do
   match '/auth/failure', :to => 'sessions#failure'
 
   match '/activities', to: 'activities#index'
-  match '/activities/admin_login', :controller => 'activities', :action => 'admin_activities'
+  match '/activities/admin', :controller => 'activities', :action => 'admin_activities'
+  
+  match '/achievements', to: 'achievements#index'
+  match '/achievements/admin', :controller => 'achievements', :action => 'admin_achievements'
 
   match '/signup',  to: 'users#new'
   match '/signin',  to: 'sessions#new'
