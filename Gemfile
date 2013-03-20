@@ -24,7 +24,6 @@ gem 'annotate'
 group :development, :test do
   gem 'pg'
   gem 'rspec-rails', '2.11.0'
-  gem 'thin'
 # gem 'guard-rspec', '1.2.1'
 # gem 'guard-spork', '1.2.0'
 # gem 'spork', '0.9.2'
