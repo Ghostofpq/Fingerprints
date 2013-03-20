@@ -8,8 +8,10 @@
 
 user1=User.create(name: "user1",email: "ex@amp.le",password: "123456",password_confirmation: "123456")
 user2=User.create(name: "user2",email: "ex2@amp.le",password: "123456",password_confirmation: "123456")
+admin=User.create(name: "admin",email: "ad@mi.n",password: "123456",password_confirmation: "123456",admin: true)
 user1.save!
 user2.save!
+admin.save!
 user1.follow!(user2)
 user2.follow!(user1)
 ##ROUTINE
